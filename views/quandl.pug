@@ -1,0 +1,6 @@
+div#Quandl(align="center")
+    script(src='js/quandl.js')
+    input(type="search" id="QuandlTicker" size="20" list="quandl_tickers" placeholder='Ticker' onkeyup="$(this).val(this.value.toUpperCase());return true;" onkeypress="if (event.keyCode==13) { search_quandl($(this).val()); loading.show(); } return true;")
+    div#QUANDLChart(style="width: 90%")
+    datalist#quandl_tickers
+        option CFTC/TN_F_ALL

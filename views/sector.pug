@@ -1,0 +1,14 @@
+div#SectorAnalysis
+    input#SectorCountry(type="search" value='TSE' placeholder='Exchange' list='exchanges' onkeypress="if (event.keyCode==13) { search_sector($('#SectorCountry').val(), $('#SectorName').val()); loading.show(); } return true;")
+    input#SectorName(type="search" value='Financials' placeholder='Sector' list='sectors' onkeypress="if (event.keyCode==13) { search_sector($('#SectorCountry').val(), $('#SectorName').val()); loading.show(); } return true;")
+    label
+        input#IndexedOnly(value="true" type="checkbox" checked)
+        | Index constituents only
+    button(type="button" onclick="search_sector($('#SectorCountry').val(), $('#SectorName').val()); loading.show(); return true;") >
+    table#SectorReturns.dispaly(width="80%" align='center')
+        caption 20-day return 
+        thead
+        tbody
+    table#SectorCorrelation.dispaly(width="80%" align='center')
+        thead
+        tbody

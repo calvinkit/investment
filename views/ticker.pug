@@ -1,0 +1,36 @@
+script(src="js/ticker.js")
+div(style='color:white;background-color:black')
+    span(onclick="get_quotes('DJI','INDU','INDEXDJX')",style="color:orange;cursor:hand") Dow: &nbsp;&nbsp;
+    span#DJI
+    | &nbsp;&nbsp;
+    span(onclick="get_quotes('.INX','^GSPC','INDEXSP')",style="color:orange;cursor:hand") S&P 500: &nbsp;&nbsp;
+    span#SNP
+    | &nbsp;&nbsp;
+    span(onclick="get_quotes('.IXIC','^IXIC','INDEXNASDAQ')",style="color:orange;cursor:hand") NASDAQ: &nbsp;&nbsp;
+    span#NASDAQ
+    | &nbsp;&nbsp;
+    span(onclick="get_quotes('OSPTX','^GSPTSE','INDEXTSI')",style="color:orange;cursor:hand") S&P/TSX: &nbsp;&nbsp;
+    span#TSX
+    | &nbsp;&nbsp;
+    span(onclick="get_quotes('VIX','^VIX','INDEXCBOE')",style="color:orange;cursor:hand") S&P 500 Vol: &nbsp;&nbsp;
+    span#VIX
+div(style='color:white;background-color:black')
+    span(onclick="",style="color:orange;cursor:hand") Dow: &nbsp;&nbsp;
+    span#DJF
+    | &nbsp;&nbsp;
+    span(onclick="",style="color:orange;cursor:hand") S&P 500: &nbsp;&nbsp;
+    span#SNPF
+    | &nbsp;&nbsp;
+    span(onclick="",style="color:orange;cursor:hand") NASDAQ: &nbsp;&nbsp;
+    span#NASDAQF
+    | &nbsp;&nbsp;
+    span(onclick="",style="color:orange;cursor:hand") WTI: &nbsp;&nbsp;
+    span#CL
+    | &nbsp;&nbsp;
+    span(onclick="",style="color:orange;cursor:hand") NatGas: &nbsp;&nbsp;
+    span#NG
+    | &nbsp;&nbsp;
+    span(onclick="",style="color:orange;cursor:hand") Gold: &nbsp;&nbsp;
+    span#GC
+    | &nbsp;&nbsp;
+

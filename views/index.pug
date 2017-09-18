@@ -1,0 +1,76 @@
+doctype html5
+html
+    head
+        title Investment analysis application
+        link(rel='stylesheet', href='css/style.css')
+        link(rel='stylesheet', href='css/jquery-custom/jquery-ui.css')
+        link(rel='stylesheet', href='css/dataTables.jqueryui.css')
+        link(rel='stylesheet', href='css/chosen.css')
+        link(rel='stylesheet', href='css/editor.dataTables.css')
+        link(rel="icon" href="site.ico")
+        script(src='http://code.jquery.com/jquery-latest.js')
+        script(src="http://code.jquery.com/ui/1.10.4/jquery-ui.js")
+        script(src='http://code.highcharts.com/stock/4.2.0/highstock.js')
+        script(src='http://code.highcharts.com/stock/4.2.0/modules/exporting.js')
+        script(src='http://code.highcharts.com/stock/4.2.0/highcharts-more.js')
+        //script(src='http://code.highcharts.com/modules/drilldown.js')
+        script(src='http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js')
+        script(src='https://datatables.net/release-datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js')
+        script(src='https://dataTables.net/release-datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js')
+        script(src='js/dataTables.editor.min.js')
+        script(src='socket.io/socket.io.js')
+        script(src='humanize/humanize.js')
+        script(src='css/dataTables.jqueryui.js')
+        script(src='css/highchartstyle-gridlight.js')
+        script(src='js/chosen.jquery.js')
+        script(src='js/statistics.js')
+        script(src='js/indicator.js')
+        script(src='js/index.js')
+        script(src='js/geolocation.js')
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDh1je8-dys7Ux-bEtYDlAZyaSZ_Qv3JpQ&',async,defer)
+    body
+        div(align='center')
+            include ticker
+            div#TabView
+                ul
+                    li
+                        a(href="#Portfolio") Portfolio
+                    li
+                        a(href="#Research") Research
+                    li
+                        a(href="#Regression") Regression
+                    li
+                        a(href="#VIXTrading") VIX
+                    li
+                        a(href="#SectorAnalysis") Sector Analysis
+                    li
+                        a(href="#Quandl") Quandl
+                    li
+                        a(href="#Options") Options
+                include portfolio
+                include research
+                include regression
+                include vix  
+                include sector
+                include quandl
+                include options
+            div#Loading.loading(title="Loading...")
+                img(src="css/icon-loading-animated.gif")
+            div#Msg(style='color:red; font-weight:bold')
+    datalist#tickers
+        option .INX
+        option .DJI
+        option .IXIC
+        option OSPTX
+    datalist#exchanges
+        option INDEXSP
+        option INDEXDJX
+        option INDEXNASDAQ
+        option INDEXTSI
+        option TSE
+        option MUTF_CA
+        option United States
+    datalist#indexes
+        option TSX
+        option DJIA
+        option S&P 500

@@ -1,0 +1,51 @@
+div#Screen(align="center")
+    input(type="search" list="exchanges" id="ScreenExchange" placeholder="Exchange" autofocus)
+    input(type="search" id="ScreenIndex" placeholder="Index")
+    input(type="search" list="sectors" id="ScreenSector" placeholder="Sector")
+    datalist#sectors
+        option Basic Industries
+        option Capital Goods
+        option Consumer Discretionary
+        option Consumer Durables
+        option Consumer Non-Durables
+        option Consumer Services
+        option Consumer Staples
+        option Energy
+        option ETF
+        option Finance
+        option Financials
+        option Health Care
+        option Industrials
+        option Information Technology
+        option Materials
+        option Miscellaneous
+        option Public Utilities
+        option Technology
+        option Telecommunication Services
+        option Transportation
+        option Utilities
+    button(type="button" onclick="run_stock_screen($('#ScreenExchange').val(), $('#ScreenIndex').val(), $('#ScreenSector').val());") >
+    br
+    select(id="ScreenCriteria" onchange="run_criteria_filter($(this).val())")
+        option
+    div(style="width:85%")
+        table#ScreenResult.display(cellpadding="0" cellspacing="0" border="0" align="center")
+            thead
+                tr
+                    th(width="80px") Ticker
+                    th Price
+                    th 50d ema
+                    th 100d ema
+                    th RSI
+                    th Sector
+                    th Industry
+            tbody
+            tfoot
+                tr
+                    th
+                    th(align="right")
+                    th(align="right")
+                    th(align="right")
+                    th(align="right")
+                    th
+                    th

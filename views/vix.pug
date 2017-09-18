@@ -1,0 +1,22 @@
+script(src='js/research.js')
+div#VIXTrading
+    button(type="button" onclick="$('#VIXDate').datepicker('setDate', $('#VIXDate').datepicker('getDate').prevBizDay());onchange_vixdate();") <
+    input#VIXDate
+    button(type="button" onclick="$('#VIXDate').datepicker('setDate', $('#VIXDate').datepicker('getDate').nextBizDay());onchange_vixdate();") >
+    label
+        input#VIXCompare(value="true" type="checkbox" checked)
+        | Compare mode
+    br
+    br
+    table#VIXContango.dispaly(width="60%" align='center')
+        thead
+            tr
+                th Date
+                th F2-F1
+                th F3-F2
+                th F4-F3
+        tbody
+    br
+    div#VIXFuturesChart(style="width: 800px")
+    br
+    div#VIXChart(style="width: 800px")
