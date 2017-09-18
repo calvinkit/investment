@@ -2,3 +2,4 @@ data/historical
 data/intraday
 bin/*.txt
 portfolios
+node_modules
