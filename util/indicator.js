@@ -5,8 +5,6 @@ function Indicator(quotes) {
     this.lo = quotes.map(function(e) { return e.lo; });
     this.hi = quotes.map(function(e) { return e.hi; });
     this.series = quotes.map( function(e) { return [e.date, e.price]; } );
-    this.returns = this.closes.map(function(e,i,a) { return e/a[Math.min(0,i-1)]-1; });
-    this.returns[0] = this.returns[1];
 }
 
 Indicator.prototype.pivots = function() {
@@ -45,7 +43,6 @@ Indicator.prototype.OBV = function() {
 
 Indicator.prototype.RSI = function(period) {
     var closes = this.closes;
-    var returns = this.returns;
     var dates = this.dates;
     var rsi = [];
     var diff = [];
@@ -137,6 +134,12 @@ Indicator.prototype.fibonacci = function() {
     return [0, 0.118, 0.191, 0.125, 0.309, 0.5, 0.691, 0.75, 0.809, 0.882, 1].map((function(e) {
         return [[this.dates[0], max-e*spread], [this.dates[this.dates.length-1], max-e*spread]];
     }).bind(this));
+};
+
+Indicator.prototype.returns = function(P) {
+    var result = this.closes.map(function(e,i,a) { return e/a[Math.min(0,i-P)]-1; });
+    for (var i=0; i<P; i++) result[i] = result[P];
+    return result;
 };
 
 // Volume weighted return: Given n days period, return volume weighted on the daily return in %

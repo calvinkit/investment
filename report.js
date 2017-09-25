@@ -15,7 +15,9 @@ if (process.argv.length<4) {
                 '      2: portfolio return\n'+
                 '      4: security level returns\n'+
                 '      8: portfolio transactions\n'+
-                '      16: investments transactions');
+                '      16: investments periodic return\n'+
+                '      32: portfolio periodic performance\n'
+                );
     process.exit(0);
 } 
 var portfolioName = process.argv[2];
@@ -29,7 +31,7 @@ var p_req = zmq.socket('dealer');
 p_req.identity = parseInt(new Date().getTime()).toString()+String.fromCharCode(32+parseInt(Math.random()*40));
 p_req.connect(zmqports.portfolio[0]);
 p_req.on('message', onmessage);
-p_req.send(['',JSON.stringify({ action: 'get', portfolioName: portfolio.name, end: portfolio.end })]);
+p_req.send(['',JSON.stringify({ action: 'get', portfolioName: portfolio.name, begin:portfolio.begin, end: portfolio.end })]);
 show();
 
 function onmessage( portfolioName, investment ) {
@@ -39,17 +41,21 @@ function onmessage( portfolioName, investment ) {
         portfolio.investments[investment.security.ticker].consume(investment);
         portfolio.investments[investment.security.ticker].received = true;
         show();
-    }
+    } 
 }
 
 // 1: taxable gain
 // 2: portfolio return
 // 4: security level returns
 // 8: portfolio transactions
-// 16: investments transactions
+// 16: investments period returns
+// 32: portfolio period returns
 function show() {
-    for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end) && !portfolio.investments[ticker].received) return;
-    for (var ticker in portfolio.investments) logger.log('debug',ticker,'isClosed',portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end));
+    for (var ticker in portfolio.investments) logger.log('verbose',util.inspect({ ticker:ticker,
+                                                                     'isClosed':portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end),
+                                                                     'received':portfolio.investments[ticker].received }));
+    //for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end) && !portfolio.investments[ticker].received) return;
+    for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].received) return;
     try { p_req.close(); } catch(e) {};
 
     for (var ticker in portfolio.investments) portfolio.investments[ticker].calculate(portfolio);
@@ -95,11 +101,41 @@ function show() {
         console.log(t.toString());
     }
 
-    // Show details of investment transactions
+    // Calculate investment level periodic return, every 3m
+    var t = new Table();
+    var t2 = new Table();
     if ((parseInt(process.argv[3]) & 16) > 0) {
-        var bIncludeClosed = true;
         var t = new Table();
-        for (var ticker in portfolio.investments) if (bIncludeClosed || !portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end)) portfolio.investments[ticker].show(null,t);
+        var begin = new Date(portfolio.begin).fromGMTDate();
+        var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
+        for (var end = begin.add(3,'M'); end <= today; ) {
+            var yields = {};
+            for (var ticker in portfolio.investments) {
+                var investment = portfolio.investments[ticker];
+                yields[ticker] = investment.periodReturn(begin,end);
+            }
+            t.cell('Begin',begin.toString());
+            t.cell('End',end.toString());
+            for (var ticker in portfolio.investments) t.cell(ticker, yields[ticker], Table.Number(2));
+            t.newRow();
+            begin = begin.add(3,'M'); 
+            end = begin.add(3,'M');
+        }
+        console.log(t.toString());
+    }
+
+    // Calculate portfolio periodic return, every 3m
+    var t = new Table();
+    var t2 = new Table();
+    if ((parseInt(process.argv[3]) & 32) > 0) {
+        var t = new Table();
+        var begin = new Date(portfolio.begin).fromGMTDate();
+        var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
+        for (var end = begin.add(3,'M'); end <= today; ) {
+            portfolio.periodReturn(begin,end,t,t2);
+            begin = begin.add(3,'M'); 
+            end = begin.add(3,'M');
+        }
         console.log(t.toString());
     }
 }

@@ -32,7 +32,7 @@ function onsecurity(security) {
     if (security.dailyReturn.length >= 252) {
         this.securities.push([security, security.dailyReturn.slice(0, 252)]);
     } else {
-        logger.log('debug','Skipping '+security.ticker);
+        logger.log('verbose','Skipping '+security.ticker);
     }
     if (--this.count == 0) {
         this.securities.sort(function(a,b) { return (a[0].ticker < b[0].ticker?-1:1); });

@@ -72,6 +72,10 @@ function onsecurity(security) {
     $('#GoogleTicker').val(security.ticker);
     $('#YahooTicker').val(security.yticker);
     $('#Country').val(security.country);
+    // Save the data to the download button
+    var data = security.quotes.map(function(e) { return [new Date(e.date).toExcelDate(), e.price].join(",") }).join("\r\n");
+    $('#ResearchDownload').attr('data',data);
+    $('#ResearchDownload')[0].onclick = function() { download('data.csv', $(this).attr('data')); };
     plot_charts(security);
     onfinancials(security);
     onholdings(security);

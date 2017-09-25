@@ -21,7 +21,7 @@ Google.prototype.getprice = function(security, onsuccess, onerror) {
     http.get(options, function(res) {
         res.setEncoding();
         res.on('data', function(chunk) { data += chunk; });
-        res.on('error', function(err) { logger.log('error', 'Google.getprice',security.ticker+'\r\n'+err); onerror(security); });
+        res.on('error', function(err) { logger.log('error', 'Google.getprice',security.ticker); onerror(security); });
         res.on('end', function() {
             try {
                 if (res.statusCode == 404) throw data;
@@ -31,13 +31,12 @@ Google.prototype.getprice = function(security, onsuccess, onerror) {
                 if (data!="") populatePriceInfo(security,JSON.parse(data.replace(/\/\//g,""))[0]);
                 security.calculate(1).calculate(10).calculate(20).calculate(14);
                 security.calculate(50).calculate(100).calculate(200).indicator();
-                logger.log('debug','Google.getprice result returned', security.ticker);
+                logger.log('verbose','Google.getprice result returned', security.ticker);
                 onsuccess(security);
             } catch (err) { 
                 security.error = "Error in Google.GetPrice: "+security.ticker;
-                logger.log('error', 'QuoteServer.google_getprice', security.ticker, err);
-                logger.log('error', options.path);
-                logger.log('error', data); 
+                logger.log('error','Google.getprice', security.ticker);
+                logger.log('trace','Google.getprice', err);
                 onerror(security);
             }
         });
@@ -55,7 +54,7 @@ Google.prototype.getprice = function(security, onsuccess, onerror) {
 //ts - Starting timestamp (Unix format). If blank, it uses today.
 Google.prototype.gethistory = function(security, intraday, onsuccess, onerror) {
     var data = "";
-    var period = intraday?'5d':'5Y';
+    var period = intraday?'5d':'8Y';
     var options = { host: 'www.google.com',
         headers: { Host: 'www.google..com' },
         agent: this.agent,
@@ -65,7 +64,7 @@ Google.prototype.gethistory = function(security, intraday, onsuccess, onerror) {
         res.setEncoding();
         try {
             res.on('data', function(chunk) { data += chunk; });
-            res.on('error', function(err) { logger.log('error', 'Google.gethistory',security.ticker+'\r\n'+err); onerror(security); });
+            res.on('error', function(err) { logger.log('error', 'Google.gethistory',security.ticker+'\r\n'); onerror(security); });
             res.on('end', function() {
                 if (res.statusCode == 404) { throw data; }
                 if (data!="") {
@@ -73,11 +72,12 @@ Google.prototype.gethistory = function(security, intraday, onsuccess, onerror) {
                     security = populateHistoricalQuotes(security, data);
                 }
                 logger.log('detail','Google.gethistory result:', security);
-                logger.log('debug','Google.gethistory result returned:', security.ticker);
+                logger.log('verbose','Google.gethistory result returned:', security.ticker);
                 onsuccess(security);
             });
         } catch (err) {
-            logger.log('error','Google.gethistory:', [security.ticker,String(data).substr(0,100),err].join('\r\n'));
+            logger.log('error','Google.gethistory:', security.ticker);
+            logger.log('trace','Google.gethistory:', err);
             onerror(security);
         }
     });

@@ -1,6 +1,4 @@
 var zmq = require('zeromq');
-var http = require('follow-redirects').http;
-var https = require('follow-redirects').https;
 var httpProxyAgent = require('http-proxy-agent');
 var httpsProxyAgent = require('https-proxy-agent');
 var csv2array = require('csv2array');
@@ -16,7 +14,7 @@ var Quandl = require('./quandl');
 var CNBC = require('./cnbc');
 
 function QuoteServer() {
-    logger.log('info','QuoteServer ('+process.pid+') Started');
+    logger.log('info','QuoteServer ('+process.pid+') running in '+(process.env.HTTP_PROXY?"Proxy":"Direct")+" mode on "+zmqports.quote[1]);
     this.fromDate = moment(new Date());
     this.fromDate.subtract(4, 'years');
     this.response = zmq.socket('rep').connect(zmqports.quote[1]);
@@ -64,12 +62,12 @@ function QuoteServer() {
                 break;
 
             case 'intraday':
-                this.google_gethistory(security, true);
+                this.getHistory(security);
                 break;
 
             case 'futures':
                 var server = this;
-                logger.log('debug','QuoteServer.futures on',security.ticker);
+                logger.log('verbose','QuoteServer.futures on',security.ticker);
                 server.cnbc.getprice(security, 
                                     (function(s) { this.response.send(JSON.stringify(s)); }).bind(server), 
                                     (function(s) { this.response.send(JSON.stringify(s)); }).bind(server));
@@ -77,49 +75,57 @@ function QuoteServer() {
 
             case 'quandl':
                 var server = this;
-                logger.log('debug','QuoteServer.quandl on',security.ticker);
+                logger.log('verbose','QuoteServer.quandl on',security.ticker);
+                logger.log('info','QuoteServer Received Quandl timeseries request on '+security.ticker,'@',new Date().toLocaleTimeString());
                 server.quandl.timeseries(security, 
                                          (function(s) { this.response.send(JSON.stringify(s)); }).bind(server), 
                                          (function(s) { this.response.send(JSON.stringify(s)); }).bind(server));
                 break;
         }
     }).bind(this));
-
-    logger.log('debug',"QuoteServer running in "+(process.env.HTTP_PROXY?"Proxy":"Direct")+" mode on "+zmqports.quote[1]);
 }
 
-
-QuoteServer.prototype.getPrice = function(security) {
-    var server = this;
-    logger.log('debug','QuoteServer.getPrice on',security.ticker);
-    server.google.getprice(security, 
-                           (function(s) { this.response.send(JSON.stringify(s)); }).bind(server), 
-                           (function(s) { this.response.send(JSON.stringify(s)); }).bind(server));
-};
-
+var cache = {};
 QuoteServer.prototype.getHistory = function(security) {
     var server = this;
-    logger.log('debug','QuoteServer.getHistory on',security.ticker);
-    server.google.gethistory(security, false,
-                             (function(s) { this.getPrice(s); }).bind(server), 
-                             (function(s) { this.getPrice(s); }).bind(server));
+    var onsuccess = (function(s) {logger.log('verbose','QuoteServer.getHistory onsuccess'); cache[s.ticker+s.country]=s; this.getPrice(s); }).bind(server);
+    var onerror = (function(s) {logger.log('error','QuoteServer.getHistory onerror'); cache[s.ticker+s.country]=s; this.getPrice(s); }).bind(server);
+    logger.log('verbose','QuoteServer.getHistory on',security.ticker);
+    if (security.country == "EXPIRED") { onsuccess(security); return; }
+
+    var handler = security.ticker=='XSP'?server.alpha:server.google;
+    // Should I actually cache the result...per node
+    if (cache[security.ticker+security.country]) { this.getPrice(security); return; }
+    handler.gethistory(security, false, onsuccess, onerror);
 };
 
 QuoteServer.prototype.getDetail = function(security) {
     var server = this;
-    logger.log('debug','QuoteServer.getDetail on',security.ticker);
-    server.yahoo.getdetails(security, 
-                            (function(s) { this.getHistory(s); }).bind(server), 
-                            (function(s) { this.getHistory(s); }).bind(server));
+    var onsuccess = (function(s) { this.getHistory(s); }).bind(server);
+    var onerror = (function(s) { this.getHistory(s); }).bind(server);
+    logger.log('verbose','QuoteServer.getDetail on',security.ticker);
+    if (security.country == "EXPIRED") { onsuccess(security); return; }
+    server.yahoo.getdetails(security, onsuccess, onerror);
 };
 
 QuoteServer.prototype.getFinancials = function(security) {
     var server = this;
-    logger.log('debug','QuoteServer.getFinancials on',security.ticker);
-    server.morningstar.getfinancials(security,
-                                     (function(s) { this.getDetail(s); }).bind(server), 
-                                     (function(s) { this.getDetail(s); }).bind(server));
+    var onsuccess = (function(s) { this.getDetail(s); }).bind(server);
+    var onerror = (function(s) { this.getDetail(s); }).bind(server);
+    logger.log('verbose','QuoteServer.getFinancials on',security.ticker);
+    if (security.country == "EXPIRED") { onsuccess(security); return; }
+    server.morningstar.getfinancials(security, onsuccess, onerror);
 };
+
+QuoteServer.prototype.getPrice = function(security) {
+    var server = this;
+    var onsuccess = (function(s) { logger.log('verbose','QuoteServer.getPrice onsuccess'); this.response.send(JSON.stringify(s)); }).bind(server);
+    var onerror = (function(s) { logger.log('error','QuoteServer.getPrice onerror'); this.response.send(JSON.stringify(s)); }).bind(server);
+    logger.log('verbose','QuoteServer.getPrice on',security.ticker);
+    if (security.country == "EXPIRED") { onsuccess(security); return; }
+    server.google.getprice(security, onsuccess, onerror);
+};
+
 
 QuoteServer.prototype.close = function() {
     this.securities = new Object();
@@ -127,5 +133,6 @@ QuoteServer.prototype.close = function() {
 };
 
 process.on('uncaughtException', function(err) { logger.log('error','Uncaught Exception '+err); });
-
+process.on('exit', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
+process.on('SIGINT', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
 module.exports = new QuoteServer;

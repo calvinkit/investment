@@ -23,7 +23,7 @@ CNBC.prototype.getprice = function(security, onsuccess, onerror) {
             try {
                 if (data!="") populatePriceInfo(security, JSON.parse(data), 'cnbc');
                 onsuccess(security);
-                logger.log('debug','QuoteServer.cnbc_getprice result:', security.ticker);
+                logger.log('verbose','QuoteServer.cnbc_getprice result:', security.ticker);
             } catch(err) { logger.log('error', security.ticker, err); onerror({error: 'Error in CNBCGetPrice'})}
         });
     });

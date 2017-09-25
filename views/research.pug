@@ -9,8 +9,10 @@ div#Research
     label
         input(type="checkbox" id="ResearchPercent" onclick="research_toggle_percent();")
         | In % form
+    button(type="button" id="ResearchDownload") Download
+    <!--
     input(type="number" id="TrendValue" style="width:50px")
-    button(type="button" onclick="research_addtrend($('#TrendValue').val())") Add Trend Line
+    button(type="button" onclick="research_addtrend($('#TrendValue').val())") Add Trend Line-->
     input(type="number" id="ResearchMA" min="1" style="width: 60px;" placeholder="DMA" onchange="return research_addMA();")
     input(type="number" id="ResearchHistVolPeriod" value="" min="2" style="width: 70px;" placeholder="NDVol" onchange="return research_addHistVol();")
     select(id="ResearchTechnical",data-placeholder="Technical Analysis",multiple,style="display:none")

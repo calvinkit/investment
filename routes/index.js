@@ -9,8 +9,12 @@ router.get('/sectoranalysis', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-    next();
+    if (true)  {
+        res.render('index', { title: 'Express' });
+        next();
+    } else {
+        res.render('login', { title: 'Login' });
+    }
 });
 
 module.exports = router;

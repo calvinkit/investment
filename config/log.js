@@ -1,32 +1,31 @@
 var winston = require('winston');
-var log = {
-    'logger' : {
-        'levels': {
-            'detail': 0,
-            'trace': 1,
-            'debug': 2,
-            'enter': 3,
-            'info': 4,
-            'warn': 5,
-            'error': 6 },
-        'colors': {
-            'detail': 'grey',
-            'trace': 'white',
-            'debug': 'blue',
-            'enter': 'inverse',
-            'info': 'green',
-            'warn': 'yellow',
-            'error': 'red' }, }
+var custom = {
+    'levels': {
+        'detail': 0,
+        'trace': 1,
+        'debug': 2,
+        'enter': 3,
+        'info': 4,
+        'warn': 5,
+        'error': 6 },
+    'colors': {
+        'detail': 'grey',
+        'trace': 'white',
+        'debug': 'blue',
+        'enter': 'grey',
+        'info': 'green',
+        'warn': 'yellow',
+        'error': 'red' }
 };
-var logger = new (winston.Logger)({
-        'transports': [ new (winston.transports.Console)( { 'level': 'info', 'colorize': true })],
-});
-
-winston.setLevels(log.logger.levels);
-winston.addColors(log.logger.colors);
+winston.setLevels(custom.levels);
+winston.addColors(custom.colors);
+var logger = new (winston.Logger)({ 
+    'transports': [ new (winston.transports.Console)( { 
+        'level': 'info', 
+        'colorize': true 
+})], });
 
 var moment = require('moment');
-
 Date.prototype.toString = function() {
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var d = this.getDate()<10?"0"+this.getDate():this.getDate();

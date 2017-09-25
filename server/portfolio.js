@@ -33,7 +33,8 @@ function PortfolioServer() {
             break;
         case 'get':
             logger.log('info','PortfolioServer.Getting '+portfolioName+' from '+identity);
-            var portfolio = new Portfolio(portfolioName);
+            var portfolio = new Portfolio(portfolioName, request.begin, request.end);
+            portfolio.always = true;
             this.activitate(portfolio,identity, false);
             break;
         }
@@ -64,14 +65,14 @@ PortfolioServer.prototype.activitate = function(portfolio, listener, permanent) 
         var investment = this.investments[security.ticker];
         investment.security.consume(security);
         investment.calculate(this);
-        logger.log('debug','PortfolioServer.Sending investment',investment.security.ticker,this.name,this.listener);
+        logger.log('verbose','PortfolioServer.Sending investment',investment.security.ticker,this.name,this.listener);
         this.response.send([this.listener, this.name, JSON.stringify(investment)]);
         if (this.remaining!=-1 && --this.remaining==0) this.deactivitate();
     }).bind(portfolio));
     portfolio.refresh = function(quote_action) {
         for (var ticker in this.investments) {
             var investment = this.investments[ticker];
-            if (investment.isClosed(portfolio.begin, portfolio.end)) continue;
+            if (!portfolio.always && investment.isClosed(portfolio.begin, portfolio.end)) continue;
             this.quote.send(['', JSON.stringify({ action: quote_action, security: investment.security })]);
         }
     };

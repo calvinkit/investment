@@ -15,7 +15,7 @@ AlphaVantage.prototype.gethistory = function(security, bAdjClose, onsuccess, one
     var options = { host: 'www.alphavantage.co',
         headers: { Host: 'www.alphavantage.co' },
         agent: this.agent,
-        path: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&apikey=BZ7PZOM050R6M03T&datatype=csv&outputsize=full&symbol='+(security.country!='United States'?security.country:'')+security.ticker };
+        path: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&apikey=BZ7PZOM050R6M03T&datatype=csv&outputsize=full&symbol='+(security.country!='United States'?security.country+':':'')+security.ticker };
 
     http.get(options, function(res) { 
         res.setEncoding();
@@ -28,7 +28,7 @@ AlphaVantage.prototype.gethistory = function(security, bAdjClose, onsuccess, one
                     security = populateHistoricalQuotes(security, true, csv2array(data));
                 }
                 logger.log('detail','AlphaVantage.gethistory result:', security);
-                logger.log('debug','AlphaVantage.gethistory result returned:', security.ticker);
+                logger.log('verbose','AlphaVantage.gethistory result returned:', security.ticker);
                 onsuccess(security);
             });
         } catch (err) {
@@ -43,26 +43,26 @@ AlphaVantage.prototype.getprice = function(security, onsuccess, onerror) {
     var options = { host: 'www.alphavantage.co',
         headers: { Host: 'www.alphavantage.co' },
         agent: this.agent,
-        path: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=BZ7PZOM050R6M03T&datatype=csv&symbol='+(security.country!='United States'?security.country:'')+security.ticker };
+        path: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=BZ7PZOM050R6M03T&datatype=csv&symbol='+(security.country!='United States'?security.country+':':'')+security.ticker };
 
     http.get(options, function(res) { 
         res.setEncoding();
-        try {
-            res.on('data', function(chunk) { data += chunk; });
-            res.on('error', function(err) { logger.log('error', 'AlphaVantage.gethistory',security.ticker+'\r\n'+err); onerror(security); });
-            res.on('end', function() {
+        res.on('data', function(chunk) { data += chunk; });
+        res.on('error', function(err) { logger.log('error', 'AlphaVantage.gethistory',security.ticker+'\r\n'+err); onerror(security); });
+        res.on('end', function() {
+            try {
                 if (res.statusCode == 404) { throw data; }
                 if (data!="") {
                     security = populateHistoricalQuotes(security, false, csv2array(data));
                 }
                 logger.log('detail','AlphaVantage.gethistory result:', security);
-                logger.log('debug','AlphaVantage.gethistory result returned:', security.ticker);
+                logger.log('verbose','AlphaVantage.gethistory result returned:', security.ticker);
                 onsuccess(security);
-            });
-        } catch (err) {
-            logger.log('error','AlphaVantage.gethistory:', [security.ticker,String(data).substr(0,100),err].join('\r\n'));
-            onerror(security);
-        }
+            } catch (err) {
+                logger.log('error','AlphaVantage.gethistory:', [security.ticker,String(data).substr(0,100),err].join('\r\n'));
+                onerror(security);
+            }
+        });
     });
 };
 
