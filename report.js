@@ -17,6 +17,7 @@ if (process.argv.length<4) {
                 '      8: portfolio transactions\n'+
                 '      16: investments periodic return\n'+
                 '      32: portfolio periodic performance\n'
+                '      64: portfolio security performance\n'
                 );
     process.exit(0);
 } 
@@ -68,7 +69,6 @@ function show() {
         var t = new Table();
         portfolio.taxable(year, t);
         console.log(t.toString());
-        //portfolio.write();
     }
 
     // show portfolio return
@@ -84,9 +84,6 @@ function show() {
         var t = new Table();
         for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end)) portfolio.investments[ticker].show(t,null);
         if (begin != BEGIN) {t.sort(['Current Pnl|des'])} else {t.sort(['Daily Pnl|des']);}
-        //t.total('Daily Pnl', function accumulator (sum, val, index, length) { sum = sum || 0; sum += val; return sum; }, Table.Thousand(0));
-        //t.total('Current Pnl', function accumulator (sum, val, index, length) { sum = sum || 0; sum += val; return sum; }, Table.Thousand(0));
-        //t.total('Total Pnl', function accumulator (sum, val, index, length) { sum = sum || 0; sum += val; return sum; }, Table.Thousand(0));
         t.total('Daily Pnl', { printer: Table.Thousand(0) });
         t.total('Current Pnl', { printer: Table.Thousand(0)});
         t.total('Total Pnl', { printer: Table.Thousand(0)});
@@ -133,6 +130,29 @@ function show() {
         var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
         for (var end = begin.add(3,'M'); end <= today; ) {
             portfolio.periodReturn(begin,end,t,t2);
+            begin = begin.add(3,'M'); 
+            end = begin.add(3,'M');
+        }
+        console.log(t.toString());
+    }
+
+    // Calculate security periodic return, every 3m
+    var t = new Table();
+    if ((parseInt(process.argv[3]) & 64) > 0) {
+        var t = new Table();
+        var begin = new Date(portfolio.begin).fromGMTDate();
+        var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
+        var results = {};
+        for (var end = begin.add(3,'M'); end <= today; ) {
+            var yields = {};
+            for (var ticker in portfolio.investments) {
+                var investment = portfolio.investments[ticker];
+                results[ticker] = investment.performance(begin,end);
+            }
+            t.cell('Begin',begin.toString());
+            t.cell('End',end.toString());
+            for (var ticker in portfolio.investments) t.cell(ticker, results[ticker].ret*100/results[ticker].vol, Table.Number(2));
+            t.newRow();
             begin = begin.add(3,'M'); 
             end = begin.add(3,'M');
         }

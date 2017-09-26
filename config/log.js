@@ -19,9 +19,10 @@ var custom = {
 };
 winston.setLevels(custom.levels);
 winston.addColors(custom.colors);
+// { error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
 var logger = new (winston.Logger)({ 
     'transports': [ new (winston.transports.Console)( { 
-        'level': 'info', 
+        'level': process.env.debug||'info', 
         'colorize': true 
 })], });
 

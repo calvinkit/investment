@@ -29,14 +29,12 @@ Google.prototype.getprice = function(security, onsuccess, onerror) {
                 data = data.replace(/\\.../g,"").replace(/,}/g,'}');
                 logger.log('debug',data);
                 if (data!="") populatePriceInfo(security,JSON.parse(data.replace(/\/\//g,""))[0]);
-                security.calculate(1).calculate(10).calculate(20).calculate(14);
-                security.calculate(50).calculate(100).calculate(200).indicator();
                 logger.log('verbose','Google.getprice result returned', security.ticker);
                 onsuccess(security);
             } catch (err) { 
                 security.error = "Error in Google.GetPrice: "+security.ticker;
                 logger.log('error','Google.getprice', security.ticker);
-                logger.log('trace','Google.getprice', err);
+                logger.log('verbose','Google.getprice', err+data);
                 onerror(security);
             }
         });
@@ -77,7 +75,7 @@ Google.prototype.gethistory = function(security, intraday, onsuccess, onerror) {
             });
         } catch (err) {
             logger.log('error','Google.gethistory:', security.ticker);
-            logger.log('trace','Google.gethistory:', err);
+            logger.log('verbose','Google.gethistory:', err+data);
             onerror(security);
         }
     });

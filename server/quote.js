@@ -12,6 +12,7 @@ var AlphaVantage = require('./alphavantage');
 var Morningstar = require('./morningstar');
 var Quandl = require('./quandl');
 var CNBC = require('./cnbc');
+var Indicator = require('../util/indicator');
 
 function QuoteServer() {
     logger.log('info','QuoteServer ('+process.pid+') running in '+(process.env.HTTP_PROXY?"Proxy":"Direct")+" mode on "+zmqports.quote[1]);
@@ -119,7 +120,12 @@ QuoteServer.prototype.getFinancials = function(security) {
 
 QuoteServer.prototype.getPrice = function(security) {
     var server = this;
-    var onsuccess = (function(s) { logger.log('verbose','QuoteServer.getPrice onsuccess'); this.response.send(JSON.stringify(s)); }).bind(server);
+    var onsuccess = (function(s) { 
+        logger.log('verbose','QuoteServer.getPrice onsuccess'); 
+        s.indicator = new Indicator(s.quotes);
+        s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
+        this.response.send(JSON.stringify(s)); 
+    }).bind(server);
     var onerror = (function(s) { logger.log('error','QuoteServer.getPrice onerror'); this.response.send(JSON.stringify(s)); }).bind(server);
     logger.log('verbose','QuoteServer.getPrice on',security.ticker);
     if (security.country == "EXPIRED") { onsuccess(security); return; }
