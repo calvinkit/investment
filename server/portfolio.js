@@ -63,10 +63,14 @@ PortfolioServer.prototype.activitate = function(portfolio, listener, permanent) 
     portfolio.quote.on('message', (function() {
         var security = JSON.parse(arguments[arguments.length-1]);
         var investment = this.investments[security.ticker];
+        console.log('Portfolio.onmessage', security.ticker);
         investment.security.consume(security);
+        console.log('1');
         investment.calculate(this);
+        console.log('2');
         logger.log('verbose','PortfolioServer.Sending investment',investment.security.ticker,this.name,this.listener);
         this.response.send([this.listener, this.name, JSON.stringify(investment)]);
+        console.log('3');
         if (this.remaining!=-1 && --this.remaining==0) this.deactivitate();
     }).bind(portfolio));
     portfolio.refresh = function(quote_action) {
@@ -77,6 +81,7 @@ PortfolioServer.prototype.activitate = function(portfolio, listener, permanent) 
         }
     };
     portfolio.deactivitate = function() {
+    console.log('deactivitate');
         portfolio.quote.close();
         portfolio.listener = null;
         portfolio.refresh = null;

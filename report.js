@@ -16,7 +16,7 @@ if (process.argv.length<4) {
                 '      4: security level returns\n'+
                 '      8: portfolio transactions\n'+
                 '      16: investments periodic return\n'+
-                '      32: portfolio periodic performance\n'
+                '      32: portfolio periodic performance\n'+
                 '      64: portfolio security performance\n'
                 );
     process.exit(0);
@@ -147,7 +147,7 @@ function show() {
             var yields = {};
             for (var ticker in portfolio.investments) {
                 var investment = portfolio.investments[ticker];
-                results[ticker] = investment.performance(begin,end);
+                results[ticker] = investment.security.performance(begin,end);
             }
             t.cell('Begin',begin.toString());
             t.cell('End',end.toString());

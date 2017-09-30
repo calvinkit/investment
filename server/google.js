@@ -21,7 +21,7 @@ Google.prototype.getprice = function(security, onsuccess, onerror) {
     http.get(options, function(res) {
         res.setEncoding();
         res.on('data', function(chunk) { data += chunk; });
-        res.on('error', function(err) { logger.log('error', 'Google.getprice',security.ticker); onerror(security); });
+        res.on('error', function(err) { logger.log('error', 'Google.getprice',security.ticker+err); onerror(security); });
         res.on('end', function() {
             try {
                 if (res.statusCode == 404) throw data;

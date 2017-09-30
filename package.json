@@ -2,9 +2,7 @@
   "name": "finance",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "node app"
-  },
+  "scripts": { "start": "node app" },
   "dependencies": {
     "zeromq":"*",
     "http-proxy-agent": "*",

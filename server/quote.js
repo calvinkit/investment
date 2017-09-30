@@ -126,7 +126,12 @@ QuoteServer.prototype.getPrice = function(security) {
         s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
         this.response.send(JSON.stringify(s)); 
     }).bind(server);
-    var onerror = (function(s) { logger.log('error','QuoteServer.getPrice onerror'); this.response.send(JSON.stringify(s)); }).bind(server);
+    var onerror = (function(s) { 
+        logger.log('error','QuoteServer.getPrice onerror'); 
+        s.indicator = new Indicator(s.quotes);
+        s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
+        this.response.send(JSON.stringify(s)); 
+    }).bind(server);
     logger.log('verbose','QuoteServer.getPrice on',security.ticker);
     if (security.country == "EXPIRED") { onsuccess(security); return; }
     server.google.getprice(security, onsuccess, onerror);
