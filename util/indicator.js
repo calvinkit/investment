@@ -19,8 +19,8 @@ Indicator.prototype.pivots = function() {
         var S3 = S1-this.hi[i]+this.lo[i];
         pivots.push([this.dates[i], {r1: R1, s1: S1, r2: R2, r3: R3, s2: S2, s3: S3 }]);
     }
-    pivots.push(pivots[pivots.length-1]);
-    pivots[pivots.length-1][0] += 1000*60*60*24;
+    if (pivots.length>0) pivots.push(pivots[pivots.length-1]);
+    if (pivots.length>0) pivots[pivots.length-1][0] += 1000*60*60*24;
 
     return pivots;
 };

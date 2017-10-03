@@ -86,20 +86,6 @@ function QuoteServer() {
     }).bind(this));
 }
 
-var cache = {};
-QuoteServer.prototype.getHistory = function(security) {
-    var server = this;
-    var onsuccess = (function(s) {logger.log('verbose','QuoteServer.getHistory onsuccess'); cache[s.ticker+s.country]=s; this.getPrice(s); }).bind(server);
-    var onerror = (function(s) {logger.log('error','QuoteServer.getHistory onerror'); cache[s.ticker+s.country]=s; this.getPrice(s); }).bind(server);
-    logger.log('verbose','QuoteServer.getHistory on',security.ticker);
-    if (security.country == "EXPIRED") { onsuccess(security); return; }
-
-    var handler = security.ticker=='XSP'?server.alpha:server.google;
-    // Should I actually cache the result...per node
-    if (cache[security.ticker+security.country]) { this.getPrice(security); return; }
-    handler.gethistory(security, false, onsuccess, onerror);
-};
-
 QuoteServer.prototype.getDetail = function(security) {
     var server = this;
     var onsuccess = (function(s) { this.getHistory(s); }).bind(server);
@@ -116,6 +102,30 @@ QuoteServer.prototype.getFinancials = function(security) {
     logger.log('verbose','QuoteServer.getFinancials on',security.ticker);
     if (security.country == "EXPIRED") { onsuccess(security); return; }
     server.morningstar.getfinancials(security, onsuccess, onerror);
+};
+
+var cache = {};
+QuoteServer.prototype.getHistory = function(security) {
+    var server = this;
+    var onsuccess = (function(s) {
+        logger.log('verbose','QuoteServer.getHistory onsuccess'); 
+        cache[s.ticker+s.country]=s; 
+        if (s.country!='EXPIRED'&&s.quotes.length==0) logger.log('error',s.ticker+':'+s.country,'has empty history');
+        this.getPrice(s); 
+    }).bind(server);
+    var onerror = (function(s) {
+        logger.log('error','QuoteServer.getHistory onerror'); 
+        this.getPrice(s); 
+    }).bind(server);
+
+    logger.log('verbose','QuoteServer.getHistory on',security.ticker);
+
+    if (security.country == "EXPIRED") { onsuccess(security); return; }
+
+    var handler = security.ticker=='XSP'?server.alpha:server.google;
+    // Should I actually cache the result...per node
+    if (cache[security.ticker+security.country]) { this.getPrice(cache[security.ticker+security.country]); return; }
+    handler.gethistory(security, false, onsuccess, onerror);
 };
 
 QuoteServer.prototype.getPrice = function(security) {
