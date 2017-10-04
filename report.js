@@ -103,7 +103,6 @@ function show() {
 
     // Calculate investment level periodic return, every 3m
     var t = new Table();
-    var t2 = new Table();
     if ((parseInt(process.argv[3]) & 16) > 0) {
         var t = new Table();
         var begin = new Date(portfolio.begin).fromGMTDate();
@@ -125,10 +124,9 @@ function show() {
     }
 
     // Calculate portfolio periodic return, every 3m
-    var t = new Table();
-    var t2 = new Table();
     if ((parseInt(process.argv[3]) & 32) > 0) {
         var t = new Table();
+        var t2 = new Table();
         var begin = new Date(portfolio.begin).fromGMTDate();
         var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
         for (var end = begin.add(3,'M'); end <= today; ) {
@@ -140,9 +138,9 @@ function show() {
     }
 
     // Calculate security periodic return, every 3m
-    var t = new Table();
     if ((parseInt(process.argv[3]) & 64) > 0) {
         var t = new Table();
+        var t2 = new Table();
         var begin = new Date(portfolio.begin).fromGMTDate();
         var today = portfolio.end?new Date(portfolio.end).fromGMTDate():new Date();
         var results = {};
@@ -154,12 +152,20 @@ function show() {
             }
             t.cell('Begin',begin.toString());
             t.cell('End',end.toString());
-            for (var ticker in portfolio.investments) t.cell(ticker, results[ticker].ret*100/results[ticker].vol, Table.Number(2));
-            t.newRow();
+            t2.cell('Begin',begin.toString());
+            t2.cell('End',end.toString());
+            for (var ticker in portfolio.investments) {
+                t.cell(ticker, results[ticker].ret/results[ticker].vol, Table.Number(2));
+                t2.cell(ticker, results[ticker].ret*100, Table.Number(2));
+            }
+            t.newRow(); t2.newRow();
             begin = begin.add(3,'M'); 
             end = begin.add(3,'M');
         }
+        console.log('Shape ratio w/ 0 target rate');
         console.log(t.toString());
+        console.log('Return (%)');
+        console.log(t2.toString());
     }
 }
 

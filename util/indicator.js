@@ -137,8 +137,9 @@ Indicator.prototype.fibonacci = function() {
 };
 
 Indicator.prototype.returns = function(P) {
-    var result = this.closes.map(function(e,i,a) { return e/a[Math.min(0,i-P)]-1; });
-    for (var i=0; i<P; i++) result[i] = result[P];
+    var dates = this.dates;
+    var result = this.closes.map(function(e,i,a) { return [dates[i], e/a[Math.max(0,i-P)]-1]; });
+    for (var i=0; i<P; i++) result[i][1] = result[P][1];
     return result;
 };
 

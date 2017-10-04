@@ -88,25 +88,29 @@ function populatePriceInfo(security, priceInfo) {
         security.price = priceInfo.nav_prior==""?0:parseFloat(priceInfo.nav_prior.replace(",","")); 
         security.change = priceInfo.nav_c==""?0:parseFloat(priceInfo.nav_c);
         security.pchange = priceInfo.nav_cp==""?0:parseFloat(priceInfo.nav_cp); 
-        security.quotes.push({ 
-            date:new Date().toGMTDate().getTime(),
-            price: security.price,
-            vol: security.quotes.length>1?security.quotes[security.quotes.length-1]["vol"]:0,
-            lo: security.price,
-            hi: security.price
-        });
+        if (security.quotes.length==0 || security.quotes.slice(-1)[0] != new Date().toGMTDate().getTime()) {
+            security.quotes.push({ 
+                date:new Date().toGMTDate().getTime(),
+                price: security.price,
+                vol: security.quotes.length>1?security.quotes[security.quotes.length-1]["vol"]:0,
+                lo: security.price,
+                hi: security.price
+            });
+        }
         security.holdings = priceInfo.topholdings;
     } else {
         security.price = priceInfo.l==""?0:parseFloat(priceInfo.l.replace(",","")); 
         security.change = priceInfo.c==""?0:parseFloat(priceInfo.c);
         security.pchange = priceInfo.cp==""?0:parseFloat(priceInfo.cp); 
-        security.quotes.push({ 
-            date:new Date().toGMTDate().getTime(),
-            price: security.price,
-            vol: security.quotes.length>1?security.quotes[security.quotes.length-1]["vol"]:0,
-            lo: security.price,
-            hi: security.price
-        });
+        if (security.quotes.length==0 || security.quotes.slice(-1)[0] != new Date().toGMTDate().getTime()) {
+            security.quotes.push({ 
+                date:new Date().toGMTDate().getTime(),
+                price: security.price,
+                vol: security.quotes.length>1?security.quotes[security.quotes.length-1]["vol"]:0,
+                lo: security.price,
+                hi: security.price
+            });
+        }
     }
     return security;
 }
