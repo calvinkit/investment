@@ -52,12 +52,15 @@ function onmessage( portfolioName, investment ) {
 // 16: investments period returns
 // 32: portfolio period returns
 function show() {
-    for (var ticker in portfolio.investments) logger.log('verbose',util.inspect({ ticker:ticker,
-                                                                     'isClosed':portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end),
-                                                                     'received':portfolio.investments[ticker].received }));
     //for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end) && !portfolio.investments[ticker].received) return;
     for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].received) return;
     try { p_req.close(); } catch(e) {};
+
+    if (process.argv[3]>=16) {
+        for (var ticker in portfolio.investments)  {
+            if (portfolio.investments[ticker].security.country == 'EXPIRED') delete portfolio.investments[ticker]; 
+        }
+    }
 
     for (var ticker in portfolio.investments) portfolio.investments[ticker].calculate(portfolio);
     portfolio.calculate();
