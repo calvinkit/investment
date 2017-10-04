@@ -20,13 +20,13 @@ function QuoteServer() {
     this.fromDate.subtract(4, 'years');
     this.response = zmq.socket('rep').connect(zmqports.quote[1]);
     this.securities = new Object();
-    this.agent = new httpProxyAgent(process.env.HTTP_PROXY);
+    this.agent = process.env.HTTP_PROXY?new httpProxyAgent(process.env.HTTP_PROXY):null;
     this.google = new Google(this.agent);
     this.morningstar = new Morningstar(this.agent);
-    this.alpha = new AlphaVantage(new httpsProxyAgent(process.env.HTTP_PROXY));
-    this.quandl = new Quandl(new httpsProxyAgent(process.env.HTTP_PROXY));
-    this.cnbc = new CNBC(new httpsProxyAgent(process.env.HTTP_PROXY));
-    this.yahoo = new Yahoo(new httpsProxyAgent(process.env.HTTP_PROXY));
+    this.alpha = new AlphaVantage(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
+    this.quandl = new Quandl(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
+    this.cnbc = new CNBC(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
+    this.yahoo = new Yahoo(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
 
 
     //this.response.on('disconnect', function() { console.log(arguments); });
