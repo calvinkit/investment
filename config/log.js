@@ -51,15 +51,13 @@ Date.prototype.toTimeString = function() {
 };
 
 Date.prototype.toGMTDate = function() {
-    var a = new Date(this.getFullYear(), this.getMonth(), this.getDate());
-    var b = a.getTimezoneOffset()*60000;
-    return new Date(a.getTime()-b);
+    var b = this.getTimezoneOffset()*60000;
+    return new Date(this.getTime()-b);
 };
 
 Date.prototype.fromGMTDate = function() {
-    var a = new Date(this.getFullYear(), this.getMonth(), this.getDate());
-    var b = a.getTimezoneOffset()*60000;
-    return new Date(a.getTime()+b);
+    var b = this.getTimezoneOffset()*60000;
+    return new Date(this.getTime()+b);
 };
 
 Date.prototype.parseInput = function(str) {
