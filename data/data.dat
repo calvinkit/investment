@@ -1,0 +1,5026 @@
+Portfolio {
+  name: 'Universe',
+  investments: 
+   { MMM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ABT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ABBV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ACN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ACE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AET: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AFL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     A: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GAS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     APD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ARG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ATI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ALLE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AGN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ALL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AEE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AEP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AXP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AIG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ABC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     APH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AME: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     APC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AON: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     APA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AIV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AIZ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     T: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AZO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AVB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AVY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AVP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BHI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BLL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BAC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BAX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BBT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BDX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BMS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BRK.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BBY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BLK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BWA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BXP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BSX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BMY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BF.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BCR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CVC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CAM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CPB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CAH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CFN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KMX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CCL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CAT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CBG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CBS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CNP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CTL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CHK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CVX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CMG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XEC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     C: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CLX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CMS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CCE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CMA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CSC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CAG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CNX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ED: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STZ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GLW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CCI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CSX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CMI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CVS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DHI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DHR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DRI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DVA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DLPH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DAL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DNR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DVN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DFS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     D: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DOV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DOW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DPS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DTE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DUK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DNB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EMN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ETN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ECL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EIX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LLY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EMR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ESV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ETR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EOG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EQT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EFX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EQR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ESS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EXC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XOM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FDO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FDX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FIS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FLS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FLR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     F: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BEN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FCX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GME: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GCI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GPS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GGP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GIS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GPC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GNW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HRB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HAL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HOG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HAR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HRS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HIG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HCP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HCN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HSY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HES: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HPQ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HON: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HRL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HSP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HST: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HUM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ITW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TEG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ICE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IFF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IBM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IPG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IVZ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IRM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JPM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SJM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JBL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JEC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JNJ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JCI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JOY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JNPR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KSU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     K: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KEY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KMB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KIM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KMI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KSS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LLL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LEG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LEN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LUK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LNC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LMT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     L: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LOW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LYB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MTB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MAC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     M: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MNK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MRO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MPC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MLM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MAS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MKC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MCD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MCK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MJN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MWV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MDT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MRK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MET: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KORS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MHK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TAP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MON: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MCO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MOS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MSI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MUR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NBR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NOV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NWL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NFX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NEM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NEE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NLSN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NKE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NBL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JWN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NSC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NOC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NRG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NUE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OXY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OKE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ORCL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PCG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PNR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     POM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PEP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PKI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PRGO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PFE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PSX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PNW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PXD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PBI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PNC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PPG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PPL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PCP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PFG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PGR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PLD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PRU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PEG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PSA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PHM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PVH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     QEP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PWR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DGX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RRC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RTN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RHT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RSG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RAI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RHI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ROK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ROP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     R: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SWY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CRM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SCG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SLB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SNI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SEE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SRE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SHW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SPG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SNA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LUV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SWN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STJ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SWK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HOT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SYK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SYY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TGT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TEL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     THC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TDC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TXT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AES: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SCHW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TRV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TMO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TIF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TWC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TWX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TJX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TMK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TSS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RIG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TSN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     USB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UNP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UPS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     URI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UTX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UNH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UHS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     UNM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VFC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VLO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VAR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VTR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VZ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     V: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VNO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GWW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WAG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WMT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DIS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WAT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WFC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WHR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WMB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WEC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WYN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XEL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XRX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XYL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     YUM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ZTS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADBE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AKAM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ALXN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMZN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMGN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AAPL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AMAT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADSK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ADP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AVGO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BBBY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BIIB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CHRW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CELG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CERN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CINF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CTAS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CSCO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CTXS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CME: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CTSH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CMCSA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COST: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XRAY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DISCA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DISCK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DLTR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ETFC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EBAY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EXPE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EXPD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ESRX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FFIV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FAST: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FITB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FSLR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FISV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FLIR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FOSL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FTR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GRMN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GILD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GOOG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GOOGL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HAS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HBAN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     INTC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     INTU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ISRG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GMCR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KLAC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LRCX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LLTC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MAR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MAT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MCHP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MSFT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MDLZ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MNST: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MYL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NAVI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NTAP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NFLX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NWSA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NTRS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NVDA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ORLY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PCAR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PDCO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PAYX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PBCT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PETM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     QCOM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     REGN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ROST: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SNDK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SPLS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SBUX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SRCL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SYMC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TROW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TXN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NDAQ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PCLN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TSCO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TRIP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FOXA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     URBN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VRSN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VRTX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VIAB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WDC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WFM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WIN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WYNN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     XLNX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AABA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ZION: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     YRI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WSP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WCP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WTE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WPT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WJA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WFT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WJX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VET: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VSN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     VRX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TRQ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TDG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TET: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TCW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TGL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TFI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'TCL.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TRP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TOU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TIH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TXG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TOG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     X: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     TRI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NWC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     THO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SGY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SPB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SLF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     STN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SNC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SLW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SSO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     S: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SCL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'SJR.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SMF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SES: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SVY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     SAP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RUS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'RCI.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RMP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RBA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'REI.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     RRX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'QBR.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BIN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     P: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PVG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PWF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     POW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     POT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PEY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PWT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PGF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PSI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PXT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     POU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PAA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PPY: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OTC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OCX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     OGC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NVA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NPI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'NPR.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NBD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NAL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NGD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NSU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     NA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MTL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MRU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MEG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MRE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MFI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MFC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MBT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MDI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MDA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LUN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LNR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LTS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     LIF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     KEL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     JE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'PJC.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IAE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ITP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IFP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IPL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IFC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     INE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IAG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IMO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IGM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     IMG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HSE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HBC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HBM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HNL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     HCG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'HR.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GWO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'GRT.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GTE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     G: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GIL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     GEI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     WN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     MIC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FRU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FNV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FVI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FTS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FSV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FCR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FTT: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FFH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EXE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ESI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ERF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ECA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ENF: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ENB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'EMP.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     EMA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ELD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'DC.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DRM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'D.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'DRG.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'DII.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DDC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DOL: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DGC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DSG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CRR.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CPG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BCB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CJR.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CSU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CUF.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CCA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CGX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CIX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CGG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CHE.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CSH.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'GIB.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CG: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CVE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CLS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CCL.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CPX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     FRC: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CFP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CUS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CWB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CTC.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'REF.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     COS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CNQ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CNR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CEU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CAR.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CCO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'CWT.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CFW: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     CAE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     DOO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BEP.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BPY.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BAM.A': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BNE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BNP: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BBD.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'BEI.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     PXX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BB: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BDI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BIR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BXE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BCE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BTE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ABX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BNK: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BNS: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BMO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BAD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     BTO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AVO: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ACQ: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ATA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ATH: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'ACO.X': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'AX.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ARX: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AYA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ALA: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'AP.UN': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'ATD.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AQN: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AD: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AGI: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ASR: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'AC.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AIM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AGU: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AEM: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     'AGF.B': 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     ARE: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true },
+     AAV: 
+      Investment {
+        security: [Object],
+        transactions: [Object],
+        dailyPnl: 0,
+        pnl: undefined,
+        received: true } },
+  transactions: Transactions { transactions: [], pos: 0, pnl: 0, totalReturn: 0, totalPnl: 0 },
+  begin: 0,
+  end: null,
+  dailyPnl: 0 }

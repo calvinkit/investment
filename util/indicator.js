@@ -137,9 +137,14 @@ Indicator.prototype.fibonacci = function() {
 };
 
 Indicator.prototype.returns = function(P) {
-    var dates = this.dates;
-    var result = this.closes.map(function(e,i,a) { return [dates[i], e/a[Math.max(0,i-P)]-1]; });
-    for (var i=0; i<P; i++) result[i][1] = result[P][1];
+    var result = [];
+    try {
+        var dates = this.dates;
+        result = this.closes.map(function(e,i,a) { return [dates[i], e/a[Math.max(0,i-P)]-1]; });
+        for (var i=0; i<result.length && i<P; i++) result[i][1] = result[Math.min(result.length-1,P)][1];
+    } catch (err) {
+        throw 'indicator.returns '+err;
+    }
     return result;
 };
 

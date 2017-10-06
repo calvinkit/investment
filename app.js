@@ -19,7 +19,7 @@ var zmqports = require('./config/zmq')(true);
 var logger = require('./config/log');
 var Security = require('./lib/security');
 var fs = require('fs');
-var universe = JSON.parse(fs.readFileSync('data/index.dat'));
+var universe = JSON.parse(fs.readFileSync('data/universe.dat'));
 
 // Spawn worker server server
 var fork = require('child_process').fork;
