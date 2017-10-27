@@ -1,60 +1,51 @@
 var numeric = require('numeric');
-var stat = require('./statistics');
+var ttest = require('ttest');
 var util = require('util');
+var stat = require('./statistics');
 
+// Standard deviation measures the deviation of the population around the mean
+// Standard error measure deviation of the estimate (e.g. mean) against the true value. This would be a function of N/degree-of-freedom.
+// t-statistics and alike reflect this deviation as a likelihood in pValue, or in turns, the confidnece level.
+// standard t test takes in array of samples, run the sample mean vs null hypothesis mean, and return pValue
+// for regression adf test purpose, the array of samples are the regression residuals 
 function Regression(x,y) {
     this.x = x;
     this.y = y;
 }
 
-Regression.prototype.SimpleLinear = function(differencing) {
+Regression.prototype.linear = function(bOrigin) {
     var result = new Object();
-    x = differencing?stat.differencing(this.x,1):this.x;
-    y = differencing?stat.differencing(this.y,1):this.y;
-    result.cov = stat.covariance(x, y);
-    result.corr = stat.correlation(x, y);
-    result.beta = result.cov/stat.variance(x);
-    result.alpha = stat.mean(this.y)-result.beta*stat.mean(this.x);
-    result.error = this.LinearError(this.x, this.y, result.alpha, result.beta);
-    result.me = stat.mean(result.error);             // mean error (in/out sample)
-    result.mse = stat.variance(result.error);        // mean square (variance of) error
-    result.smse = Math.sqrt(result.mse);             // stdd of error
-    result.sse = result.mse*(result.error.length-1); // sum of square error
-    result.se = Math.sqrt(result.sse/(this.x.length-2)/stat.variance(this.x)/(this.x.length-1)); // standard error of the slope 
-    result.tstat = result.se!=0?Math.abs(result.beta)/result.se:1000; // t-statistics of the beta
-    //console.log(util.inspect(result,false,1,true));
-    return this.x.length==0?null:result;
-};
-
-Regression.prototype.SimpleLinearWithNoIntercept = function() {
-    var result = new Object();
-    result.cov = stat.covariance(this.x,this.y);
+    result.cov = stat.covariance(this.x, this.y);
     result.corr = stat.correlation(this.x, this.y);
-    result.beta = numeric.dot(this.x,this.y)/numeric.dot(this.x,this.x);
-    result.alpha = 0;
-    result.error = this.LinearError(this.x, this.y, result.alpha, result.beta);
-    result.sse = stat.variance(result.error)*(result.error.length-1); // sum of square error
-    result.mse = result.sse/(result.error.length-2);  // mean square error
-    result.smse = Math.sqrt(result.mse);
-    result.tstat = Math.abs(result.beta)/(result.smse/Math.sqrt(stat.variance(this.x)*(this.x.length-1)));
+    result.beta = !bOrigin?result.cov/stat.variance(this.x):numeric.dot(this.x,this.y)/numeric.dot(this.x,this.x);
+    result.alpha = !bOrigin?stat.mean(this.y)-result.beta*stat.mean(this.x): 0;
+    result.residual = this.residual(this.x, this.y, result, 'linear');
+    result.me = stat.mean(result.residual);                         // mean error (in/out sample) this must be zero...
+    result.sse = numeric.dot(result.residual, result.residual);     // sum of square error
+    result.mse = result.sse/result.residual.length; 
+    result.smse = Math.sqrt(result.mse);                            // squareroot of mse
+    result.se = Math.sqrt(result.sse/(this.x.length-2)/stat.variance(this.x)/(this.x.length-1)); // standard error of the slope 
+    result.tstat = result.se!=0?result.beta/result.se:1000; // t-statistics of the beta
+
     return this.x.length==0?null:result;
 };
+
 // y-x*beha-alpha
-Regression.prototype.LinearError = function(x, y, alpha, beta) {
-    return numeric.sub(numeric.sub(y, numeric.dot(beta,x)),alpha);
+Regression.prototype.residual = function(x, y, result, type) {
+    // type == linear
+    return numeric.sub(y, this.projection(x, result, type));
 };
 
-Regression.prototype.LinearProjection = function(x, alpha, beta) {
-    return numeric.add(alpha,numeric.dot(beta,x));
+Regression.prototype.projection = function(x, result, type) {
+    //type == linear
+    return numeric.add(result.alpha,numeric.dot(result.beta,x));
 };
 
-Regression.prototype.GrowthError = function(dy, dx, alpha, beta) {
-    var est = this.GrowthProjection(y, dx, alpha, beta);
-    return numeric.sub(dy, est);
-};
-
-Regression.prototype.GrowthProjection = function(dx, alpha, beta) {
-    return this.LinearProjection(dx, alpha, beta);
+// To test if a series is stationary, we define y_i+1 = y_i*thi + error
+Regression.prototype.adf = function(residual) {
+    var regression = new Regression(residual.slice(0,-1), stat.differencing(residual, 1).slice(1));
+    var result = regression.linear(true);
+    return result.tstat;
 };
 
 Regression.prototype.TheilSenRegression = function() {
@@ -82,5 +73,25 @@ Regression.prototype.TheilSenRegression = function() {
     result.alpha = intercepts[Math.floor(intercepts.length/2)];
     return result;
 };
+
+Regression.prototype.unit_test = function() {
+    //correlated
+    var x = new Array(); var y = new Array(); 
+    var beta = 2; var alpha = 5; var variance = 0.01;
+    var result;
+    for (var i=0; i<100; i++) { 
+        x[i] = i; 
+        y[i] = beta*i+alpha+(Math.random()-0.5)*variance; 
+    }
+    var regression = new Regression(x, y);
+    //console.log(util.inspect(x));
+    //console.log(util.inspect(y));
+    //console.log(util.inspect(result.residual));
+    //regression.adf(result.residual);
+    console.log(util.inspect({ beta: beta, alpha: alpha, me:0, mse: 5 }, false, 0, true));
+    console.log(util.inspect(result = regression.linear(), false, 0, true));
+    console.log(util.inspect(result.tstat, false, 0, true));
+    console.log(util.inspect(regression.adf(result.residual), false, 0, true));
+}
 
 module.exports = Regression;

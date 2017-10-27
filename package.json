@@ -18,6 +18,7 @@
     "humanize": "*",
     "moment": "*",
     "winston": "*",
+    "ttest": "*",
     "colors": "*",
     "mathjs": "*",
     "numeric": "*",

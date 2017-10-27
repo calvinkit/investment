@@ -75,51 +75,14 @@ Statistics.prototype.autobeta = function(x, nLag) {
 };
 
 Statistics.prototype.differencing = function(x, nLag) {
-    if (x[1].length>0)
+    if (x[0] && x[0].length>0)
         return x.map(function(e,i,a) { return e.map(function(e,i,a) { return i>=nLag?e-a[i-nLag]:0; })});
     else
         return x.map(function(e,i,a) { return i>=nLag?e-a[i-nLag]:0; });
 };
 
-Statistics.prototype.SimpleLinearRegression = function(x, y) {
-    var result = new Object();
-    result.cov = this.covariance(x,y);
-    result.corr = this.correlation(x, y);
-    result.beta = result.cov/this.variance(x);
-    result.alpha = this.mean(y)-result.beta*this.mean(x);
-    result.error = new Array();
-    for (var i=0; i<x.length; i++) result.error[i] = y[i]-x[i]*result.beta-result.alpha;
-    result.sse = this.variance(result.error)*(result.error.length-1);
-    result.mse = result.sse/(result.error.length-2);
-    return result;
-};
-
-Statistics.prototype.TheilSenRegression = function(x, y) {
-    var result = new Object();
-    result.cov = this.covariance(x,y);
-    result.corr = this.correlation(x, y);
-    var slopes = new Array();
-    var intercepts = new Array();
-    var size = x.length;
-    for (var i=0; i<size; i++) {
-        for (var j=i+1; j<size; j++) {
-            var x1 = x[i];
-            var y1 = y[i];
-            var x2 = x[j];
-            var y2 = y[j];
-            if (x2!=x1) slopes.push((y2-y1)/(x2-x1));
-        }
-    }
-    slopes.sort();
-    result.beta = slopes[Math.floor(slopes.length/2)];
-    for (var i=0; i<size; i++) intercepts.push(y[i]-result.beta*x[i]);
-    intercepts.sort();
-    result.alpha = intercepts[Math.floor(intercepts.length/2)];
-    return result;
-};
-
-// Percentage growth over the nLag/period
-Statistics.prototype.growthrate = function(x, nLag) {
+// Percentage returns over the nLag/period
+Statistics.prototype.returns = function(x, nLag) {
     return x.map(function(e,i,a) { return i>=nLag?e/a[i-nLag]-1:0; });
 };
 

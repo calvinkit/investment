@@ -117,8 +117,10 @@ function show() {
             t.cell('End',end.toString());
             for (var ticker in portfolio.investments) t.cell(ticker, yields[ticker], Table.Number(2));
             t.newRow();
-            begin = begin.add(3,'M'); 
-            end = begin.add(3,'M');
+            //begin = begin.add(3,'M'); 
+            //end = begin.add(3,'M');
+            begin = begin.add(7,'d'); 
+            end = begin.add(7,'d');
         }
         console.log(t.toString());
     }
