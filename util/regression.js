@@ -2,6 +2,7 @@ var numeric = require('numeric');
 var ttest = require('ttest');
 var util = require('util');
 var stat = require('./statistics');
+var StudentT = require('distributions').Studentt;
 
 // Standard deviation measures the deviation of the population around the mean
 // Standard error measure deviation of the estimate (e.g. mean) against the true value. This would be a function of N/degree-of-freedom.
@@ -20,12 +21,13 @@ Regression.prototype.linear = function(bOrigin) {
     result.beta = !bOrigin?result.cov/stat.variance(this.x):numeric.dot(this.x,this.y)/numeric.dot(this.x,this.x);
     result.alpha = !bOrigin?stat.mean(this.y)-result.beta*stat.mean(this.x): 0;
     result.residual = this.residual(this.x, this.y, result, 'linear');
-    result.me = stat.mean(result.residual);                         // mean error (in/out sample) this must be zero...
-    result.sse = numeric.dot(result.residual, result.residual);     // sum of square error
-    result.mse = result.sse/result.residual.length; 
-    result.smse = Math.sqrt(result.mse);                            // squareroot of mse
+    result.me = stat.mean(result.residual);                                     // mean error (in/out sample) this must be zero...
+    result.sse = stat.variance(result.residual)*(result.residual.length-1);     // sum of square error (use variance since me = 0 anyways)
+    result.mse = result.sse/result.residual.length;                             // almost same as sample variance but /N instead of /N-1
+    result.smse = Math.sqrt(result.mse);                                        // square root of mse
     result.se = Math.sqrt(result.sse/(this.x.length-2)/stat.variance(this.x)/(this.x.length-1)); // standard error of the slope 
     result.tstat = result.se!=0?result.beta/result.se:1000; // t-statistics of the beta
+    result.pValue = new StudentT(this.x.length-1).cdf(result.tstat);
 
     return this.x.length==0?null:result;
 };
@@ -45,7 +47,7 @@ Regression.prototype.projection = function(x, result, type) {
 Regression.prototype.adf = function(residual) {
     var regression = new Regression(residual.slice(0,-1), stat.differencing(residual, 1).slice(1));
     var result = regression.linear(true);
-    return result.tstat;
+    return { tstat: result.tstat, pValue: result.pValue };
 };
 
 Regression.prototype.TheilSenRegression = function() {
@@ -77,20 +79,15 @@ Regression.prototype.TheilSenRegression = function() {
 Regression.prototype.unit_test = function() {
     //correlated
     var x = new Array(); var y = new Array(); 
-    var beta = 2; var alpha = 5; var variance = 0.01;
+    var beta = 2; var alpha = 5; var variance = 10;
     var result;
     for (var i=0; i<100; i++) { 
         x[i] = i; 
-        y[i] = beta*i+alpha+(Math.random()-0.5)*variance; 
+        y[i] = beta*Math.random()*i+alpha+(Math.random()-0.5)*variance; 
     }
     var regression = new Regression(x, y);
-    //console.log(util.inspect(x));
-    //console.log(util.inspect(y));
-    //console.log(util.inspect(result.residual));
-    //regression.adf(result.residual);
-    console.log(util.inspect({ beta: beta, alpha: alpha, me:0, mse: 5 }, false, 0, true));
+    console.log(util.inspect({ beta: beta, alpha: alpha, me:0 }, false, 0, true));
     console.log(util.inspect(result = regression.linear(), false, 0, true));
-    console.log(util.inspect(result.tstat, false, 0, true));
     console.log(util.inspect(regression.adf(result.residual), false, 0, true));
 }
 
