@@ -1,6 +1,7 @@
+var util = require('util');
 var stat = require('./statistics');
 var Regression = require('./regression');
-var util = require('util');
+var cache = require('../data/cache');
 
 function PCA_test() {
     var PCA = require('./pca');
@@ -15,4 +16,25 @@ function zScore_test() {
     console.log(util.inspect(zScore, false, 1, true));
 }
 
-Regression.prototype.unit_test();
+function Regression_test() {
+    var x = cache.find({ticker:'.INX'})[0].indicator.closes;
+    var y = cache.find({ticker:'.DJI'})[0].indicator.closes;
+    cache.close();
+
+    console.log('beta','corr', 'tstat', 'pValue', 'se');
+    for (var i=1; i<150; i++) {
+        var xp = x.slice(-250-i).slice(0,-i);
+        var yp = y.slice(-250-i).slice(0,-i);
+        var regression = new Regression(xp, yp);
+        var result = regression.linear();
+        //console.log(result.beta);
+        //console.log(result.beta, result.corr, result.tstat, result.pValue, result.se);
+        //console.log(util.inspect(result, false, 0, true));
+        var adf = regression.adf(result.residual);
+        console.log(util.inspect(adf, false, 0, true));
+    }
+}
+
+
+//Regression.prototype.unit_test();
+Regression_test();

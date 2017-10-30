@@ -42,16 +42,16 @@ RegressionServer.prototype.onrequest = function(request) {
         // Full Data
         analysisResult.x = D[0];
         analysisResult.y = D[1];
-        var dx = analysisResult.dx = stat.growthrate(stat.StripTimeSeries(D[0]), 1);
-        var dy = analysisResult.dy = stat.growthrate(stat.StripTimeSeries(D[1]), 1);
+        var dx = analysisResult.dx = stat.returns(stat.StripTimeSeries(D[0]), 1);
+        var dy = analysisResult.dy = stat.returns(stat.StripTimeSeries(D[1]), 1);
         analysisResult.rsi = new Indicator(analysisResult.y).RSI(14);
         analysisResult.histcorr = stat.TimeSeries(dates, dx.map((function(e,i,a) { var start = Math.max(0, i-this.nDays); return stat.correlation(dx.slice(start, i), dy.slice(start, i)); }).bind(this))).slice(3);
         // Regression Data
         var rD = D.map(function(w) { return w.filter(function(e) { return rDates.indexOf(e[0])>-1; }); });
-        var x = stat.growthrate(stat.StripTimeSeries(rD[0]),1);
-        var y = stat.growthrate(stat.StripTimeSeries(rD[1]),1);
+        var x = stat.returns(stat.StripTimeSeries(rD[0]),1);
+        var y = stat.returns(stat.StripTimeSeries(rD[1]),1);
         var regression = new Regression(x, y);
-        analysisResult.slr = regression.SimpleLinear(false); //Input is growth rate already
+        analysisResult.slr = regression.linear(); //Input is returns rate already
         analysisResult.tsr = regression.TheilSenRegression();
         // Stripped Data
         var dates = analysisResult.dates = dates.filter(function(e) { return e>=rDates[0]; });
@@ -67,8 +67,8 @@ RegressionServer.prototype.onrequest = function(request) {
         analysisResult.low = Math.min.apply(null,tmp);
         analysisResult.xy = dates.map(function(e,i,a) { return [ x[i], y[i] ]; });
         analysisResult.dxy = dates.map(function(e,i,a) { return [ dx[i], dy[i] ]; });
-        analysisResult.est = regression.GrowthProjection(dx, analysisResult.slr.alpha, analysisResult.slr.beta);
-        analysisResult.error = regression.GrowthError(dy, dx, analysisResult.slr.alpha, analysisResult.slr.beta);
+        analysisResult.est = regression.projection(dx, analysisResult.slr, 'linear');
+        analysisResult.error = regression.residual(dx, dy, dx, analysisResult.slr, 'linear');
         analysisResult.me = stat.mean(analysisResult.error);             // mean error (in/out sample)
         analysisResult.zscore = analysisResult.error.map(function(e) { return e/analysisResult.slr.smse; });
         analysisResult.autobeta = stat.autobeta(y, 1);

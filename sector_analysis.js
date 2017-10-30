@@ -4,7 +4,6 @@ var zmqports = require('./config/zmq');
 var logger = require('./config/log');
 var Security = require('./lib/security');
 var stat = require('./util/statistics');
-var data = JSON.parse(fs.readFileSync('data/universe.dat','utf8'));
 
 function SectorAnalysis_Handler() {
 }

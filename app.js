@@ -19,7 +19,6 @@ var zmqports = require('./config/zmq')(true);
 var logger = require('./config/log');
 var Security = require('./lib/security');
 var fs = require('fs');
-var universe = JSON.parse(fs.readFileSync('data/universe.dat'));
 
 // Spawn worker server server
 var fork = require('child_process').fork;
@@ -75,17 +74,17 @@ io.on('connection', function (socket) {
     });
 
     // Web services
-    socket.on("stock screen", function(exchange,index,sector) {
-        exchange = new RegExp(exchange);
-        index = new RegExp(index);
-        sector = new RegExp(sector);
-        var filtered = universe.filter(function(security) { return exchange.test(security[0]) && index.test(security[1]) && sector.test(security[4]); });
-        filtered.forEach(function(s) {
-            var security = new Security(s[2],s[2].replace('-','-P'),s[0],s[3])
-            security.sector = s[4]; security.industry = s[5];
-            q_req.send(['', JSON.stringify({ action: 'quotes', security: security })]);
-        });
-    });
+    //socket.on("stock screen", function(exchange,index,sector) {
+    //    exchange = new RegExp(exchange);
+    //    index = new RegExp(index);
+    //    sector = new RegExp(sector);
+    //    var filtered = universe.filter(function(security) { return exchange.test(security[0]) && index.test(security[1]) && sector.test(security[4]); });
+    //    filtered.forEach(function(s) {
+    //        var security = new Security(s[2],s[2].replace('-','-P'),s[0],s[3])
+    //        security.sector = s[4]; security.industry = s[5];
+    //        q_req.send(['', JSON.stringify({ action: 'quotes', security: security })]);
+    //    });
+    //});
 
     socket.on('disconnect', function () {
         logger.log('info','Client disconnected');
