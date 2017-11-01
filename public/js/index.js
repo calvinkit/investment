@@ -20,8 +20,14 @@ $(document).ready(function(){
 
     $('#ResearchAccordion').accordion({active:2, heightStyle: 'content'});
     loading = $('#Loading').dialog({ autoOpen: false, modal: true, draggable: false, autoOpen: false, closeOnEscape: true, width:90 });
-    loading.show = function() { this.dialog('open'); }
-    loading.hide = function() { this.dialog('close'); }
+    loading.show = function() { 
+        this.dialog('option','title','Loading...');
+        this.data('start',new Date());
+        this.dialog('open');
+        this.data('timeout', setInterval(function() { this.dialog('option','title', new Date(new Date().getTime()-this.data('start').getTime()).toTimeString().substr(4,100)); }.bind(this), 1000));
+    }
+    loading.hide = function() { clearInterval(this.data('timeout')); this.dialog('close'); }
+
 
     $.extend( $.fn.dataTableExt.oSort, {
         "formatted-num-pre": function ( a ) {

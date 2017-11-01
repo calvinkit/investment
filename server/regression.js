@@ -35,47 +35,67 @@ RegressionServer.prototype.onrequest = function(request) {
     request.onregress = function() {
         var analysisResult = this;
         var D = MergeOnDates([toSeries(this.regressor), toSeries(this.target)]);
+        this.histbeta = [];
         var dates = stat.StripValues(D[0]);
         var nDays = this.RegressionDays;
+        var x = analysisResult.x = D[0]; // x series
+        var y = analysisResult.y = D[1]; // y series
+        var dx = analysisResult.dx = stat.differencing(stat.StripTimeSeries(x), 1); // dx values (delta)
+        var dy = analysisResult.dy = stat.differencing(stat.StripTimeSeries(y), 1); // dy values (delta)
+        analysisResult.rsi = new Indicator(y).RSI(14);
+
+        // Historical corr/beta
+        [analysisResult.histcorr, analysisResult.histbeta] = dx.map((function(e,i,a) {
+            var start = Math.max(0, i-this.nDays); 
+            return [
+                [ dates[i], stat.correlation(dx.slice(start, i), dy.slice(start, i))],
+                [ dates[i], new Regression(dx.slice(start, i), dy.slice(start, i)).linear().beta]
+            ];
+        }).bind(this));
+        analysisResult.histcorr = analysisResult.histcorr.slice(3);
+        analysisResult.histbeta = analysisResult.histbeta.slice(3);
+
+        // Regression Data(in sample data)
         var rDate = this.RegressionDate?new Date(this.RegressionDate):new Date().getTime();
-        var rDates = dates.filter(function(e) { return e<=rDate; }).slice(-nDays);
-        // Full Data
-        analysisResult.x = D[0];
-        analysisResult.y = D[1];
-        var dx = analysisResult.dx = stat.returns(stat.StripTimeSeries(D[0]), 1);
-        var dy = analysisResult.dy = stat.returns(stat.StripTimeSeries(D[1]), 1);
-        analysisResult.rsi = new Indicator(analysisResult.y).RSI(14);
-        analysisResult.histcorr = stat.TimeSeries(dates, dx.map((function(e,i,a) { var start = Math.max(0, i-this.nDays); return stat.correlation(dx.slice(start, i), dy.slice(start, i)); }).bind(this))).slice(3);
-        // Regression Data
-        var rD = D.map(function(w) { return w.filter(function(e) { return rDates.indexOf(e[0])>-1; }); });
-        var x = stat.returns(stat.StripTimeSeries(rD[0]),1);
-        var y = stat.returns(stat.StripTimeSeries(rD[1]),1);
-        var regression = new Regression(x, y);
-        analysisResult.slr = regression.linear(); //Input is returns rate already
-        analysisResult.tsr = regression.TheilSenRegression();
-        // Stripped Data
-        var dates = analysisResult.dates = dates.filter(function(e) { return e>=rDates[0]; });
+        var rdates = dates.filter(function(e) { return e<=rDate; }).slice(-nDays);
+        var rD = D.map(function(w) { return w.filter(function(e) { return rdates.indexOf(e[0])>-1; }); });
+        var x = stat.StripTimeSeries(rD[0]);
+        var y = stat.StripTimeSeries(rD[1]);
+        var dx = stat.differencing(x, 1); // dx values (delta)
+        var dy = stat.differencing(y, 1); // dy values (delta)
+        var regression = new Regression(dx, dy);
+        analysisResult.slr = regression.linear(true);  
+        // !! shd I modify the alpha...
+        analysisResult.slr.alpha = stat.mean(y)-analysisResult.slr.beta*stat.mean(x);
+        analysisResult.tsr = regression.theil_sen();
+
+        // Stripped Data(in/out sample data)
+        var dates = analysisResult.dates = dates.filter(function(e) { return e>=rdates[0]; });
         var D = D.map(function(w) { return w.filter(function(e) { return dates.indexOf(e[0])>-1; }); });
-        var x = stat.StripTimeSeries(D[0]);
-        var y = stat.StripTimeSeries(D[1]);
-        var dx = analysisResult.dx.slice(-x.length);
-        var dy = analysisResult.dy.slice(-y.length);
-        var tmp = y.slice(-this.nDays);
-        analysisResult.mean = stat.mean(tmp);
-        analysisResult.stdd = stat.stdev(tmp);
-        analysisResult.high = Math.max.apply(null,tmp);
-        analysisResult.low = Math.min.apply(null,tmp);
+        var x = stat.StripTimeSeries(D[0]); // x values
+        var y = stat.StripTimeSeries(D[1]); // y values
+        var dx = analysisResult.dx.slice(-x.length); // dx values
+        var dy = analysisResult.dy.slice(-y.length); // dy values
         analysisResult.xy = dates.map(function(e,i,a) { return [ x[i], y[i] ]; });
         analysisResult.dxy = dates.map(function(e,i,a) { return [ dx[i], dy[i] ]; });
-        analysisResult.est = regression.projection(dx, analysisResult.slr, 'linear');
-        analysisResult.error = regression.residual(dx, dy, dx, analysisResult.slr, 'linear');
-        analysisResult.me = stat.mean(analysisResult.error);             // mean error (in/out sample)
-        analysisResult.zscore = analysisResult.error.map(function(e) { return e/analysisResult.slr.smse; });
+        analysisResult.est = regression.projection(x, analysisResult.slr, 'linear');
+        analysisResult.residual = regression.residual(x, y, analysisResult.slr, 'linear');
+        analysisResult.me = stat.mean(analysisResult.residual);
+        analysisResult.zscore = analysisResult.residual.map(function(e) { return e/analysisResult.slr.smse; });
         analysisResult.autobeta = stat.autobeta(y, 1);
         analysisResult.autocorr = stat.autocorrelation(y, 1);
         analysisResult.dautobeta = stat.autobeta(dy, 1);
         analysisResult.dautocorr = stat.autocorrelation(dy, 1);
-        analysisResult.error_autobeta = stat.autobeta(analysisResult.error, 1);
+        analysisResult.error_autobeta = stat.autobeta(analysisResult.residual, 1);
+
+        // Last nDays statistics
+        var tmp = y.slice(-this.nDays);
+        analysisResult.mean = stat.mean(tmp);
+        analysisResult.stdd = stat.stdev(tmp);
+        analysisResult.vol = stat.stdev(dy.slice(-this.nDays));
+        analysisResult.high = Math.max.apply(null,tmp);
+        analysisResult.low = Math.min.apply(null,tmp);
+
         this.quote.close();
         this.response.send(JSON.stringify(analysisResult));
         logger.log('debug','Sending Regression result',this.target.ticker,this.regressor.ticker);

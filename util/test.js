@@ -22,9 +22,9 @@ function Regression_test() {
     cache.close();
 
     console.log('beta','corr', 'tstat', 'pValue', 'se');
-    for (var i=1; i<150; i++) {
-        var xp = x.slice(-250-i).slice(0,-i);
-        var yp = y.slice(-250-i).slice(0,-i);
+    for (var i=1; i<x.length; i++) {
+        var xp = x.slice(i, i+250);
+        var yp = y.slice(i, i+250);
         var regression = new Regression(xp, yp);
         var result = regression.linear();
         //console.log(result.beta);

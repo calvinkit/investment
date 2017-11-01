@@ -84,7 +84,7 @@ function onregress(result) {
     $('#RegressionHistoricalCorrelation').empty();
     if (slr) {
         var smse = slr.smse;
-        var series = result.dxy;
+        var series = result.xy;
         var yesterday = series.slice(-1);
         var fivedays = series.slice(-6,-1);
         var sorted = series.slice(0);
@@ -199,7 +199,7 @@ function onregress(result) {
         // Historical Correlation
         $('#RegressionHistoricalCorrelation').highcharts('StockChart', {
             chart: { zoomType: 'x' },
-            title: { text: 'Trailing '+$('#RegressionDays').val()+'-Days Historical correlation' },
+            title: { text: 'Trailing '+$('#RegressionDays').val()+'-Days Historical correlation/beta' },
             rangeSelector: { selected: 2, inputEnabled: false, buttons: [
                 {type: 'month', count: 1, text: '1m' },
                 {type: 'month', count: 3, text: '3m' },
@@ -216,10 +216,11 @@ function onregress(result) {
                 dateTimeLabelFormates: { day: '%d-%M' },
                 ordinal: false,
             },
-            yAxis: { title: { text: 'Correlation' } },
+            yAxis: [{ opposite: false, title: { text: 'Correlation' } },
+                    { opposite: true, title: { text: 'Beta' } }],
             tooltip: { crosshairs: true },
             legend: {
-                enabled: false,
+                enabled: true,
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle',
@@ -229,6 +230,12 @@ function onregress(result) {
                 name: 'Correlation',
                 data: result.histcorr,
                 tooltip: { valueDecimals: 4 },
+                yAxis: 0
+            },{
+                name: 'Beta',
+                data: result.histbeta,
+                tooltip: { valueDecimals: 4 },
+                yAxis: 1
             }],
             exporting: {
                 sourceWidth: 1000,
@@ -262,29 +269,29 @@ function onregress(result) {
             scale: 2
         }
     });
-    //var table = $('#RegressionOutput').DataTable();
-    //table.clear();
-    //for (var i=0; i<result.y.length; i++) {
-    //    var node = $(table.row.add([
-    //        new Date(result.dates[i]).fromGMTDate().toString(),
-    //        result.y[i], 
-    //        slr?result.x[i]:0,
-    //        slr?result.dy[i]:0,
-    //        slr?result.dx[i]:0,
-    //        slr?result.est[i]:0,
-    //        slr?result.y[i]-result.x[i]:0,
-    //        slr?slr.alpha-result.x[i]*(1-slr.beta):0,
-    //        slr?result.dy[i]-result.dx[i]*slr.beta:0,
-    //        slr?result.zscore[i]:0
-    //    ]).node());
-    //    node.children().css("text-align","right");
-    //    if (slr && result.zscore[i] > 2) {
-    //        node.css("background-color","pink");
-    //    } else if (slr && result.zscore[i] < -2) {
-    //        node.css("background-color","lightgreen");
-    //    }
-    //}
-    //table.draw();
+    var table = $('#RegressionOutput').DataTable();
+    table.clear();
+    for (var i=0; i<result.y.length; i++) {
+        var node = $(table.row.add([
+            new Date(result.dates[i]).fromGMTDate().toString(),
+            result.y[i], 
+            slr?result.x[i]:0,
+            slr?result.dy[i]:0,
+            slr?result.dx[i]:0,
+            slr?result.est[i]:0,
+            slr?result.y[i]-result.x[i]:0,
+            slr?slr.alpha-result.x[i]*(1-slr.beta):0,
+            slr?result.dy[i]-result.dx[i]*slr.beta:0,
+            slr?result.zscore[i]:0
+        ]).node());
+        node.children().css("text-align","right");
+        if (slr && result.zscore[i] > 2) {
+            node.css("background-color","pink");
+        } else if (slr && result.zscore[i] < -2) {
+            node.css("background-color","lightgreen");
+        }
+    }
+    table.draw();
     tabview.switchTo('Regression');
     loading.hide();
 }

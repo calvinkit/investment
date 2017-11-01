@@ -4,15 +4,16 @@ var util = require('util');
 var test = numeric.transpose([[7,4,3],[4,1,8],[6,3,5],[8,6,1],[8,5,7],[7,2,9],[5,3,3],[9,5,8],[7,4,5],[8,2,2]]);
 //var test = [[1,2,3,4,5,6,7,8,9,10],[2,4,6,8,10,12,14,16,18,20],[10,20,30,40,50,60,70,80,90,100]];
 
-
-// PCA in layman terms: Decomposing original space into different space with same dimentions, but with each dimention orthorgonal/independent with each 
-// other. Then only choose the dimention that explains the majority of the variance of the original inputs.  
-// The dot product of Each input to the individual eigenvector  will represent the input in the new space.
-//
-// data is a n*m data with n series and each has m data points: data[n][m]
+// data is a n*m data with n series and each has m data points: data[n][m]\r\n";
 function PCA(data) {
     this.data = data;
 }
+
+PCA.prototype.help = function() {
+    return "PCA in layman terms: Decomposing/projecting original space into a different orthorgonal space with same dimentions. \r\n"+
+           "By reducing the dimension via taking fewer eigenvector(s) with the largest variance.  \r\n"+
+           "The dot product of each input to the individual eigenvector will represent the input in the new space.\r\n";
+};
 
 PCA.prototype.calculate = function(nPC) {
     var differencing = this.data;
