@@ -24,7 +24,7 @@ $(document).ready(function(){
         this.dialog('option','title','Loading...');
         this.data('start',new Date());
         this.dialog('open');
-        this.data('timeout', setInterval(function() { this.dialog('option','title', new Date(new Date().getTime()-this.data('start').getTime()).toTimeString().substr(4,100)); }.bind(this), 1000));
+        this.data('timeout', setInterval(() => this.dialog('option','title', new Date(new Date().getTime()-this.data('start').getTime()).toTimeString().substr(4,100)), 1000));
     }
     loading.hide = function() { clearInterval(this.data('timeout')); this.dialog('close'); }
 
@@ -205,3 +205,12 @@ Date.prototype.add = function(val, type) {
 
 };
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js', {scope: '/service/'})
+    .then(function(registration) {
+        console.log('Registration successful. scope is:', registration.scope);
+    })
+    .catch(function(error) {
+        console.log('Service worker registration failed, error:', error);
+    });
+}

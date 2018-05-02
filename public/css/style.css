@@ -1,9 +1,9 @@
 body
 {
-	/*font-family: "Georgia", "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;*/
+	font-family: droid sans mono, monospace;
 	line-height: 1.6em;
     color: #000000;
-    background-color: white;
+    background-color: black;
     font-size: 12px;
 }
 
@@ -85,7 +85,7 @@ button
 
 .green
 {
-    color: green;
+    color: #00b909;
 }
 
 .red
@@ -124,7 +124,7 @@ button
 }
 
 .uptick {
-    background-color: green;
+    background-color: #00b909;
 }
 
 .downtick {

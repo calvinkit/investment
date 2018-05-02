@@ -56,28 +56,28 @@ Google.prototype.gethistory = function(security, intraday, onsuccess, onerror) {
     var options = { host: 'www.google.com',
         headers: { Host: 'www.google..com' },
         agent: this.agent,
-        path: 'http://www.google.com/finance/getprices?q='+security.ticker+'&x='+(security.country!='United States'?security.country:'')+'&i='+(intraday?120:86400)+'&p='+period+'&f=d,c,v,k,o,h,l&' };
+        path: 'http://finance.google.com/finance/getprices?q='+security.ticker+'&x='+(security.country!='United States'?security.country:'')+'&i='+(intraday?120:86400)+'&p='+period+'&f=d,c,v,k,o,h,l&' };
 
     http.get(options, function(res) { 
         res.setEncoding();
-        try {
             res.on('data', function(chunk) { data += chunk; });
             res.on('error', function(err) { logger.log('error', 'Google.gethistory',security.ticker+'\r\n'); onerror(security); });
             res.on('end', function() {
-                if (res.statusCode == 404) { throw data; }
-                if (data!="") {
-                    data = csv2array(data);
-                    security = populateHistoricalQuotes(security, data);
+                try {
+                    if (res.statusCode == 404) { throw data; }
+                    if (data!="") {
+                        data = csv2array(data);
+                        security = populateHistoricalQuotes(security, data);
+                    }
+                    logger.log('detail','Google.gethistory result:', security, data);
+                    logger.log('verbose','Google.gethistory result returned:', security.ticker);
+                    onsuccess(security);
+                } catch (err) {
+                    logger.log('error','Google.gethistory:', security.ticker);
+                    logger.log('verbose','Google.gethistory:', err+data);
+                    onerror(security);
                 }
-                logger.log('detail','Google.gethistory result:', security);
-                logger.log('verbose','Google.gethistory result returned:', security.ticker);
-                onsuccess(security);
             });
-        } catch (err) {
-            logger.log('error','Google.gethistory:', security.ticker);
-            logger.log('verbose','Google.gethistory:', err+data);
-            onerror(security);
-        }
     });
 }
 

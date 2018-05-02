@@ -25,11 +25,12 @@ function Regression_test() {
     for (var i=1; i<x.length; i++) {
         var xp = x.slice(i, i+250);
         var yp = y.slice(i, i+250);
+        if (xp.length < yp.length) yp = yp.slice(0, xp.length);
         var regression = new Regression(xp, yp);
         var result = regression.linear();
-        //console.log(result.beta);
-        //console.log(result.beta, result.corr, result.tstat, result.pValue, result.se);
-        //console.log(util.inspect(result, false, 0, true));
+        console.log(result.beta);
+        console.log(result.beta, result.corr, result.tstat, result.pValue, result.se);
+        console.log(util.inspect(result, false, 0, true));
         var adf = regression.adf(result.residual);
         console.log(util.inspect(adf, false, 0, true));
     }

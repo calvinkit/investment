@@ -122,9 +122,9 @@ QuoteServer.prototype.getHistory = function(security) {
 
     if (security.country == "EXPIRED") { onsuccess(security); return; }
 
-    var handler = security.ticker=='XSP'?server.alpha:server.google;
-    // Should I actually cache the result...per node
+    var handler = server.alpha;
     if (cache[security.ticker+security.country]) { this.getPrice(cache[security.ticker+security.country]); return; }
+    if (security.exchange=="MUTF_CA") handler = server.yahoo;
     handler.gethistory(security, false, onsuccess, onerror);
 };
 
@@ -144,7 +144,7 @@ QuoteServer.prototype.getPrice = function(security) {
     }).bind(server);
     logger.log('verbose','QuoteServer.getPrice on',security.ticker);
     if (security.country == "EXPIRED") { onsuccess(security); return; }
-    server.google.getprice(security, onsuccess, onerror);
+    server.cnbc.getprice(security, onsuccess, onerror);
 };
 
 

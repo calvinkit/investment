@@ -44,10 +44,10 @@ $(document).ready(function(){
             $(row).children().eq(0).off('click').click(function() { var s = $(this).parent().data('investment').security; search_security(s.ticker, s.yticker, s.country); return true; });
             $(row).children().eq(1).off('click').click(function() { show_transactions($(this).parent().data('investment')) });
             $(row).children().eq(3).addClass('tick').attr('title', investment.security.change+'/'+investment.security.pchange+'%');
-            $(row).children().eq(5).css("color",investment.yield>0.01?"green":"red");
-            $(row).children().eq(6).css("color",investment.dailyPnl<0.001?"red":"green");
-            $(row).children().eq(7).css("color",investment.transactions.pnl<0.01?"red":"green");
-            $(row).children().eq(8).css("color",investment.transactions.totalPnl<0.01?"red":"green");
+            $(row).children().eq(5).css("color",investment.yield>0.01?"#00b909":"#c60606");
+            $(row).children().eq(6).css("color",investment.dailyPnl<0.001?"#c60606":"#00b909");
+            $(row).children().eq(7).css("color",investment.transactions.pnl<0.01?"#c60606":"#00b909");
+            $(row).children().eq(8).css("color",investment.transactions.totalPnl<0.01?"#c60606":"#00b909");
             $(row).attr("id", investment.security.ticker.replace(".","_"));
         },
         "fnFooterCallback": function (aFoot, aData, iStart, iEnd, aiDisplay) { 
@@ -59,13 +59,13 @@ $(document).ready(function(){
                 nTotal[3] += aData[aiDisplay[i]].value;
             }
             $(aFoot).find('th').eq(6).text(humanize.numberFormat(nTotal[1],0));
-            $(aFoot).find('th').eq(6).css("color",(nTotal[1]>=0?"green":"red"));
+            $(aFoot).find('th').eq(6).css("color",(nTotal[1]>=0?"#00b909":"#c60606"));
             $(aFoot).find('th').eq(7).text(humanize.numberFormat(nTotal[0],0));
-            $(aFoot).find('th').eq(7).css("color",(nTotal[0]>=0?"green":"red"));
+            $(aFoot).find('th').eq(7).css("color",(nTotal[0]>=0?"#00b909":"#c60606"));
             $(aFoot).find('th').eq(8).text(humanize.numberFormat(nTotal[2],0));
-            $(aFoot).find('th').eq(8).css("color",(nTotal[2]>=0?"green":"red"));
+            $(aFoot).find('th').eq(8).css("color",(nTotal[2]>=0?"#00b909":"#c60606"));
             $(aFoot).find('th').eq(2).text(humanize.numberFormat(nTotal[3],0));
-            $(aFoot).find('th').eq(2).css("color",(nTotal[3]>=0?"green":"red"));
+            $(aFoot).find('th').eq(2).css("color",(nTotal[3]>=0?"#00b909":"#c60606"));
         }
     });
 
@@ -77,7 +77,7 @@ $(document).ready(function(){
         "sDom": 'irtlp',
         "rowCallback": function(row, data, index) {
             $(row).children().css("text-align","right");
-            $(row).children().eq(4).css("color",(data.pnl>=0?"green":"red"));
+            $(row).children().eq(4).css("color",(data.pnl>=0?"#00b909":"#c60606"));
         },
         "columns": [{
             "render": function (data, type, row) { 

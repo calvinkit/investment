@@ -157,7 +157,7 @@ function show() {
             t2.cell('Begin',begin.toString());
             t2.cell('End',end.toString());
             for (var ticker in portfolio.investments) {
-                t.cell(ticker, results[ticker].ret/results[ticker].vol, Table.Number(2));
+                t.cell(ticker, results[ticker].ret/results[ticker].vol*100, Table.Number(2));
                 t2.cell(ticker, results[ticker].ret*100, Table.Number(2));
             }
             t.newRow(); t2.newRow();

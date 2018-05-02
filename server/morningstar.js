@@ -4,37 +4,39 @@ var csv2array = require('csv2array');
 var logger = require('../config/log');
 var util = require('util');
 
-function Morningstar(agent) {
-    this.agent = agent;
-}
+class Morningstar {
+    constructor(agent) {
+        this.agent = agent;
+    }
 
-//http://financials.morningstar.com/ajax/exportKR2CSV.html?&callback=?&t={0}&region={1}&culture=en-US&cur=&order=asc"
-Morningstar.prototype.getfinancials= function(security, onsuccess, onerror) {
-    var quoteServer = this;
-    var data = "";
-    var options = { host: 'financials.morningstar.com',
-        headers: { Host: 'financials.morningstar.com' },
-        agent: this.agent,
-        path: ['http://financials.morningstar.com/ajax/exportKR2CSV.html?&callback=?&t=',security.ticker,'&region=',security.country!="United States"?"can":"usa",'&order=asc'].join('') };
+    //http://financials.morningstar.com/ajax/exportKR2CSV.html?&callback=?&t={0}&region={1}&culture=en-US&cur=&order=asc"
+    getfinancials(security, onsuccess, onerror) {
+        var quoteServer = this;
+        var data = "";
+        var options = { host: 'financials.morningstar.com',
+            headers: { Host: 'financials.morningstar.com' },
+            agent: this.agent,
+            path: ['http://financials.morningstar.com/ajax/exportKR2CSV.html?&callback=?&t=',security.ticker,'&region=',security.country!="United States"?"can":"usa",'&order=asc'].join('') };
 
-    http.get(options, function(res) {
-        res.setEncoding();
-        res.on('data', function(chunk) { data += chunk; });
-        res.on('error', function(err) { logger.log('error', 'MorningStarGetFinancials',security.ticker, err); onerror(security); });
-        res.on('end', function() {
-            try {
-                if (data != "") {
-                    var financial = {};
-                    security.financials = processMorningstarData(String(data));
+        http.get(options, function(res) {
+            res.setEncoding();
+            res.on('data', function(chunk) { data += chunk; });
+            res.on('error', function(err) { logger.log('error', 'MorningStarGetFinancials',security.ticker, err); onerror(security); });
+            res.on('end', function() {
+                try {
+                    if (data != "") {
+                        var financial = {};
+                        security.financials = processMorningstarData(String(data));
+                    }
+                    onsuccess(security);
+                    logger.log('debug','Morningstar.morningstar_getfinancials result sent:', security.ticker);
+                } catch (err) {
+                    onsuccess(security);
+                    logger.log('error','Morningstar.morningstar_getfinancials:', [security.ticker,data,err].join('\r\n'));
                 }
-                onsuccess(security);
-                logger.log('debug','Morningstar.morningstar_getfinancials result sent:', security.ticker);
-            } catch (err) {
-                onsuccess(security);
-                logger.log('error','Morningstar.morningstar_getfinancials:', [security.ticker,data,err].join('\r\n'));
-            }
+            });
         });
-    });
+    }
 }
 
 function processMorningstarData(csv) {

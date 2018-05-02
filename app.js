@@ -9,6 +9,7 @@ var util = require('util');
 
 var routes = require('./routes/index');
 var quotes = require('./routes/quotes');
+var portfolio = require('./routes/portfolio');
 var vix = require('./routes/vix');
 var regress = require('./routes/regression');
 
@@ -29,16 +30,55 @@ for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/portfolio')); // th
 
 var p_req = {};
 
+// setup passport
+var passport = require('passport');
+var GoogleOAuth = require('passport-google-oauth').OAuthStrategy;
+passport.use('provider', new GoogleOAuth(
+    {
+        consumerKey: '1064879537388-ifm31din0o583h13q5bhokp0dvlepvv7.apps.googleusercontent.com',
+        consumerSecret: 'GSPcYES1rZ5QQUUBX8MFy91u',
+        callbackURL: "/auth/google/callback"
+    },
+    function(token, tokenSecret, profile, done) {
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+            return done(err, user);
+        });
+    }
+));
+// GET /auth/google
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in Google authentication will involve
+//   redirecting the user to google.com.  After authorization, Google
+//   will redirect the user back to this application at /auth/google/callback
+app.get('/auth/google',
+        passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+// GET /auth/google/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.get('/auth/google/callback', 
+        passport.authenticate('google', { failureRedirect: '/login' }),
+        function(req, res) {
+        res.redirect('/');
+        });
+        
+
 // view engine setup
+var cors = require('cors');
+app.use(cors({origin:'http://localhost.com', optionsSuccessStatus: 200})); //allow cross-origin-resource sharing
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('json space',2);
 app.locals.pretty = true;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'service')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use('/', routes);
+app.use('/portfolio', portfolio);
 app.use('/quotes', quotes);
 app.use('/vix', vix);
 app.use('/regression', regress);

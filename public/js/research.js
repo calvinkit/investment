@@ -63,12 +63,12 @@ function onsecurity(security) {
     $('#TabView').tabs('option','active',1);
     if (!$('#ResearchCompare').prop('checked')) $("#security").DataTable().clear().draw();
     if (onerror(security)) return true;
+    var indicators = curr_indicator = new Indicator(security.quotes);
     var row = $('#security').DataTable().row.add([security.ticker,
                                                security.name,
                                                security.exchange,
                                                security.sector,
-                                               security.price,
-                                               humanize.numberFormat(security.statistics["10d"][0]/security.statistics["10d"][1])]).draw().node();
+                                               security.price]).draw().node();
     $('#GoogleTicker').val(security.ticker);
     $('#YahooTicker').val(security.yticker);
     $('#Country').val(security.country);
@@ -83,13 +83,12 @@ function onsecurity(security) {
 }
 
 function plot_charts(security) {
-    var indicators = curr_indicator = new Indicator(security.quotes);
     var ohlc = security.quotes.map(function(e) { return [e.date, e.open, e.hi, e.lo, e.price] });
-    var closes = indicators.series;
-    var sma20 = indicators.sma(20);
+    var closes = curr_indicator.series;
+    var sma20 = curr_indicator.sma(20);
     var stddev = statistics.StripTimeSeries(closes).map(function(e,i,a) { return i<20?0:statistics.stdev(a.slice(i-20,i)); });
-    var pivots = indicators.pivots();
-    var macd = indicators.macd(12,26,9);
+    var pivots = curr_indicator.pivots();
+    var macd = curr_indicator.macd(12,26,9);
 
     if (!chart || !$('#ResearchComparison').prop('checked')) {
         $('#myChart').highcharts('StockChart', {
@@ -113,16 +112,13 @@ function plot_charts(security) {
             },
             xAxis: { ordinal: true },
             yAxis: [ { opposite: false, labels: { align: 'right' }, title: { text: 'Price' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
+                     { opposite: true, labels: { align: 'right' }, title: { text: 'Sharpe' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
                      { opposite: true,  labels: { align: 'right' }, title: { text: 'Volumn' }, offset: 0 },
                      { 
                         opposite: false, labels: { align: 'right' }, title: { text: 'RSI (14-day)'}, min: 0, max: 100, offset: 0,
                         plotLines: [ { value: 70, color: 'red', dashStyle: 'shortdash', width: 4 },{ value: 30, color: 'green', dashStyle: 'shortdash', width: 4 } ], 
                      },
-                     { opposite:false,labels:{align:'right'},title:{text:'OBV' },offset:0,top:'85%',height:'15%'},
                      { opposite:false,labels:{align:'right'},title:{text:'MACD'},offset:0,top:'85%',height:'15%',tickPixelInterval:10,plotLines:[{value:0,color:'black',dashStyle:'solid',width:1}]},
-                     { opposite:false,labels:{align:'right'},title:{text:'VWReturn' },offset:0,top:'85%',height:'15%',
-                       plotLines: [ { value: 0, color: 'black', dashStyle: 'solid', width: 1 }], 
-                     },
             ],
             tooltip: { crosshairs: [true, true] },
             series: [
@@ -134,27 +130,36 @@ function plot_charts(security) {
                 tooltip: { valueDecimals: 2, valueSuffix: '' },
             }
             ,{
-                type: 'spline',
-                name: security.ticker+' RSI',
-                data: indicators.RSI(14),
-                yAxis: 2,
-                tooltip: { valueDecimals: 2, valueSuffix: '' },
-                linkedTo: ':previous',
-            }
-            ,{
                 type: 'column',
                 name: security.ticker+' vol',
                 data: security.quotes.map(function(e) { return [e.date, e.vol] }),
-                yAxis: 1,
+                yAxis: 2,
                 tooltip: { valueDecimals: 0, valueSuffix: '' },
                 linkedTo: ':previous',
             }
             ,{
+                type: 'spline',
+                name: security.ticker+' RSI',
+                data: curr_indicator.rsi(14),
+                yAxis: 3,
+                tooltip: { valueDecimals: 2, valueSuffix: '' },
+                linkedTo: ':previous',
+            }
+            ,{
                 type: 'line',
-                name: security.ticker+' vwret',
-                data: indicators.vwr(10),
-                yAxis: 5,
-                tooltip: { valueDecimals:2, valueSuffix:'%' },
+                name: security.ticker+' pivots',
+                data: security.indicators["pivots"].map(function(e) { return [e[0], e[1].s1]; }),
+                step: true,
+                yAxis: 0,
+                tooltip: { valueDecimals: 2, valueSuffix: '' },
+                visible: false,
+            }
+            ,{
+                type: 'line',
+                name: security.ticker+' 30d sharpe',
+                data: curr_indicator.sharpe(statistics, 30,0),
+                yAxis: 1,
+                tooltip: { valueDecimals: 2, valueSuffix: '' },
             }
             ,{
                 //type: 'line',
@@ -173,23 +178,6 @@ function plot_charts(security) {
                 tooltip: { valueDecimals: 2, valueSuffix: '' },
                 linkedTo: ':previous',
             }
-            ,{
-                type: 'line',
-                name: security.ticker+' pivots',
-                data: security.indicators["pivots"].map(function(e) { return [e[0], e[1].s1]; }),
-                step: true,
-                yAxis: 0,
-                tooltip: { valueDecimals: 2, valueSuffix: '' },
-                visible: false,
-            }
-            ,{
-                type: 'line',
-                name: security.ticker+' OBV',
-                data: indicators.OBV(),
-                step: true,
-                yAxis: 3,
-                tooltip: { valueDecimals: 2, valueSuffix: '' },
-            }
             ]
         });
         chart = $('#myChart').highcharts();
@@ -200,6 +188,14 @@ function plot_charts(security) {
             data: closes,
             yAxis: 0,
             tooltip: { valueDecimals: 2, valueSuffix: '%' }
+
+        }); 
+        chart.addSeries({
+            type: 'line',
+            name: security.ticker+' 30d sharpe',
+            data: curr_indicator.sharpe(statistics, 30, 0),
+            yAxis: 1,
+            tooltip: { valueDecimals: 2, valueSuffix: '' }
 
         }); 
         $('#ResearchPercent').prop('checked', true);
@@ -300,14 +296,12 @@ function research_toggle_percent() {
 }
 
 function research_updateAxis() {
-    var bOBV = $('#ResearchTechnical')[0][2].selected;
     var bMACD = $('#ResearchTechnical')[0][0].selected;
-    chart.yAxis[0].update({ top: '0%', height: '60%'});  // Price
-    chart.yAxis[1].update({ top: '60%', height: '10%'}); // Vol
-    chart.yAxis[5].update({ top: '70%', height: '10%'}); // vwret
-    chart.yAxis[2].update({ top: '80%', height: bOBV||bMACD?'5%':'20%'}); // RSI
-    chart.yAxis[3].update({ top: '85%', height: bOBV?(bMACD?'5%':'15%'):'0%', visible: bOBV}); // OBV
-    chart.yAxis[4].update({ top: bOBV?'90%':'85%', height: bMACD?(bOBV?'10%':'15%'):'0%', visible: bMACD}); // MACD
+    chart.yAxis[0].update({ top: '0%', height: '70%'});  // Price
+    chart.yAxis[1].update({ top: '0%', height: '70%'});  // Sharpe
+    chart.yAxis[2].update({ top: '70%', height: '10%'}); // Vol
+    chart.yAxis[3].update({ top: '80%', height: bMACD?'10%':'20%'}); // RSI
+    chart.yAxis[4].update({ top: '90%', height: bMACD?'10%':'0%', visible: bMACD}); // MACD
 }
 
 function research_addtrend(value) {
@@ -359,7 +353,7 @@ function research_addHistVol()
         chart.addSeries({
             name: $('#Tenor').val()+' hist '+days+'-d vol',
             data: histvol,
-            yAxis: 2,
+            yAxis: 3,
         });
         $('#ResearchHistVolPeriod').val('');
     }

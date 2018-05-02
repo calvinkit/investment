@@ -1,6 +1,6 @@
 div#Research
-    input(type="search" id="GoogleTicker" size="5" list="tickers" placeholder='Google Ticker' onkeyup="$(this).val(this.value.toUpperCase());$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
-    input(type="search" id="YahooTicker" size="5" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="search" id="GoogleTicker" size="8" list="tickers" placeholder='Google Ticker' onkeyup="$(this).val(this.value.toUpperCase());$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="search" id="YahooTicker" size="8" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
     input(type="search" id="Country" size="5" list="exchanges" value="United States" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
     button(type="button" onclick="search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); $('#GoogleTicker').select(); loading.show(); return true;") >
     label
@@ -90,7 +90,6 @@ div#Research
                         th(width="10%") Exchange
                         th(width="30%") Sector
                         th(width="10%") Price
-                        th(width="10%") Sharpe
                 tbody
             br
             div#myChart(style="width: 90%")
