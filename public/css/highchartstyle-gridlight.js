@@ -80,8 +80,8 @@ Highcharts.theme = {
         }
 	},
     credits: {
-        text: 'www.scotiabank.com',
-        href: 'http://sdpsvrwm170.ib.tor.scotiabank.com:5000'
+        text: 'www.highcharts.com',
+        href: 'http://highcharts.com'
     },
 
 
