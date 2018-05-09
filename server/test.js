@@ -69,8 +69,3 @@ function sample_data() {
     var google = new Google(httpProxy);
     google.gethistory(security, false, function(s) { google.getprice(s,save_data)}, function(s) {google.getprice(s,save_data)});
 }
-
-test_Alpha();
-//test_CNBC();
-//test_Morningstar();
-//test_Yahoo();

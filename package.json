@@ -2,12 +2,17 @@
   "name": "investments",
   "version": "0.0.0",
   "private": true,
-  "scripts": { "start": "node app", "cleanup":"npm prune" },
+  "scripts": { 
+    "start": "node app", 
+    "cleanup":"npm prune" 
+    },
   "dependencies": {
     "zeromq":"*",
+    "regression-extend":"*",
     "http-proxy-agent": "*",
     "https-proxy-agent": "*",
     "option-pricing-tree":"*",
+    "url-parse":"*",
     "csv2array": "*",
     "socket.io": "*",
     "pug": "2.0.0-beta2",

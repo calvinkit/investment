@@ -21,7 +21,7 @@ function Cache() {
         this.collection.update({ ticker: security.ticker }, security, { upsert: true });
         delete remaining[security.ticker];
         if (this.size == ++this._size) this.close();
-        if (this.size - this._size < 30) console.log(remaining);
+        //if (this.size - this._size < 30) console.log(remaining);
     }).bind(this));
 }
 

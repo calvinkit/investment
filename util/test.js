@@ -1,41 +1,40 @@
 var util = require('util');
+var assert = require('assert');
 var stat = require('./statistics');
-var Regression = require('./regression');
-var cache = require('../data/cache');
+var Indicator = require('./indicator');
 
-function PCA_test() {
+describe('PCA', function() {
     var PCA = require('./pca');
     var data = numeric.transpose([[7,4,3],[4,1,8],[6,3,5],[8,6,1],[8,5,7],[7,2,9],[5,3,3],[9,5,8],[7,4,5],[8,2,2]]);
     var pca = new PCA(data);
-    console.log(util.inspect(pca.calculate(3), false, 1, true));
-}
+    var result = pca.calculate(3);
+    it('PC1 vector is expected', function() {
+        assert.deepStrictEqual(result[0], [7,3.999999999999995,5.999999999999998,8.000000000000004,8,6.999999999999994,5,8.999999999999998,6.999999999999999,7.999999999999998]);
+    });
+    it('PC3 vector is expected', function() {
+        assert.deepStrictEqual(result[2], [2.9999999999999933, 7.999999999999993, 4.999999999999993, 0.9999999999999938, 6.999999999999991, 8.999999999999991, 2.9999999999999947, 7.999999999999989, 4.999999999999993, 1.999999999999994 ]);
+    });
+});
 
-function zScore_test() {
-    var indicator = new Indicator(quotes);
-    var zScore = indicator.zScore(stat, 10);
-    console.log(util.inspect(zScore, false, 1, true));
-}
-
-function Regression_test() {
-    var x = cache.find({ticker:'.INX'})[0].indicator.closes;
-    var y = cache.find({ticker:'.DJI'})[0].indicator.closes;
+describe('Indicator', function() {
+    var cache = require('../data/cache');
+    var goog = cache.find({ticker:'GOOG'})[0];
+    var yahoo = cache.find({ticker:'YHOO'})[0];
+    var indicator = new Indicator(goog.quotes);
+    it('RSI', function() {
+        assert.deepStrictEqual(indicator.rsi(14).slice(-5),[0]);
+    });
+    it('SMA', function() {
+        assert.deepStrictEqual(indicator.sma(10).slice(-5),[0]);
+    });
+    it('EMA', function() {
+        assert.deepStrictEqual(indicator.rsi.slice(-5),[0]);
+    });
+    //it('RSI', function() {
+    //    assert.deepStrictEqual(indicator.rsi.slice(-5),[0]);
+    //});
+    //it('RSI', function() {
+    //    assert.deepStrictEqual(indicator.rsi.slice(-5),[0]);
+    //});
     cache.close();
-
-    console.log('beta','corr', 'tstat', 'pValue', 'se');
-    for (var i=1; i<x.length; i++) {
-        var xp = x.slice(i, i+250);
-        var yp = y.slice(i, i+250);
-        if (xp.length < yp.length) yp = yp.slice(0, xp.length);
-        var regression = new Regression(xp, yp);
-        var result = regression.linear();
-        console.log(result.beta);
-        console.log(result.beta, result.corr, result.tstat, result.pValue, result.se);
-        console.log(util.inspect(result, false, 0, true));
-        var adf = regression.adf(result.residual);
-        console.log(util.inspect(adf, false, 0, true));
-    }
-}
-
-
-//Regression.prototype.unit_test();
-Regression_test();
+});

@@ -2,7 +2,7 @@ var zmq = require('zeromq');
 var Security = require('../lib/security');
 var stat = require('../util/statistics');
 var Indicator = require(__dirname+'/../util/indicator');
-var Regression = require('../util/regression');
+var regression = require('regression-extend');
 var logger = require('../config/log');
 var zmqports = require('../config/zmq')();
 
@@ -63,11 +63,8 @@ RegressionServer.prototype.onrequest = function(request) {
         var y = stat.StripTimeSeries(rD[1]);
         var dx = stat.differencing(x, 1); // dx values (delta)
         var dy = stat.differencing(y, 1); // dy values (delta)
-        var regression = new Regression(dx, dy);
-        analysisResult.slr = regression.linear(true);  
-        // !! shd I modify the alpha...
-        analysisResult.slr.alpha = stat.mean(y)-analysisResult.slr.beta*stat.mean(x);
-        analysisResult.tsr = regression.theil_sen();
+        analysisResult.slr = regression.linear(dx, dy, { precision: 5}));  
+        analysisResult.slr.pValue = x.length<=2?0:new StudentT(x.length-1).cdf(analysisResult.slr.tstat);
 
         // Stripped Data(in/out sample data)
         var dates = analysisResult.dates = dates.filter(function(e) { return e>=rdates[0]; });
@@ -78,8 +75,8 @@ RegressionServer.prototype.onrequest = function(request) {
         var dy = analysisResult.dy.slice(-y.length); // dy values
         analysisResult.xy = dates.map(function(e,i,a) { return [ x[i], y[i] ]; });
         analysisResult.dxy = dates.map(function(e,i,a) { return [ dx[i], dy[i] ]; });
-        analysisResult.est = regression.projection(x, analysisResult.slr, 'linear');
-        analysisResult.residual = regression.residual(x, y, analysisResult.slr, 'linear');
+        analysisResult.est = x.map((e) => analysisResult.slr.predict(e));
+        analysisResult.residual = y.map((e,i) => e-analysisResult.est[i]);
         analysisResult.me = stat.mean(analysisResult.residual);
         analysisResult.zscore = analysisResult.residual.map(function(e) { return e/analysisResult.slr.smse; });
         analysisResult.autobeta = stat.autobeta(y, 1);

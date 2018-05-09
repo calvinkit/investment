@@ -12,6 +12,7 @@ var quotes = require('./routes/quotes');
 var portfolio = require('./routes/portfolio');
 var vix = require('./routes/vix');
 var regress = require('./routes/regression');
+var url = require('./routes/url');
 
 // Setup on zmq/socket.io
 var io = require('socket.io').listen(server);
@@ -82,6 +83,7 @@ app.use('/portfolio', portfolio);
 app.use('/quotes', quotes);
 app.use('/vix', vix);
 app.use('/regression', regress);
+app.use('/url', url);
 
 app.get('/js/statistics.js',function(req, res) { res.sendFile(__dirname+'/util/statistics.js') });
 app.get('/js/indicator.js',function(req, res) { res.sendFile(__dirname+'/util/indicator.js') });
