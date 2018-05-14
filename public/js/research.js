@@ -87,7 +87,6 @@ function plot_charts(security) {
     var closes = curr_indicator.series;
     var sma20 = curr_indicator.sma(20);
     var stddev = statistics.StripTimeSeries(closes).map(function(e,i,a) { return i<20?0:statistics.stdev(a.slice(i-20,i)); });
-    var pivots = curr_indicator.pivots();
     var macd = curr_indicator.macd(12,26,9);
 
     if (!chart || !$('#ResearchComparison').prop('checked')) {
@@ -144,15 +143,6 @@ function plot_charts(security) {
                 yAxis: 3,
                 tooltip: { valueDecimals: 2, valueSuffix: '' },
                 linkedTo: ':previous',
-            }
-            ,{
-                type: 'line',
-                name: security.ticker+' pivots',
-                data: security.indicators["pivots"].map(function(e) { return [e[0], e[1].s1]; }),
-                step: true,
-                yAxis: 0,
-                tooltip: { valueDecimals: 2, valueSuffix: '' },
-                visible: false,
             }
             ,{
                 type: 'line',

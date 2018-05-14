@@ -25,6 +25,7 @@ var fs = require('fs');
 // Spawn worker server server
 var fork = require('child_process').fork;
 var workers = new Array();
+for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/rates'));
 for (var i=0; i<5; i++) workers.push(fork(__dirname+'/server/quote'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/regression'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/portfolio')); // there shd be only 1 portoflio server

@@ -121,7 +121,7 @@ function download(filename, csv) {
 
 function onerror(obj) {
     if (obj.error) {
-        alert(obj.error);
+        alert(JSON.stringify(obj.error));
         loading.hide();
         return true;
     }

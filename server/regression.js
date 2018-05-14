@@ -63,7 +63,7 @@ RegressionServer.prototype.onrequest = function(request) {
         var y = stat.StripTimeSeries(rD[1]);
         var dx = stat.differencing(x, 1); // dx values (delta)
         var dy = stat.differencing(y, 1); // dy values (delta)
-        analysisResult.slr = regression.linear(dx, dy, { precision: 5}));  
+        analysisResult.slr = regression.linear(dx, dy, { precision: 5});  
         analysisResult.slr.pValue = x.length<=2?0:new StudentT(x.length-1).cdf(analysisResult.slr.tstat);
 
         // Stripped Data(in/out sample data)

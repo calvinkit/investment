@@ -7,12 +7,15 @@ var logger = require('../config/log');
 var Security = require('../lib/security');
 var zmqports = require('../config/zmq')(false);
 var Google = require('./google');
-var Yahoo = require('./yahoo');
-var AlphaVantage = require('./alphavantage');
-var Morningstar = require('./morningstar');
-var Quandl = require('./quandl');
-var CNBC = require('./cnbc');
+var Quotes = require('finance-quotes');
 var Indicator = require('../util/indicator');
+
+var obj = require('url').parse(process.env.HTTP_PROXY);
+obj.rejectUnauthorized = false;
+var httpAgent = process.env.HTTP_PROXY?new httpProxyAgent(obj):null;
+var httpsAgent = process.env.HTTP_PROXY?new httpsProxyAgent(obj):null;
+
+var cache = {};
 
 function QuoteServer() {
     logger.log('info','QuoteServer ('+process.pid+') running in '+(process.env.HTTP_PROXY?"Proxy":"Direct")+" mode on "+zmqports.quote[1]);
@@ -20,16 +23,13 @@ function QuoteServer() {
     this.fromDate.subtract(4, 'years');
     this.response = zmq.socket('rep').connect(zmqports.quote[1]);
     this.securities = new Object();
-    this.agent = process.env.HTTP_PROXY?new httpProxyAgent(process.env.HTTP_PROXY):null;
-    this.google = new Google(this.agent);
-    this.morningstar = new Morningstar(this.agent);
-    this.alpha = new AlphaVantage(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
-    this.quandl = new Quandl(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
-    this.cnbc = new CNBC(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
-    this.yahoo = new Yahoo(process.env.HTTP_PROXY?new httpsProxyAgent(process.env.HTTP_PROXY):null);
 
+    this.alpha =        new Quotes.alphavantage(httpsAgent, process.env.ALPHAVANTAGE);
+    this.quandl =       new Quotes.quandl(httpsAgent, process.env.QUANDL);
+    this.cnbc =         new Quotes.cnbc(httpsAgent);
+    this.morningstar =  new Quotes.morningstar(httpAgent);
+    this.yahoo =        new Quotes.yahoo(httpsAgent);
 
-    //this.response.on('disconnect', function() { console.log(arguments); });
     this.response.on('message', (function(msg) {
         msg = JSON.parse(msg);
         security = new Security().consume(msg.security);
@@ -48,10 +48,6 @@ function QuoteServer() {
 
             case 'quote':
                 this.getPrice(security);
-                break;
-
-            case 'detail':
-                this.getDetail(security);
                 break;
 
             case 'quotes':
@@ -86,65 +82,46 @@ function QuoteServer() {
     }).bind(this));
 }
 
-QuoteServer.prototype.getDetail = function(security) {
-    var server = this;
-    var onsuccess = (function(s) { this.getHistory(s); }).bind(server);
-    var onerror = (function(s) { this.getHistory(s); }).bind(server);
-    logger.log('verbose','QuoteServer.getDetail on',security.ticker);
-    if (security.country == "EXPIRED") { onsuccess(security); return; }
-    server.yahoo.getdetails(security, onsuccess, onerror);
-};
 
 QuoteServer.prototype.getFinancials = function(security) {
-    var server = this;
-    var onsuccess = (function(s) { this.getDetail(s); }).bind(server);
-    var onerror = (function(s) { this.getDetail(s); }).bind(server);
+    var onsuccess = (s) => { logger.log('verbose','QuoteServer.getFinancials onsuccess', s.ticker); this.getHistory(s); }
+    var onerror = (s, err) => { logger.log('error', 'QuoteServer.getFinancials onerror', err); this.getHistory(s); };
     logger.log('verbose','QuoteServer.getFinancials on',security.ticker);
-    if (security.country == "EXPIRED") { onsuccess(security); return; }
-    server.morningstar.getfinancials(security, onsuccess, onerror);
+    if (security.country == "EXPIRED") return onsuccess(security);
+    this.morningstar.getprice(security, onsuccess, onerror);
 };
 
-var cache = {};
 QuoteServer.prototype.getHistory = function(security) {
     var server = this;
-    var onsuccess = (function(s) {
-        logger.log('verbose','QuoteServer.getHistory onsuccess'); 
+    var onsuccess = (s) => {
+        logger.log('verbose','QuoteServer.getHistory onsuccess', s.ticker); 
         cache[s.ticker+s.country]=s; 
         if (s.country!='EXPIRED'&&s.quotes.length==0) logger.log('error',s.ticker+':'+s.country,'has empty history');
         this.getPrice(s); 
-    }).bind(server);
-    var onerror = (function(s) {
-        logger.log('error','QuoteServer.getHistory onerror'); 
-        this.getPrice(s); 
-    }).bind(server);
-
+    };
+    var onerror = (s, err) => { logger.log('error','QuoteServer.getHistory onerror', err); this.getPrice(s); };
     logger.log('verbose','QuoteServer.getHistory on',security.ticker);
-
-    if (security.country == "EXPIRED") { onsuccess(security); return; }
-
-    var handler = server.alpha;
+    if (security.country == "EXPIRED") return onsuccess(security);
     if (cache[security.ticker+security.country]) { this.getPrice(cache[security.ticker+security.country]); return; }
-    if (security.exchange=="MUTF_CA") handler = server.yahoo;
-    handler.gethistory(security, false, onsuccess, onerror);
+    this.alpha.gethistory(security, onsuccess, onerror);
 };
 
 QuoteServer.prototype.getPrice = function(security) {
-    var server = this;
-    var onsuccess = (function(s) { 
-        logger.log('verbose','QuoteServer.getPrice onsuccess'); 
+    var onsuccess = (s) => { 
+        logger.log('verbose','QuoteServer.getPrice onsuccess', s.ticker); 
         s.indicator = new Indicator(s.quotes);
         s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
         this.response.send(JSON.stringify(s)); 
-    }).bind(server);
-    var onerror = (function(s) { 
-        logger.log('error','QuoteServer.getPrice onerror'); 
+    };
+    var onerror = (s, err) => { 
+        logger.log('error','QuoteServer.getPrice onerror', err); 
         s.indicator = new Indicator(s.quotes);
         s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
         this.response.send(JSON.stringify(s)); 
-    }).bind(server);
+    };
     logger.log('verbose','QuoteServer.getPrice on',security.ticker);
-    if (security.country == "EXPIRED") { onsuccess(security); return; }
-    server.cnbc.getprice(security, onsuccess, onerror);
+    if (security.country == "EXPIRED") return onsuccess(security);
+    this.cnbc.getprice(security, onsuccess, onerror);
 };
 
 

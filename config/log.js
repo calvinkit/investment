@@ -22,7 +22,7 @@ winston.addColors(custom.colors);
 // { error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
 var logger = new (winston.Logger)({ 
     'transports': [ new (winston.transports.Console)( { 
-        'level': process.env.debug||'info', 
+        'level': process.env.debug||'debug', 
         'colorize': true 
 })], });
 
