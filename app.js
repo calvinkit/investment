@@ -25,7 +25,8 @@ var fs = require('fs');
 // Spawn worker server server
 var fork = require('child_process').fork;
 var workers = new Array();
-for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/rates'));
+// k2 stuff
+//for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/rates'));
 for (var i=0; i<5; i++) workers.push(fork(__dirname+'/server/quote'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/regression'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/portfolio')); // there shd be only 1 portoflio server
@@ -76,9 +77,13 @@ app.set('json space',2);
 app.locals.pretty = true;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'service')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
+app.get('/js/statistics.js',function(req, res) { res.sendFile(__dirname+'/util/statistics.js') });
+app.get('/js/indicator.js',function(req, res) { res.sendFile(__dirname+'/util/indicator.js') });
+
 app.use('/', routes);
 app.use('/portfolio', portfolio);
 app.use('/quotes', quotes);
@@ -86,8 +91,6 @@ app.use('/vix', vix);
 app.use('/regression', regress);
 app.use('/url', url);
 
-app.get('/js/statistics.js',function(req, res) { res.sendFile(__dirname+'/util/statistics.js') });
-app.get('/js/indicator.js',function(req, res) { res.sendFile(__dirname+'/util/indicator.js') });
 app.subscribe('/portfolio', function(req, res, next) {
     var id = req.body.id;
     var portfolioName = req.body.portfolio;

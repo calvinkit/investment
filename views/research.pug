@@ -1,7 +1,7 @@
 div#Research
-    input(type="search" id="GoogleTicker" size="8" list="tickers" placeholder='Google Ticker' onkeyup="$(this).val(this.value.toUpperCase());$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
-    input(type="search" id="YahooTicker" size="8" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
-    input(type="search" id="Country" size="5" list="exchanges" value="United States" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="search" id="GoogleTicker" size="10" list="tickers" placeholder='Google Ticker' onkeyup="$(this).val(this.value.toUpperCase());$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="hidden" id="YahooTicker" size="8" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="search" id="Country" size="15" list="exchanges" value="United States" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
     button(type="button" onclick="search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); $('#GoogleTicker').select(); loading.show(); return true;") >
     label
         input(type="checkbox" id="ResearchComparison")
@@ -13,11 +13,11 @@ div#Research
     <!--
     input(type="number" id="TrendValue" style="width:50px")
     button(type="button" onclick="research_addtrend($('#TrendValue').val())") Add Trend Line-->
-    input(type="number" id="ResearchMA" min="1" style="width: 60px;" placeholder="DMA" onchange="return research_addMA();")
-    input(type="number" id="ResearchHistVolPeriod" value="" min="2" style="width: 70px;" placeholder="NDVol" onchange="return research_addHistVol();")
+    input(type="number" id="ResearchMA" min="1" style="width: 40px;" placeholder="DMA" onchange="return research_addMA();")
+    input(type="number" id="ResearchHistVolPeriod" value="" min="2" style="width: 40px;" placeholder="NDVol" onchange="return research_addHistVol();")
+    input(type="text" id="ResearchMACD" size="10" value="12,26,9" placeholder="MACD" onchange="return research_onmacd();")
     select(id="ResearchTechnical",data-placeholder="Technical Analysis",multiple,style="display:none")
-        option(value="1") MACD(12,26,9)
-        //option(value="2") Fibonacci
+        option(value="2") Fibonacci
         //option(value="3") Support
         //option(value="4") Resistance
         option(value="2") bollinger
@@ -62,7 +62,7 @@ div#Research
                     div#FinancialsEfficiencyChart(style="width: 90%")
         h3 Holdings 
         div 
-            table#ResearchHoldings.display(cellpadding="0" cellspacing="0" border="0" align="center" width='80%')
+            table#ResearchHoldings.display.compact(cellpadding="0" cellspacing="0" border="0" align="center" width='80%')
                 thead
                     tr
                         th Holding
@@ -82,7 +82,7 @@ div#Research
                         th(align="right")
         h3 Charting
         div
-            table#security.dispaly(width="80%",cellpadding="0",cellspacing="0",border="0",align='center')
+            table#security.dispaly(width="60%",cellpadding="0",cellspacing="0",border="0",align='center')
                 thead
                     tr
                         th(width="10%") Ticker
@@ -92,4 +92,4 @@ div#Research
                         th(width="10%") Price
                 tbody
             br
-            div#myChart(style="width: 90%")
+            div#myChart(style="width: 95%")

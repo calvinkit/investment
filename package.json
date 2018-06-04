@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "*",
+    "chosen-js": "*",
     "colors": "*",
     "cors": "*",
     "csv2array": "*",
@@ -20,16 +21,17 @@
     "https-proxy-agent": "*",
     "humanize": "*",
     "moment": "*",
-    "nedb": "^1.8.0",
+    "nedb": "*",
     "numeric": "*",
     "option-pricing-tree": "*",
     "passport": "*",
     "passport-google-oauth": "*",
     "pug": "2.0.0-beta2",
     "regression-extend": "*",
-    "socket.io": "*",
+    "socket.io": "^2.1.1",
+    "synaptic": "^1.1.4",
     "url-parse": "*",
     "winston": "*",
-    "zeromq": "^4.6.0"
+    "zeromq": "*"
   }
 }

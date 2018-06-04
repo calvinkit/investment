@@ -126,7 +126,7 @@ class Indicator {
         var min = Math.min.apply(null, this.closes); 
         var spread = max-min;
         return [0, 0.118, 0.191, 0.125, 0.309, 0.5, 0.691, 0.75, 0.809, 0.882, 1].map(e => {
-            [[this.dates[0], max-e*spread], [this.dates[this.dates.length-1], max-e*spread]];
+            return [[this.dates[0], max-e*spread], [this.dates[this.dates.length-1], max-e*spread]];
         });
     }
 
@@ -135,7 +135,7 @@ class Indicator {
         var g = this.returns(1);
         return g.map((e,i,a) => {
                 var v = stat.StripTimeSeries(a.slice(Math.max(0, i-period), i));
-                [e[0], (stat.mean(v)-rf)/stat.stdev(v)];
+                return [e[0], (stat.mean(v)-rf)/stat.stdev(v)];
                 });
     }
 
