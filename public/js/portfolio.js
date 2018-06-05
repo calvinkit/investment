@@ -1,4 +1,7 @@
+var socket = null;
+
 $(document).ready(function(){
+    socket = io.connect('http://'+window.location.host);
     $('#TransactionView').dialog({ 
         autoOpen: false, modal: true, draggable: true, closeOnEscape: true,
         ttile: 'Transactions History',
@@ -126,6 +129,8 @@ $(document).ready(function(){
     //$('#transactions').on( 'click', 'tbody td:not(:last-child)', function (e) {
     //    editor.inline( this, { onBlur:'close' });
     //});
+    socket.on('connect', function () { loadPortfolio(); });
+    socket.on('disconnect', function () { });
     socket.on('investment', oninvestment);
 });
 

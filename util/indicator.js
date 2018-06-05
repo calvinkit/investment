@@ -1,11 +1,17 @@
 class Indicator {
     constructor(quotes) {
+        this.quotes = quotes;
         this.vols = quotes.map(e => e.vol);
         this.dates = quotes.map(e => e.date);
         this.closes = quotes.map(e => e.price);
+        this.open = quotes.map(e => e.open);
         this.lo = quotes.map(e => e.lo);
         this.hi = quotes.map(e => e.hi);
         this.series = quotes.map(e => [e.date, e.price]);
+    }
+
+    get ohlc() {
+        return this.quotes.map((e) => [e.date,e.open,e.hi,e.lo,e.price]);
     }
 
     pivots() {
@@ -76,10 +82,8 @@ class Indicator {
 
     ema(nDay) {
         var len = this.series.length;
-        var result = new Array();
-        var sma = this.sma(nDay).slice(0, nDay);
-        for (var i=0; i<nDay && i<this.closes.length; i++) result[i] = [sma[i][0], sma[i][1]];
-        var multiplier = 2/(nDay+1);
+        var result = this.sma(nDay).slice(0, nDay);
+        var multiplier = 2/(parseInt(nDay)+1);
         for (var i=nDay; i<this.series.length; i++)
             result[i] = [ this.series[i][0], (this.series[i][1]-result[i-1][1])*multiplier+result[i-1][1] ];
         return result;

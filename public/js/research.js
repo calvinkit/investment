@@ -2,6 +2,8 @@ var curr_indicator = null;
 var curr_security = null;
 
 $(document).ready(function(){
+    $('#ResearchAccordion').accordion({active:1, heightStyle: 'content'});
+
     $('#security').dataTable({
         "bPaginate": false,
         "bInfo": false,
@@ -43,16 +45,20 @@ $(document).ready(function(){
             $(aFoot).find('th').eq(1).text(humanize.numberFormat(total,0));
         }
     });
+    $('#ResearchPlotStyle').chosen({ disable_search:true, width: '120px', inherit_select_classes: true});
+    $('#ResearchPlotStyle').on('change', function(e, params) { research_onchangestyle(); });
     $('#ResearchTechnical').chosen({ width: '230px' });
     $('#ResearchTechnical').on('change', function(e, params) { research_updateAxis(); research_addFibonacci(); });
     $('#FinancialsTabView').tabs({ active:1, heightStyle: "content" });
-
-    socket.on('security', onsecurity);
 });
 
 function search_security(ticker, yticker, country) {
     loading.show(); 
-    $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'financials'}, onsecurity);
+    if (country=="CFTC") {
+        $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'quandl'}, onsecurity);
+    } else {
+        $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'financials'}, onsecurity);
+    }
 }
 
 function get_quotes(ticker, yticker, country) {
@@ -61,7 +67,7 @@ function get_quotes(ticker, yticker, country) {
 }
 
 function onsecurity(security) {
-    $('#TabView').tabs('option','active',1);
+    tabview.switchTo('Research');
     if (!$('#ResearchCompare').prop('checked')) $("#security").DataTable().clear().draw();
     if (onerror(security)) return true;
     var indicators = curr_indicator = new Indicator(security.quotes);
@@ -86,14 +92,13 @@ function onsecurity(security) {
 }
 
 function onchartplotting(security) {
-    var ohlc = security.quotes.map(function(e) { return [e.date, e.open, e.hi, e.lo, e.price] });
     var closes = curr_indicator.series;
     var sma20 = curr_indicator.sma(20);
     var stddev = statistics.StripTimeSeries(closes).map(function(e,i,a) { return i<20?0:statistics.stdev(a.slice(i-20,i)); });
 
     if (!chart || !$('#ResearchComparison').prop('checked')) {
         $('#myChart').highcharts('StockChart', {
-            title: { text: security.ticker },
+            title: { text: security.name },
             chart: { height: 800, zoomType: 'x' },
             rangeSelector: { selected: 2, inputEnabled: false, buttons: [
                 {type: 'month', count: 1, text: '1m' },
@@ -123,7 +128,7 @@ function onchartplotting(security) {
                      { opposite: true, labels: { align: 'right' }, title: { text: 'Sharpe' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
                      { opposite: true,  labels: { align: 'right' }, title: { text: 'Volumn' }, offset: 0 },
                      { 
-                        opposite: false, labels: { align: 'right' }, title: { text: 'RSI (14-day)'}, min: 0, max: 100, offset: 0, gridLineWidth: 0,
+                        opposite: false, labels: { align: 'right' }, title: { text: 'RSI (14-day)'}, min: 10, max: 90, offset: 0, gridLineWidth: 0,
                         plotLines: [ { value: 70, color: 'red', dashStyle: 'shortdash', width: 2 },{ value: 30, color: 'green', dashStyle: 'shortdash', width: 2 } ], 
                      },
                      { 
@@ -165,14 +170,14 @@ function onchartplotting(security) {
                 tooltip: { valueDecimals: 2, valueSuffix: '' },
                 linkedTo: ':previous',
             }
-            ,{
-                type: 'line',
-                name: security.ticker+' 30d sharpe',
-                data: curr_indicator.sharpe(statistics, 30,0),
-                yAxis: 1,
-                tooltip: { valueDecimals: 2, valueSuffix: '' },
-                visible: false
-            }
+            //,{
+            //    type: 'line',
+            //    name: security.ticker+' 30d sharpe',
+            //    data: curr_indicator.sharpe(statistics, 30,0),
+            //    yAxis: 1,
+            //    tooltip: { valueDecimals: 2, valueSuffix: '' },
+            //    visible: false
+            //}
             ]
         });
         chart = $('#myChart').highcharts();
@@ -194,10 +199,10 @@ function onchartplotting(security) {
             visible: false
 
         }); 
-        $('#ResearchPercent').prop('checked', true);
+        //$('#ResearchPlotStyle').prop('checked', true);
     }
     research_updateAxis();
-    research_toggle_percent();
+    research_onchangestyle();
 }
 
 function research_onmacd(security) {
@@ -314,8 +319,23 @@ function onfinancials(security) {
     }
 }
 
-function research_toggle_percent() {
-    if (chart && chart.yAxis[0]) chart.yAxis[0].setCompare($('#ResearchPercent').prop('checked')?'percent':null,true);
+function research_onchangestyle() {
+    if (chart && chart.yAxis[0]) { 
+        switch (parseInt($('#ResearchPlotStyle').val())) {
+            case 1:
+                chart.series[0].update({ data: curr_indicator.series, type: 'line' });
+                chart.yAxis[0].setCompare(null,true);
+                break;
+            case 2:
+                chart.series[0].update({ data: curr_indicator.series, type: 'line' });
+                chart.yAxis[0].setCompare('percent');
+                break;
+            case 3:
+                chart.yAxis[0].setCompare(null);
+                chart.series[0].update({ data: curr_indicator.ohlc, type: 'candlestick' }, true);
+                break;
+        }
+    }
 }
 
 function research_updateAxis() {
@@ -335,7 +355,7 @@ function research_addtrend(value) {
 function research_addMA() {
     var ma = $('#ResearchMA').val();
     var name = $('#GoogleTicker').val()+' '+ma+'d sma';
-    var bBollinger = $('#ResearchTechnical')[0][1].selected;
+    var bBollinger = ($('#ResearchTechnical').val()&&$('#ResearchTechnical').val().indexOf('Bollinger')>-1);
     var bExist = false;
     if (chart) {
         chart.series.filter(function(e) { return e.name == name; }).forEach(function(e) { bExist = true; e.show(); });
@@ -383,7 +403,7 @@ function research_addHistVol()
 
 function research_addFibonacci() 
 {
-    var bFibonacci = $('#ResearchTechnical')[0][0].selected;
+    var bFibonacci = ($('#ResearchTechnical').val()&&$('#ResearchTechnical').val().indexOf('Fibonacci')>-1);
     if (chart) {
         var s = chart.series.filter(function(s) { return s.name.indexOf('Fibonacci') > -1; });
         s.forEach(function(e) { e.remove(false); });

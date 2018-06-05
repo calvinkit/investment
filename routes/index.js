@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var users = require('../users');
+var logger = require('../config/log');
 var SectorAnalysis = require('../sector_analysis');
 
 /* GET home page. */
@@ -9,11 +11,13 @@ router.get('/sectoranalysis', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    if (true)  {
-        res.render('index', { title: 'Express' });
-        next();
+    var ip = req.connection.remoteAddress;
+    if (users[ip] == "Calvin1") {
+        res.header('Cache-Control', 'no-cache'); res.render('calvin', { title: 'Express' }); next();
     } else {
-        res.render('login', { title: 'Login' });
+        logger.log('info','Rejected Connection: '+ip+' @ '+new Date().toLocaleTimeString());
+        res.header('Cache-Control', 'no-cache'); res.render('index', { title: 'Express' });
+        return;
     }
 });
 

@@ -63,26 +63,20 @@ function QuoteServer() {
                 this.getHistory(security);
                 break;
 
+            case 'quandl':
+                this.getCFTC(security);
+                break;
+
             case 'futures':
                 var server = this;
                 logger.log('verbose','QuoteServer.futures on',security.ticker);
                 server.cnbc.getprice(security, 
-                                    (function(s) { this.response.send(JSON.stringify(s)); }).bind(server), 
-                                    (function(s) { this.response.send(JSON.stringify(s)); }).bind(server));
-                break;
-
-            case 'quandl':
-                var server = this;
-                logger.log('verbose','QuoteServer.quandl on',security.ticker);
-                logger.log('info','QuoteServer Received Quandl timeseries request on '+security.ticker,'@',new Date().toLocaleTimeString());
-                server.quandl.timeseries(security, 
-                                         (function(s) { this.response.send(JSON.stringify(s)); }).bind(server), 
-                                         (function(s) { this.response.send(JSON.stringify(s)); }).bind(server));
+                                    (s) => { this.response.send(JSON.stringify(s))},
+                                    (s,err) => { this.response.send(JSON.stringify(s))});
                 break;
         }
     }).bind(this));
 }
-
 
 QuoteServer.prototype.getFinancials = function(security) {
     var onsuccess = (s) => { logger.log('verbose','QuoteServer.getFinancials onsuccess', s.ticker); this.getHistory(s); }
@@ -134,6 +128,31 @@ QuoteServer.prototype.getPrice = function(security) {
         onerror(security, err);
     }
 };
+
+// Only reporting the net leveraged funds as quotes. Raw data in cftcraw
+QuoteServer.prototype.getCFTC = function(security) {
+    var onsuccess = (s) => { 
+        logger.log('verbose','QuoteServer.getCFTC onsuccess', s.ticker); 
+        var longs = s.quotes["Leveraged Funds Longs"]
+        var shorts = s.quotes["Leveraged Funds Shorts"]
+        s.quotes = longs.map((e,i) => ({ date:e[0],open:e[1]-shorts[i][1],price:e[1]-shorts[i][1],hi:e[1]-shorts[i][1],lo:e[1]-shorts[i][1],vol:0}));
+        s.quotes.reverse();
+        s.price = s.quotes[s.quotes.length-1].price;
+        this.response.send(JSON.stringify(s)); 
+    };
+    var onerror = (s, err) => { 
+        logger.log('error','QuoteServer.getCFTC onerror:', err.message); 
+        this.response.send(JSON.stringify(s)); 
+    };
+    logger.log('verbose','QuoteServer.getCFTC on',security.ticker);
+    if (security.country == "EXPIRED") return onsuccess(security);
+    try {
+        logger.log('verbose','QuoteServer.getCFTC link '+this.quandl.buildHistoryURL(security));
+        this.quandl.gethistory(security, onsuccess, onerror);
+    } catch (err) {
+        onerror(security, err);
+    }
+}
 
 
 QuoteServer.prototype.close = function() {

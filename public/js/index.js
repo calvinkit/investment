@@ -1,13 +1,11 @@
-var socket = null;
 var loading = null;
 var tabview = null;
 var chart = null;
 var bCompare = false;
 
 $(document).ready(function(){
-    socket = io.connect('http://'+window.location.host);
     $(document).tooltip();
-    tabview = $('#TabView').tabs({ active:1, heightStyle: "content",
+    tabview = $('#TabView').tabs({ active:0, heightStyle: "content",
         activate: function(event, ui) {
             if (ui.newPanel.selector == '#Options') {
                 getLocation(); 
@@ -18,7 +16,6 @@ $(document).ready(function(){
         this.tabs("option", "active", index);
     };
 
-    $('#ResearchAccordion').accordion({active:2, heightStyle: 'content'});
     loading = $('#Loading').dialog({ autoOpen: false, modal: true, draggable: false, autoOpen: false, closeOnEscape: true, width:90 });
     loading.show = function() { 
         this.dialog('option','title','Loading...');
@@ -44,8 +41,6 @@ $(document).ready(function(){
         return b - a;
         }
     } );
-    socket.on('connect', function () { loadPortfolio(); });
-    socket.on('disconnect', function () { });
 });
 
 function search_sector(country, sector) {

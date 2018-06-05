@@ -20,7 +20,7 @@
     "http-proxy-agent": "*",
     "https-proxy-agent": "*",
     "humanize": "*",
-    "moment": "*",
+    "moment": "^2.22.2",
     "nedb": "*",
     "numeric": "*",
     "option-pricing-tree": "*",
@@ -30,7 +30,7 @@
     "regression-extend": "*",
     "socket.io": "^2.1.1",
     "synaptic": "^1.1.4",
-    "url-parse": "*",
+    "url-parse": "^1.4.1",
     "winston": "*",
     "zeromq": "*"
   }
