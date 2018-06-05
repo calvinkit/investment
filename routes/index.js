@@ -13,10 +13,12 @@ router.get('/sectoranalysis', function(req, res, next) {
 router.get('/', function(req, res, next) {
     var ip = req.connection.remoteAddress;
     if (users[ip] == "Calvin1") {
-        res.header('Cache-Control', 'no-cache'); res.render('calvin', { title: 'Express' }); next();
-    } else {
+        res.header('Cache-Control', 'no-cache'); res.render('calvin', { usage: 'Personal' }); next();
+    } else if (users[ip]) {
+        res.header('Cache-Control', 'no-cache'); res.render('index', { usage: 'Production' }); next();
+    } else { 
         logger.log('info','Rejected Connection: '+ip+' @ '+new Date().toLocaleTimeString());
-        res.header('Cache-Control', 'no-cache'); res.render('index', { title: 'Express' });
+        res.header('Cache-Control', 'no-cache'); res.render('offline', { usage: 'Offline' });
         return;
     }
 });

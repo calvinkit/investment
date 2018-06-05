@@ -1,0 +1,20 @@
+doctype html5
+html
+    head
+        title Scotia Rates Analysis
+        meta(http-equiv="Cache-control",content="no-cache")
+        link(rel='stylesheet', href='css/style.css')
+        link(rel='stylesheet', href='css/jquery-ui-1.12.1.custom/jquery-ui.css')
+        link(rel='stylesheet', href='css/dataTables/custom.css')
+        link(rel='stylesheet', href='chosen-js/chosen.css')
+        link(rel="icon" href="css/sc.ico")
+    body
+        div.container-fluid
+            div(align='center')
+                a#Download(style="visible:false")
+                div#Msg(style='color:red; font-weight:bold')
+                div(width='100%',align='left',style='background-color:white;border-radius:5px 5px 0px 0px')
+                    a(href='#' onclick="window.location=String(window.location).split('?')[0]")
+                        img(src='css/logo.gif',width='505')
+                div(width='100%',style='background-color:#B60000;height:10px;border-radius:0px 0px 5px 5px')
+            h3(style='text-align:center') System Offline for maintainence

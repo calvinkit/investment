@@ -1,0 +1,94 @@
+script(src='js/research.js')
+div#Research
+    input(type="search" id="GoogleTicker" size="10" list="tickers" placeholder='Ticker' onkeyup="$(this).val(this.value.toUpperCase());$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="hidden" id="YahooTicker" size="8" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="hidden" id="Country" size="15" list="exchanges" value="K2" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    button(type="button" onclick="search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); $('#GoogleTicker').select(); loading.show(); return true;") >
+    label
+        input(type="checkbox" id="ResearchComparison")
+        | Comparison
+    select(id="ResearchPlotStyle",data-placeholder="Style")
+        option(value="1") Value 
+        option(value="2") Percent %
+        option(value="3") CanddleStick
+    button(type="button" id="ResearchDownload") Download
+    <!--
+    input(type="number" id="TrendValue" style="width:50px")
+    button(type="button" onclick="research_addtrend($('#TrendValue').val())") Add Trend Line --> 
+
+    input(type="number" id="ResearchMA" min="1" style="width: 40px;" placeholder="DMA" onchange="return research_addMA();")
+    input(type="number" id="ResearchHistVolPeriod" value="" min="2" style="width: 40px;" placeholder="NDVol" onchange="return research_addHistVol();")
+    input(type="text" id="ResearchMACD" size="10" value="12,26,9" placeholder="MACD" onchange="return research_onmacd();")
+    select(id="ResearchTechnical",data-placeholder="Technical Analysis",multiple,style="display:none")
+        option(value="Fibonacci") Fibonacci
+        option(value="Bollinger") bollinger
+    div#ResearchAccordion
+        h3 Financials
+        div
+            div#FinancialsTabView
+                ul
+                    li
+                        a(href='#FinancialsOverview') Overview
+                    li
+                        a(href='#FinancialsProfitMargin') Profit Margin % of Sales
+                    li
+                        a(href='#FinancialsProfitability') Profitability
+                    li
+                        a(href='#FinancialsGrowth') Growth
+                    li
+                        a(href='#FinancialsCashflow') Cashflow Ratios
+                    li
+                        a(href='#FinancialsBalanceSheet') Balance Sheet (%)
+                    li
+                        a(href='#FinancialsLiquidity') Liquidity (%)
+                    li
+                        a(href='#FinancialsEfficiency') Efficiency (%)
+                div#FinancialsOverview
+                    div#FinancialsOverviewChart(style="width: 90%")
+                div#FinancialsProfitMargin
+                    div#FinancialsProfitMarginChart(style="width: 90%")
+                div#FinancialsProfitability
+                    div#FinancialsProfitabilityChart(style="width: 90%")
+                div#FinancialsGrowth
+                    div#FinancialsGrowthChart(style="width: 90%")
+                div#FinancialsCashflow
+                    div#FinancialsCashflowChart(style="width: 90%")
+                div#FinancialsBalanceSheet
+                    div#FinancialsBalanceSheetChart(style="width: 90%")
+                div#FinancialsLiquidity
+                    div#FinancialsLiquidityChart(style="width: 90%")
+                div#FinancialsEfficiency
+                    div#FinancialsEfficiencyChart(style="width: 90%")
+        //h3 Holdings 
+        //div 
+        //    table#ResearchHoldings.display.compact(cellpadding="0" cellspacing="0" border="0" align="center" width='80%')
+        //        thead
+        //            tr
+        //                th Holding
+        //                th(width='50px') Weight
+        //                th(width='25px') 1d 
+        //                th(width='25px') 10d 
+        //                th(width='25px') 20d 
+        //                th(width='25px') 100d 
+        //            tbody
+        //        tfoot
+        //            tr
+        //                th
+        //                th(align="right")
+        //                th(align="right")
+        //                th(align="right")
+        //                th(align="right")
+        //                th(align="right")
+        h3 Charting
+        div
+            table#security.dispaly(width="60%",cellpadding="0",cellspacing="0",border="0",align='center')
+                thead
+                    tr
+                        th(width="10%") Ticker
+                        th Name
+                        th(width="10%") Exchange
+                        th(width="30%") Sector
+                        th(width="10%") Price
+                tbody
+            br
+            div#myChart(style="width: 95%")
