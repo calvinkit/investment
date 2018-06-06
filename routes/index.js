@@ -12,7 +12,7 @@ router.get('/sectoranalysis', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
     var ip = req.connection.remoteAddress;
-    if (users[ip] == "Calvin1") {
+    if (users[ip] == "Calvin") {
         res.header('Cache-Control', 'no-cache'); res.render('calvin', { usage: 'Personal' }); next();
     } else if (users[ip]) {
         res.header('Cache-Control', 'no-cache'); res.render('index', { usage: 'Production' }); next();

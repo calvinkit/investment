@@ -6,7 +6,7 @@ var Security = require('../lib/security');
 router.get('/security', function(req, res, next) {
     var security = new Security(req.query.ticker, req.query.yticker, req.query.country);
     var request = { action: req.query.action, security: security };
-    var sender = zmq.socket('req').connect(security.country.toLowerCase()=="k2"?zmqports.single[0]:zmqports.quote[0]);
+    var sender = zmq.socket('req').connect(zmqports.quote[0]);
     sender.on('message', (function(msg) {
         this.res.json(JSON.parse(msg));
         this.sender.close();
@@ -17,7 +17,7 @@ router.get('/security', function(req, res, next) {
 router.get('/futures', function(req, res, next) {
     var security = new Security(req.query.ticker, req.query.yticker, req.query.country);
     var request = { action: 'futures', security: security };
-    var sender = zmq.socket('req').connect(security.country.toLowerCase()=="k2"?zmqports.single[0]:zmqports.quote[0]);
+    var sender = zmq.socket('req').connect(zmqports.quote[0]);
     sender.on('message', (function(msg) {
         this.res.json(JSON.parse(msg));
         this.sender.close();

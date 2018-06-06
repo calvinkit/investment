@@ -3,6 +3,7 @@ data
 bin/*.txt
 portfolios
 *.txt
+util2
 
 # Logs
 logs

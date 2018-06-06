@@ -10,9 +10,7 @@ function RegressionServer() {
     logger.log('info','Regression Server Started');
     this.response = zmq.socket('rep').connect(zmqports.regression[1]);
     this.response.on('disconnect', function() { logger.log('info','disconnect', arguments); });
-    this.response.on('message', (function(request) {
-        this.onrequest(JSON.parse(request));
-    }).bind(this));
+    this.response.on('message', (request) => this.onrequest(JSON.parse(request)));
 }
 
 // Attach quote service to the portfolio
@@ -33,27 +31,27 @@ RegressionServer.prototype.onrequest = function(request) {
         if (request.target && request.regressor) request.onregress();
     }).bind(request));
     request.onregress = function() {
-        var analysisResult = this;
+        var result = this;
         var D = MergeOnDates([toSeries(this.regressor), toSeries(this.target)]);
         this.histbeta = [];
         var dates = stat.StripValues(D[0]);
         var nDays = this.RegressionDays;
-        var x = analysisResult.x = D[0]; // x series
-        var y = analysisResult.y = D[1]; // y series
-        var dx = analysisResult.dx = stat.differencing(stat.StripTimeSeries(x), 1); // dx values (delta)
-        var dy = analysisResult.dy = stat.differencing(stat.StripTimeSeries(y), 1); // dy values (delta)
-        analysisResult.rsi = new Indicator(y).RSI(14);
+        var x = result.x = D[0]; // x series
+        var y = result.y = D[1]; // y series
+        var dx = result.dx = stat.differencing(stat.StripTimeSeries(x), 1); // dx values (delta)
+        var dy = result.dy = stat.differencing(stat.StripTimeSeries(y), 1); // dy values (delta)
+        result.rsi = new Indicator(y).rsi(14);
 
         // Historical corr/beta
-        [analysisResult.histcorr, analysisResult.histbeta] = dx.map((function(e,i,a) {
-            var start = Math.max(0, i-this.nDays); 
-            return [
-                [ dates[i], stat.correlation(dx.slice(start, i), dy.slice(start, i))],
-                [ dates[i], new Regression(dx.slice(start, i), dy.slice(start, i)).linear().beta]
-            ];
-        }).bind(this));
-        analysisResult.histcorr = analysisResult.histcorr.slice(3);
-        analysisResult.histbeta = analysisResult.histbeta.slice(3);
+        result.histcorr = [];
+        result.histbeta = [];
+        dx.forEach((e,i,a) => {
+            var start = Math.max(0, i-nDays); 
+            result.histcorr[i] = [ dates[i], stat.correlation(dx.slice(start, i), dy.slice(start, i))];
+            result.histbeta[i] = [ dates[i], regression.linear(dx.slice(start, i), dy.slice(start, i)).beta];
+        });
+        result.histcorr = result.histcorr.slice(3);
+        result.histbeta = result.histbeta.slice(3);
 
         // Regression Data(in sample data)
         var rDate = this.RegressionDate?new Date(this.RegressionDate):new Date().getTime();
@@ -63,38 +61,44 @@ RegressionServer.prototype.onrequest = function(request) {
         var y = stat.StripTimeSeries(rD[1]);
         var dx = stat.differencing(x, 1); // dx values (delta)
         var dy = stat.differencing(y, 1); // dy values (delta)
-        analysisResult.slr = regression.linear(dx, dy, { precision: 5});  
-        analysisResult.slr.pValue = x.length<=2?0:new StudentT(x.length-1).cdf(analysisResult.slr.tstat);
+        if (result.regressor.country == "K2") dx = x;
+        if (result.target.country == "K2") dy = y;
+        result.slr = regression.linear(dx, dy, { precision: 5});
+        //result.slr.pValue = x.length<=2?0:new StudentT(x.length-1).cdf(result.slr.tstat);
 
         // Stripped Data(in/out sample data)
-        var dates = analysisResult.dates = dates.filter(function(e) { return e>=rdates[0]; });
+        var dates = result.dates = dates.filter(function(e) { return e>=rdates[0]; });
         var D = D.map(function(w) { return w.filter(function(e) { return dates.indexOf(e[0])>-1; }); });
         var x = stat.StripTimeSeries(D[0]); // x values
         var y = stat.StripTimeSeries(D[1]); // y values
-        var dx = analysisResult.dx.slice(-x.length); // dx values
-        var dy = analysisResult.dy.slice(-y.length); // dy values
-        analysisResult.xy = dates.map(function(e,i,a) { return [ x[i], y[i] ]; });
-        analysisResult.dxy = dates.map(function(e,i,a) { return [ dx[i], dy[i] ]; });
-        analysisResult.est = x.map((e) => analysisResult.slr.predict(e));
-        analysisResult.residual = y.map((e,i) => e-analysisResult.est[i]);
-        analysisResult.me = stat.mean(analysisResult.residual);
-        analysisResult.zscore = analysisResult.residual.map(function(e) { return e/analysisResult.slr.smse; });
-        analysisResult.autobeta = stat.autobeta(y, 1);
-        analysisResult.autocorr = stat.autocorrelation(y, 1);
-        analysisResult.dautobeta = stat.autobeta(dy, 1);
-        analysisResult.dautocorr = stat.autocorrelation(dy, 1);
-        analysisResult.error_autobeta = stat.autobeta(analysisResult.residual, 1);
+        var dx = result.dx.slice(-x.length); // dx values
+        var dy = result.dy.slice(-y.length); // dy values
+        result.xy = dates.map(function(e,i,a) { return [ x[i], y[i] ]; });
+        result.dxy = dates.map(function(e,i,a) { return [ dx[i], dy[i] ]; });
+        result.est = x.map((e) => result.slr.predict(e)).map((e) => e[1]);
+        result.residual = y.map((e,i) => e-result.est[i]);
+        result.me = stat.mean(result.residual);
+        result.zscore = result.residual.map((e) => e/result.slr.smse);
+        result.autobeta = stat.autobeta(y, 1);
+        result.autocorr = stat.autocorrelation(y, 1);
+        result.dautobeta = stat.autobeta(dy, 1);
+        result.dautocorr = stat.autocorrelation(dy, 1);
+        result.error_autobeta = stat.autobeta(result.residual, 1);
 
         // Last nDays statistics
         var tmp = y.slice(-this.nDays);
-        analysisResult.mean = stat.mean(tmp);
-        analysisResult.stdd = stat.stdev(tmp);
-        analysisResult.vol = stat.stdev(dy.slice(-this.nDays));
-        analysisResult.high = Math.max.apply(null,tmp);
-        analysisResult.low = Math.min.apply(null,tmp);
+        result.mean = stat.mean(tmp);
+        result.stdd = stat.stdev(tmp);
+        result.vol = stat.stdev(dy.slice(-nDays));
+        result.high = Math.max.apply(null,tmp);
+        result.low = Math.min.apply(null,tmp);
 
         this.quote.close();
-        this.response.send(JSON.stringify(analysisResult));
+        // cleanup before send
+        delete result.quote;
+        delete result.RegressionTarget;
+        delete result.RegressionRegressor;
+        this.response.send(JSON.stringify(result));
         logger.log('debug','Sending Regression result',this.target.ticker,this.regressor.ticker);
     };
     request.quote.send(['', JSON.stringify({ action: 'quotes', security: request.RegressionTarget })]);

@@ -6,10 +6,10 @@ var moment = require('moment');
 var logger = require('../config/log');
 var Security = require('../lib/security');
 var zmqports = require('../config/zmq')(false);
-var Google = require('./google');
 var Quotes = require('finance-quotes');
 var Indicator = require('../util/indicator');
 var util = require('util');
+var K2 = require('./rates');
 
 var obj = require('url').parse(process.env.HTTP_PROXY);
 obj.rejectUnauthorized = false;
@@ -30,6 +30,7 @@ function QuoteServer() {
     this.cnbc =         new Quotes.cnbc(httpsAgent);
     this.morningstar =  new Quotes.morningstar(httpAgent);
     this.yahoo =        new Quotes.yahoo(httpsAgent);
+    this.k2 =           new K2();
 
     this.response.on('message', (function(msg) {
         msg = JSON.parse(msg);
@@ -79,11 +80,21 @@ function QuoteServer() {
 }
 
 QuoteServer.prototype.getFinancials = function(security) {
-    var onsuccess = (s) => { logger.log('verbose','QuoteServer.getFinancials onsuccess', s.ticker); this.getHistory(s); }
-    var onerror = (s, err) => { logger.log('error', 'QuoteServer.getFinancials onerror', err); this.getHistory(s); };
+    var onsuccess = (s) => { 
+        logger.log('verbose','QuoteServer.getFinancials onsuccess', s.ticker); 
+        this.getHistory(s); 
+    }
+    var onerror = (s, err) => { 
+        logger.log('error', 'QuoteServer.getFinancials onerror', err.message); 
+        this.getHistory(s); 
+    };
     logger.log('verbose','QuoteServer.getFinancials on',security.ticker);
-    if (security.country == "EXPIRED") return onsuccess(security);
-    this.morningstar.getprice(security, onsuccess, onerror);
+    if (security.country == "EXPIRED" || security.country.toLowerCase()=="k2") return onsuccess(security);
+    try {
+        this.morningstar.getprice(security, onsuccess, onerror);
+    } catch (err) {
+        onerror(security, err);
+    }
 };
 
 QuoteServer.prototype.getHistory = function(security) {
@@ -94,13 +105,22 @@ QuoteServer.prototype.getHistory = function(security) {
         if (s.country!='EXPIRED'&&s.quotes.length==0) logger.log('error',s.ticker+':'+s.country,'has empty history');
         this.getPrice(s); 
     };
-    var onerror = (s, err) => { logger.log('error','QuoteServer.getHistory onerror:', err.message); this.getPrice(s); };
+    var onerror = (s, err) => { 
+        s.error = err.message;
+        logger.log('error','QuoteServer.getHistory onerror:', err.message); 
+        this.getPrice(s); 
+    };
     logger.log('verbose','QuoteServer.getHistory on',security.ticker);
     if (security.country == "EXPIRED") return onsuccess(security);
     if (cache[security.ticker+security.country]) { this.getPrice(cache[security.ticker+security.country]); return; }
     try {
-        logger.log('verbose','QuoteServer.getHistory link '+this.alpha.buildHistoryURL(security));
-        this.alpha.gethistory(security, onsuccess, onerror);
+        if (security.country.toLowerCase() == "k2") {
+            logger.log('verbose','QuoteServer.getHistory '+security.ticker);
+            this.k2.gethistory(security, onsuccess, onerror);
+        } else {
+            logger.log('verbose','QuoteServer.getHistory link '+this.alpha.buildHistoryURL(security));
+            this.alpha.gethistory(security, onsuccess, onerror);
+        }
     } catch (err) {
         onerror(security, err);
     }
@@ -114,13 +134,14 @@ QuoteServer.prototype.getPrice = function(security) {
         this.response.send(JSON.stringify(s)); 
     };
     var onerror = (s, err) => { 
+        s.error = err.message;
         logger.log('error','QuoteServer.getPrice onerror:', err.message); 
         s.indicator = new Indicator(s.quotes);
         s.calculate(1).calculate(10).calculate(20).calculate(14).calculate(50).calculate(100).calculate(200).calcIndicators();
         this.response.send(JSON.stringify(s)); 
     };
     logger.log('verbose','QuoteServer.getPrice on',security.ticker);
-    if (security.country == "EXPIRED") return onsuccess(security);
+    if (security.country == "EXPIRED" || security.country.toLowerCase() == "k2") return onsuccess(security);
     try {
         logger.log('verbose','QuoteServer.getPrice link '+this.cnbc.buildPriceURL(security));
         this.cnbc.getprice(security, onsuccess, onerror);
@@ -161,6 +182,6 @@ QuoteServer.prototype.close = function() {
 };
 
 process.on('uncaughtException', function(err) { logger.log('error', util.inspect(err)); });
-process.on('exit', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
-process.on('SIGINT', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
+//process.on('exit', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
+//process.on('SIGINT', function(err) { logger.log('info','QuoteServer ('+process.id+') exiting...'); });
 module.exports = new QuoteServer;

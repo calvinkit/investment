@@ -258,7 +258,7 @@ function onregress(result) {
         series: [{
             type: 'line',
             name: 'Z-score',
-            data: new Indicator(result.y.map(function(e) { return { date: e[0], price: e[1] } })).zScore(statistics, $('#RegressionDays').val()),
+            data: new Indicator(result.y.map(function(e) { return { date: e[0], price: e[1] } })).zscore(statistics, $('#RegressionDays').val()),
             marker: { enabled: false },
             states: { hover: { lineWidth: 0 } },
             enableMouseTracking: true

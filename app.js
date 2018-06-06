@@ -25,9 +25,7 @@ var fs = require('fs');
 // Spawn worker server server
 var fork = require('child_process').fork;
 var workers = new Array();
-// k2 stuff
-//for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/rates'));
-for (var i=0; i<5; i++) workers.push(fork(__dirname+'/server/quote'));
+for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/quote'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/regression'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/portfolio')); // there shd be only 1 portoflio server
 
@@ -147,15 +145,3 @@ process.on('exit', function() { console.log('exiting...'); for (var i=0; i<worke
 
 server.listen(4000);
 logger.log('info','Server app up and running on port 4000');
-
-//if (process.platform === "win32") {
-//    var rl = require("readline").createInterface({
-//        input: process.stdin,
-//        output: process.stdout
-//    });
-//
-//    rl.on("SIGINT", function () {
-//        process.emit("SIGINT");
-//    });
-//}
-//process.on('SIGINT', function() { console.log('exiting...'); for (var i=0; i<workers.length; i++) workers[i].emit('SIGINT'); });
