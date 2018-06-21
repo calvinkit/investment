@@ -2,20 +2,22 @@ var curr_indicator = null;
 var curr_security = null;
 
 $(document).ready(function(){
-    $('#ResearchAccordion').accordion({active:1, heightStyle: 'content'});
+    $('#ResearchAccordion').accordion({active:0, heightStyle: 'content'});
 
-    $('#security').dataTable({
-        "bPaginate": false,
-        "bInfo": false,
-        "bProcessing": true,
-        "bFilter": false,
-        "bSort": false,
-        "sDom": 'irtlp',
-        "aoColumnDefs": [{
-                "mRender": function (data, type, row) { return "<a href='https://www.google.com/finance?q="+(row[2]=="TSE"?"TSE:":"")+data+"' target=_blank>"+data+"</a>"; },
-                "aTargets": [0]
-                }]
-    });
+    if ($('#security').length>0) {
+        $('#security').dataTable({
+            "bPaginate": false,
+            "bInfo": false,
+            "bProcessing": true,
+            "bFilter": false,
+            "bSort": false,
+            "sDom": 'irtlp',
+            "aoColumnDefs": [{
+                    "mRender": function (data, type, row) { return "<a href='https://www.google.com/finance?q="+(row[2]=="TSE"?"TSE:":"")+data+"' target=_blank>"+data+"</a>"; },
+                    "aTargets": [0]
+                    }]
+        });
+    }
 
     $('#ResearchHoldings').dataTable({
         "bPaginate": false,
@@ -45,7 +47,8 @@ $(document).ready(function(){
             $(aFoot).find('th').eq(1).text(humanize.numberFormat(total,0));
         }
     });
-    $('#ResearchPlotStyle').chosen({ disable_search:true, width: '120px', inherit_select_classes: true});
+    $('#ResearchPlotStyle').chosen({ disable_search:true, width: '70px', inherit_select_classes: true});
+    $('#ResearchComparison').chosen({ disable_search:true, width: '100px', inherit_select_classes: true});
     $('#ResearchPlotStyle').on('change', function(e, params) { research_onchangestyle(); });
     $('#ResearchTechnical').chosen({ width: '230px' });
     $('#ResearchTechnical').on('change', function(e, params) { research_updateAxis(); research_addFibonacci(); });
@@ -54,11 +57,7 @@ $(document).ready(function(){
 
 function search_security(ticker, yticker, country) {
     loading.show(); 
-    if (country=="CFTC") {
-        $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'quandl'}, onsecurity);
-    } else {
-        $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'financials'}, onsecurity);
-    }
+    $.getJSON('quotes/security', {ticker: ticker, yticker: yticker, country: country, action: 'financials'}, onsecurity);
 }
 
 function get_quotes(ticker, yticker, country) {
@@ -68,15 +67,19 @@ function get_quotes(ticker, yticker, country) {
 
 function onsecurity(security) {
     tabview.switchTo('Research');
-    if (!$('#ResearchCompare').prop('checked')) $("#security").DataTable().clear().draw();
+    if ($('#ResearchComparison').val()!="No" && $('#security').length) $("#security").DataTable().clear().draw();
     if (onerror(security)) return true;
-    var indicators = curr_indicator = new Indicator(security.quotes);
-    curr_security = security;
-    var row = $('#security').DataTable().row.add([security.ticker,
-                                               security.name,
-                                               security.exchange,
-                                               security.sector,
-                                               security.price]).draw().node();
+    if ($('#ResearchComparison').val()=="No") {
+        curr_indicator = new Indicator(security.quotes);
+        curr_security = security;
+    }
+    if ($('#security').length) {
+        var row = $('#security').DataTable().row.add([security.ticker,
+                                                   security.name,
+                                                   security.exchange,
+                                                   security.sector,
+                                                   security.price]).draw().node();
+    }
     $('#GoogleTicker').val(security.ticker);
     $('#YahooTicker').val(security.yticker);
     $('#Country').val(security.country);
@@ -92,11 +95,12 @@ function onsecurity(security) {
 }
 
 function onchartplotting(security) {
-    var closes = curr_indicator.series;
-    var sma20 = curr_indicator.sma(20);
+    var indicator = new Indicator(security.quotes);
+    var closes = indicator.series;
+    var sma20 = indicator.sma(20);
     var stddev = statistics.StripTimeSeries(closes).map(function(e,i,a) { return i<20?0:statistics.stdev(a.slice(i-20,i)); });
 
-    if (!chart || !$('#ResearchComparison').prop('checked')) {
+    if (!chart || $('#ResearchComparison').val()=="No") {
         $('#myChart').highcharts('StockChart', {
             title: { text: security.name },
             chart: { height: 800, zoomType: 'x' },
@@ -124,16 +128,16 @@ function onchartplotting(security) {
                         afterSetExtremes: function(event) { research_addFibonacci(); }
                      }
                    },
-            yAxis: [ { opposite: false, labels: { align: 'right' }, title: { text: 'Price' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
-                     { opposite: true, labels: { align: 'right' }, title: { text: 'Sharpe' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
+            yAxis: [ { top: 0, opposite: false, labels: { align: 'right' }, title: { text: 'Price' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
+                     { top: 0, opposite: true, labels: { align: 'right' }, title: { text: 'Compare' }, offset: 0, startOnTick: false, endOnTick: false, minPadding: 0 }, 
                      { opposite: true,  labels: { align: 'right' }, title: { text: 'Volumn' }, offset: 0 },
                      { 
-                        opposite: false, labels: { align: 'right' }, title: { text: 'RSI (14-day)'}, min: 10, max: 90, offset: 0, gridLineWidth: 0,
-                        plotLines: [ { value: 70, color: 'red', dashStyle: 'shortdash', width: 2 },{ value: 30, color: 'green', dashStyle: 'shortdash', width: 2 } ], 
+                         top: "70%", opposite:false, labels: { align:'right' }, title: {text:'MACD'}, offset:0, startOnTick: false, endOnTick: false, gridLineWidth: 0,
+                        plotLines:[ { value:0, color:'#cccccc', dashStyle:'solid', width:1 } ]
                      },
                      { 
-                        opposite:false, labels: { align:'right' }, title: {text:'MACD'}, offset:0, startOnTick: false, endOnTick: false, gridLineWidth: 0,
-                        plotLines:[ { value:0, color:'#cccccc', dashStyle:'solid', width:1 } ]
+                         top: "85%",opposite: false, labels: { align: 'right' }, title: { text: 'RSI (14-day)'}, min: 10, max: 90, offset: 0, gridLineWidth: 0,
+                        plotLines: [ { value: 70, color: 'red', dashStyle: 'shortdash', width: 2 },{ value: 30, color: 'green', dashStyle: 'shortdash', width: 2 } ], 
                      },
             ],
             tooltip: { crosshairs: [true, true] },
@@ -166,37 +170,20 @@ function onchartplotting(security) {
                 type: 'spline',
                 name: security.ticker+' RSI',
                 data: curr_indicator.rsi(14),
-                yAxis: 3,
+                yAxis: 4,
                 tooltip: { valueDecimals: 2, valueSuffix: '' },
                 linkedTo: ':previous',
             }
-            //,{
-            //    type: 'line',
-            //    name: security.ticker+' 30d sharpe',
-            //    data: curr_indicator.sharpe(statistics, 30,0),
-            //    yAxis: 1,
-            //    tooltip: { valueDecimals: 2, valueSuffix: '' },
-            //    visible: false
-            //}
             ]
         });
         chart = $('#myChart').highcharts();
-    } else if (chart && $('#ResearchComparison').prop('checked')) {
+    } else if (chart) {
         chart.addSeries({
             type: 'line',
             name: security.ticker,
             data: closes,
-            yAxis: 0,
+            yAxis: $('#ResearchComparison').val()=="Same"?0:1,
             tooltip: { valueDecimals: 2, valueSuffix: '%' }
-
-        }); 
-        chart.addSeries({
-            type: 'line',
-            name: security.ticker+' 30d sharpe',
-            data: curr_indicator.sharpe(statistics, 30, 0),
-            yAxis: 1,
-            tooltip: { valueDecimals: 2, valueSuffix: '' },
-            visible: false
 
         }); 
         //$('#ResearchPlotStyle').prop('checked', true);
@@ -216,7 +203,7 @@ function research_onmacd(security) {
             data: macd.macd,
             color: 'white',
             step: true,
-            yAxis: 4,
+            yAxis: 3,
             tooltip: { valueDecimals: 2, valueSuffix: '' },
         });
         chart.addSeries({
@@ -225,7 +212,7 @@ function research_onmacd(security) {
             data: macd.signal,
             color: 'red',
             step: true,
-            yAxis: 4,
+            yAxis: 3,
             tooltip: { valueDecimals: 2, valueSuffix: '' },
             linkedTo: ':previous',
         });
@@ -342,8 +329,8 @@ function research_updateAxis() {
     chart.yAxis[0].update({ top: '0%', height: '60%'});  // Price
     chart.yAxis[1].update({ top: '0%', height: '60%'});  // Sharpe
     chart.yAxis[2].update({ top: '60%', height: '10%'}); // Vol
-    chart.yAxis[3].update({ top: '70%', height: '15%'}); // RSI
-    chart.yAxis[4].update({ top: '85%', height: '15%'}); // MACD
+    chart.yAxis[3].update({ top: '70%', height: '15%'}); // MACD
+    chart.yAxis[4].update({ top: '85%', height: '15%'}); // RSI
 }
 
 function research_addtrend(value) {
@@ -386,16 +373,16 @@ function research_addMA() {
 
 function research_addHistVol() 
 {
-    if (chart) {
-        var isSpread = rate_recentData.length>1;
+    if (chart && curr_indicator) {
+        var isSpread = true;
         var forwradVol = false; //forwrad looking vol?
         var days = parseInt($('#ResearchHistVolPeriod').val());
-        var data = rate_recentData[0].map(function(e,i,a) { return [e[0], e[1]*(isSpread?1:100)]; });
+        var data = curr_indicator.series;
         var histvol = statistics.histvolatility(data, days, forwradVol);
         chart.addSeries({
-            name: $('#Tenor').val()+' hist '+days+'-d vol',
+            name: $('#GoogleTicker').val()+' hist '+days+'-d vol',
             data: histvol,
-            yAxis: 3,
+            yAxis: 1,
         });
         $('#ResearchHistVolPeriod').val('');
     }

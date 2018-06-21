@@ -40,6 +40,8 @@ html
                     li
                         a(href="#Regression") Regression
                     li
+                        a(href="#PCA") PCA
+                    li
                         a(href="#VIXTrading") VIX
                     li
                         a(href="#SectorAnalysis") Sector Analysis
@@ -48,27 +50,13 @@ html
                 include portfolio
                 include research
                 include regression
+                include pca
                 include vix  
                 include sector
                 include options
             div#Loading.loading(title="Loading...")
-                img(src="css/icon-loading-animated.gif")
+                img(src="images/icon-loading-animated.gif")
             div#Msg(style='color:red; font-weight:bold')
-    datalist#tickers
-        option .INX
-        option .DJI
-        option .IXIC
-        option OSPTX
-    datalist#exchanges
-        option United States
-        option TSE
-        option MUTF_CA
-        option INDEXSP
-        option INDEXDJX
-        option INDEXNASDAQ
-        option INDEXTSI
-        option K2
-        option CFTC
     datalist#indexes
         option TSX
         option DJIA

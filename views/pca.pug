@@ -1,0 +1,60 @@
+script(src='js/pca.js')
+script(src='numeric/numeric-1.2.6.min.js')
+div#PCA(width="100%",align="center")
+    input(type="search" id="PCATarget" list="keyrates" size="50" value="1y,2y,3y,4y,5y,6y,7y,8y,9y,10y,12y,15y,20y,30y", placeholder="Key Rates", onkeypress="if (event.keyCode==13) { run_pca(); }"  )
+    datalist#keyrates
+        option 1y,2y,3y,4y,5y,6y,7y,8y,9y,10y,12y,15y,20y,30y
+        option u1y,u2y,u3y,u4y,u5y,u6y,u7y,u8y,u9y,u10y,u12y,u15y,u20y,u30y
+        option 3m1y,3m2y,3m3y,3m4y,3m5y,3m6y,3m7y,3m8y,3m9y,3m10y,3m12y,3m15y,3m20y,3m30y
+        option 6m1y,6m2y,6m3y,6m4y,6m5y,6m6y,6m7y,6m8y,6m9y,6m10y,6m12y,6m15y,6m20y,6m30y
+        option 1y1y,1y2y,1y3y,1y4y,1y5y,1y6y,1y7y,1y8y,1y9y,1y10y,1y12y,1y15y,1y20y,1y30y
+        option u1y1y,u1y2y,u1y3y,u1y4y,u1y5y,u1y6y,u1y7y,u1y8y,u1y9y,u1y10y,u1y12y,u1y15y,u1y20y,u1y30y
+        option 2y1y,2y2y,2y3y,2y4y,2y5y,2y6y,2y7y,2y8y,2y9y,2y10y,2y12y,2y15y,2y20y,2y30y
+        option u2y1y,u2y2y,u2y3y,u2y4y,u2y5y,u2y6y,u2y7y,u2y8y,u2y9y,u2y10y,u2y12y,u2y15y,u2y20y,u2y30y
+        option 1y,1y1y,2y1y,3y1y,4y1y,5y1y,6y1y,7y1y,8y1y,9y1y,10y1y,12y1y,15y1y,20y1y
+        option u1y,u1y1y,u2y1y,u3y1y,u4y1y,u5y1y,u6y1y,u7y1y,u8y1y,u9y1y,u10y1y,u12y1y,u15y1y,u20y1y
+    | (# of biz days) 
+    input(type="number" id="PCALag" min="1" max="999" value="30" style="width:43px", onkeypress="if (event.keyCode==13) { run_pca(); }" )
+    | # of PC
+    input(type="number" id="PCAPCNum" min="1" max="10" value="3" style="width:43px", onkeypress="if (event.keyCode==13) { run_pca(); }" )
+    | &nbsp;AsOf
+    input(type="date",id="PCAAsOf" style="width:130px", onkeypress="if (event.keyCode==13) { run_pca(); }" )
+    | &nbsp; PCA Date
+    input(type="date",id="PCAWeight" style="width:130px", onkeypress="if (event.keyCode==13) { run_pca(); }" )
+    input(type="button" value="Run" onclick="run_pca();")
+    a(href="javascript:sendlink([$('#PCATarget'), $('#PCALag'), $('#PCAPCNum'), $('#PCAAsOf'), $('#PCAWeight')]);") SendLink
+    br
+    div#PCAAccordion
+        h3 ZScore/Carry/Residual Stdd
+        div
+            table#PCAZScore.dataTable.display(width="80%",cellpadding="0", cellspacing="0", border="0",align="center")
+                caption(style="text-align:left") Z-Score/3-month Carry
+                thead
+                tbody
+        h3 Correlation
+        div
+            table#PCACorrelation.dataTable.display(width="80%",cellpadding="0", cellspacing="0", border="0",align="center")
+                caption(style="text-align:left") Correlation
+                thead
+                tbody
+        h3 PCA components
+        div
+            table#PCAResult.dataTable.display(width="80%",cellpadding="0" cellspacing="0" border="0" align="center")
+                caption(style="text-align:left")
+                    | PCA's variance explainatory, and PCs
+                thead
+                tbody
+            table#PCADV01.dataTable.display(width="80%",cellpadding="0" cellspacing="0" border="0" align="center")
+                caption(style="text-align:left")
+                    | Input's DV01 
+                thead
+                tbody
+            div#PCAChart1(style="width: 80%")
+            div#PCAChart2(style="width: 80%")
+            div#PCAChart3(style="width: 80%")
+        h3 Weight calculator
+        div
+            input(type="text" id="PCAButterfly" size="8" placeholder="Strategy" onkeyup="pca_calculate_pca_weights(this.value)")
+            input(type="button" value="Calc" onclick="pca_calculate_pca_weights($('#PCAButterfly').val())")
+            div#PCAWeights
+

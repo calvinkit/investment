@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
         this.sender.close();
     }).bind({ res:res, sender: sender}));
     sender.send(JSON.stringify(request));
-    logger.log('info','Regression on '+request.RegressionTarget.ticker,'vs',request.RegressionRegressor.ticker,request.RegressionAsOf,request.RegressionDate,"@",new Date().toLocaleTimeString());
 });
 
 module.exports = router;

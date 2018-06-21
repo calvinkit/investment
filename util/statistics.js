@@ -4,8 +4,18 @@ class Statistics {
         return x.reduce(function(acum, curr) { return acum+curr; });
     }
 
+    abssum (x) {
+        if (x.length==0) return 0;
+        return x.reduce(function(acum, curr) { return Math.abs(acum)+Math.abs(curr); });
+    }
+
     mean(x) {
         var sum = this.sum(x);
+        return sum/(x.length || 1);
+    }
+
+    absmean (x) {
+        var sum = this.abssum(x);
         return sum/(x.length || 1);
     }
 
@@ -112,15 +122,15 @@ class Statistics {
 
     histvolatility(series, period, forward) {
         if (series.length==0) return [];
-        data = this.differencing(this.StripTimeSeries(series),1);
-        return data.map(function(e,i,a) { 
+        var data = this.differencing(this.StripTimeSeries(series),1);
+        return data.map((e,i,a) => { 
             var d;
             if (!forward) {
                 d = a.slice(Math.max(0,i+1-period),i+1); 
             } else {
                 d = a.slice(i, i+1+period);
             }
-            return [series[i][0], stdev(d)];
+            return [series[i][0], this.stdev(d)];
         });
     }
 }

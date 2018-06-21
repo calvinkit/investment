@@ -7,6 +7,7 @@ table.dataTable {
   clear: both;
   border-collapse: separate;
   border-spacing: 0;
+  font-size: small;
   /*
    * Header and footer styles
    */
@@ -18,7 +19,7 @@ table.dataTable {
     font-weight: bold; }
   table.dataTable thead th,
   table.dataTable thead td {
-    padding: 10px 18px;
+    padding: 2px 10px;
     border-bottom: 1px solid white; }
     table.dataTable thead th:active,
     table.dataTable thead td:active {
@@ -301,7 +302,7 @@ table.dataTable td {
     margin-top: -25px;
     padding-top: 20px;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.8em;
     background-color: white;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(153, 153, 153, 0)), color-stop(25%, rgba(153, 153, 153, 0.9)), color-stop(75%, rgba(153, 153, 153, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
     background: -webkit-linear-gradient(left, rgba(153, 153, 153, 0) 0%, rgba(153, 153, 153, 0.9) 25%, rgba(153, 153, 153, 0.9) 75%, rgba(153, 153, 153, 0) 100%);

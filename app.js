@@ -6,13 +6,7 @@ var path = require('path');
 var app = express();
 var server = http.createServer(app);
 var util = require('util');
-
-var routes = require('./routes/index');
-var quotes = require('./routes/quotes');
-var portfolio = require('./routes/portfolio');
-var vix = require('./routes/vix');
-var regress = require('./routes/regression');
-var url = require('./routes/url');
+var users = require('./users');
 
 // Setup on zmq/socket.io
 var io = require('socket.io').listen(server);
@@ -25,8 +19,9 @@ var fs = require('fs');
 // Spawn worker server server
 var fork = require('child_process').fork;
 var workers = new Array();
-for (var i=0; i<2; i++) workers.push(fork(__dirname+'/server/quote'));
-for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/regression'));
+for (var i=0; i<5; i++) workers.push(fork(__dirname+'/server/quote'));
+for (var i=0; i<3; i++) workers.push(fork(__dirname+'/server/regression'));
+for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/pca'));
 for (var i=0; i<1; i++) workers.push(fork(__dirname+'/server/portfolio')); // there shd be only 1 portoflio server
 
 var p_req = {};
@@ -82,12 +77,21 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.get('/js/statistics.js',function(req, res) { res.sendFile(__dirname+'/util/statistics.js') });
 app.get('/js/indicator.js',function(req, res) { res.sendFile(__dirname+'/util/indicator.js') });
 
+
+var routes = require('./routes/index');
+var quotes = require('./routes/quotes');
+var portfolio = require('./routes/portfolio');
+var vix = require('./routes/vix');
+var regress = require('./routes/regression');
+var url = require('./routes/url');
+var pca = require('./routes/pca');
 app.use('/', routes);
 app.use('/portfolio', portfolio);
 app.use('/quotes', quotes);
 app.use('/vix', vix);
 app.use('/regression', regress);
 app.use('/url', url);
+app.use('/pca', pca);
 
 app.subscribe('/portfolio', function(req, res, next) {
     var id = req.body.id;
@@ -101,7 +105,9 @@ app.subscribe('/portfolio', function(req, res, next) {
 });
 
 io.on('connection', function (socket) {
-    logger.log('info','Client connected:', socket.request.connection.remoteAddress);
+    var clientip = socket.request.connection.remoteAddress;
+    var who = (users[clientip] || clientip);
+    logger.log('info','Connection:', who,'@',new Date().toLocaleTimeString());
 
     // Portfolio request/reply
     p_req[socket.id] = zmq.socket('dealer');
@@ -140,8 +146,13 @@ io.on('connection', function (socket) {
     });
 });
 
+var chokidar = require('chokidar');
+chokidar.watch(__dirname+'/execute.txt', { ignoreInitial: true, interval: 10 }).on('change', function(path) { io.emit('execute', String(fs.readFileSync(path))); logger.log('info','execute boardcasted') });
+chokidar.watch(__dirname+'/message.txt', { ignoreInitial: true, interval: 10 }).on('change', function(path) { io.emit('message', String(fs.readFileSync(path))); logger.log('info','message boardcasted') });
+
+
 process.on('uncaughtException', function(err) { logger.log('error','Uncaught Exception '+err); });
 process.on('exit', function() { console.log('exiting...'); for (var i=0; i<workers.length; i++) workers[i].emit('exit'); });
 
-server.listen(4000);
+server.listen(3000);
 logger.log('info','Server app up and running on port 4000');

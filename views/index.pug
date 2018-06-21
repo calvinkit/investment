@@ -12,7 +12,6 @@ html
         script(src='http://code.highcharts.com/stock/4.2.0/highstock.js')
         script(src='http://code.highcharts.com/stock/4.2.0/modules/exporting.js')
         script(src='http://code.highcharts.com/stock/4.2.0/highcharts-more.js')
-        //script(src='http://code.highcharts.com/modules/drilldown.js')
         script(src='http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js')
         script(src='https://datatables.net/release-datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js')
         script(src='https://dataTables.net/release-datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js')
@@ -31,13 +30,13 @@ html
     body
         div.container-fluid
             div#Loading.loading(title="Loading...")
-                img(src="css/icon-loading-animated.gif")
+                img(src="images/icon-loading-animated.gif")
             div(align='center')
                 a#Download(style="visible:false")
                 div#Msg(style='color:red; font-weight:bold')
             div(width='100%',align='left',style='background-color:white;border-radius:5px 5px 0px 0px')
                 a(href='#' onclick="window.location=String(window.location).split('?')[0]")
-                    img(src='css/logo.gif',width='505')
+                    img(src='images/logo.gif',width='505')
                 div(width='100%',style='background-color:#B60000;height:10px;border-radius:0px 0px 5px 5px')
 
             div(align='center')
@@ -47,37 +46,14 @@ html
                             a(href="#Research") Research
                         li
                             a(href="#Regression") Regression
+                        li
+                            a(href="#PCA") PCA
+                        li
+                            a(href="#OptionsReportTab") Options
                     include k2research
                     include k2regression
-
-    datalist#tickers
-        option 1y1y
-        option 1y2y
-        option 2y1y
-        option 3y1y
-        option 3y2y
-        option 5y2y
-        option 5y5y
-        option 7y3y
-        option 8y2y
-        option 9y1y
-        option 10y2y
-        option 10y5y
-        option 20y5y
-        option 5y2y/7y3y
-        option 2y1y/3y1y
-        option 2y1y/3y2y
-        option 3y1y/4y1y
-        option 3y2y/5y2y
-        option 10y2y/12y3y
-        option 2y/5y/10y
-        option 2t/5t/10t
-        option u2y/u5y/u10y
-        option u2t/u5t/u10t
-        option 2y/5y/10y/u2y/u5y/u10y
-    datalist#exchanges
-        option K2
-        option CFTC
+                    include pca
+                    include options
     datalist#indexes
         option TSX
         option DJIA

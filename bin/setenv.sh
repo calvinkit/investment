@@ -1,5 +1,11 @@
-BASEPATH=/home/calvla/portfolio
-export LD_LIBRARY_PATH=${BASEPATH}/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=${BASEPATH}/node_modules/zeromq/zmq/lib:$LD_LIBRARY_PATH
-export PATH=/home/calvla/downloads/node-v0.12.18-linux-x64/bin:$PATH
-export PATH=/home/calvla/downloads/node-v0.12.18-linux-x64/lib/node_modules/npm/bin/node-gyp-bin/:$PATH
+#!/bin/bash
+BASEPATH="`dirname \"$0\"`"
+BASEPATH="`(cd ${BASEPATH}/../ && pwd)`"
+FEDSJAVA_PATH=/bns/feds/lib/linux_x86_64/fedsJava
+export FEDSJAVA_PATH
+
+NODEJS_HOME=/home/calvla/tmp/node-v8.11.1-linux-x64
+export LD_LIBRARY_PATH=$FEDSJAVA_PATH:$LD_LIBRARY_PATH
+export CLASSPATH=$FEDSJAVA_PATH/fedsJava.jar:$CLASSPATH
+export PATH=$NODEJS_HOME/bin:$PATH
+export BNS_CURVE_DIR=/bns/k2/data/npv/fedsCurves/day1_tom; 

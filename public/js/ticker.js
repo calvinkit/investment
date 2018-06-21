@@ -75,12 +75,12 @@ function getIndexQuotes() {
 }
 
 $(document).ready(function(){
-    //getFuturesQuotes();
-    getIndexQuotes();
+    getFuturesQuotes();
+    //getIndexQuotes();
 
     setInterval(function() {
-        //getFuturesQuotes();
-        getIndexQuotes();
+        getFuturesQuotes();
+        //getIndexQuotes();
     },1000*60*1);
 
 });

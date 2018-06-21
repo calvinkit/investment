@@ -4,6 +4,7 @@ bin/*.txt
 portfolios
 *.txt
 util2
+reports
 
 # Logs
 logs

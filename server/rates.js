@@ -2,15 +2,15 @@ var sqlite = require('sqlite3');
 var logger = require('../config/log');
 var numeric = require('numeric');
 var stat = require('../util/statistics.js');
-var cusips = require('./../data/cusips');
-var ratesDB = new sqlite.Database(__dirname+'/../data/Rates.db');
+var cusips = require('./../util2/cusips');
+var ratesDB = new sqlite.Database('./../util2/data/Rates.db');
 
 class RatesServer {
     constructor() {
     }
 
     gethistory(security, onsuccess, onerror) {
-        var ticker = security.ticker.toLowerCase();
+        var ticker = security.ticker;
         logger.log('info','GetRates on '+ticker+'@'+new Date().toLocaleTimeString());
         var asOf = (security.asOf?new Date(security.asOf):new Date(new Date().toDateString()));
         var oldtickers = (ticker==null?new Array():ticker.split('/'));
@@ -22,7 +22,7 @@ class RatesServer {
                 var data = new Array();
                 if (rows.length == 0) return onerror(security, new Error(tickers[0] + ' is not in the database.'));
                 security.quotes = rows.map((row) => { 
-                    var val = Math.round(row.Quote*1000000)/10000;
+                    var val = Math.round(row.Quote*1000000)/1000000;
                     return { date:row.CurveDate, open: val, hi: val, lo: val, price: val };
                 });
                 onsuccess(security);

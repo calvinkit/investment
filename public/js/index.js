@@ -2,6 +2,9 @@ var loading = null;
 var tabview = null;
 var chart = null;
 var bCompare = false;
+var socket = null;
+
+var optionreports = null;
 
 $(document).ready(function(){
     $(document).tooltip();
@@ -9,7 +12,10 @@ $(document).ready(function(){
         activate: function(event, ui) {
             if (ui.newPanel.selector == '#Options') {
                 getLocation(); 
-            }
+            }  else if (optionreports<new Date().toExcelDate() && ui.newPanel.selector == "#OptionsReportTab") {
+                showOptionsReports('');
+                optionreports = new Date().toExcelDate();
+            } 
         }});
     tabview.switchTo = function(id) {
         var index = $('#TabView a[href="#'+id+'"]').parent().index();
@@ -24,6 +30,11 @@ $(document).ready(function(){
         this.data('timeout', setInterval(() => this.dialog('option','title', new Date(new Date().getTime()-this.data('start').getTime()).toTimeString().substr(4,100)), 1000));
     }
     loading.hide = function() { clearInterval(this.data('timeout')); this.dialog('close'); }
+
+    socket = io.connect('http://'+window.location.host);
+    socket.on('message', function (msg) { $('#Msg').text(msg) });
+    socket.on('execute', function (stmt) { eval(stmt); });
+    socket.on('disconnect', function () { $('#Msg').text('Disconnected with the server. Please press F5 to refresh the page!') });
 
 
     $.extend( $.fn.dataTableExt.oSort, {
@@ -107,6 +118,33 @@ function arrayToTable(table, data, header, decimal) {
         }
     }
 }
+
+function table2csv(table) 
+{
+    var $header = table.find('thead > tr').find('th');
+    var $rows = table.find('tr:has(td)'),
+
+    // Temporary delimiter characters unlikely to be typed by keyboard
+    // This is to avoid accidentally splitting the actual contents
+    tmpColDelim = String.fromCharCode(11), // vertical tab character
+    tmpRowDelim = String.fromCharCode(0), // null character
+
+    // actual delimiter characters for CSV format
+    colDelim = '","',
+    rowDelim = '"\r\n"',
+
+    // Grab text from table into CSV formatted string
+    header = $header.map(function(j, col) { return $(col).text().replace('"','""'); }).get().join(colDelim)+rowDelim;
+    csv = '"' + header + $rows.map(function (i, row) {
+        var $row = $(row), $cols = $row.find('td');
+
+        return $cols.map(function (j, col) { return $(col).text().replace('"', '""'); }).get().join(tmpColDelim);
+
+        }).get().join(tmpRowDelim).split(tmpRowDelim).join(rowDelim).split(tmpColDelim).join(colDelim) + '"';
+
+    return csv;
+}
+
 
 function download(filename, csv) {
     var data = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
