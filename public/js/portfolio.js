@@ -48,7 +48,7 @@ $(document).ready(function(){
             $(row).children().eq(6).css("color",investment.dailyPnl<0.001?"#c60606":"#00b909");
             $(row).children().eq(7).css("color",investment.transactions.pnl<0.01?"#c60606":"#00b909");
             $(row).children().eq(8).css("color",investment.transactions.totalPnl<0.01?"#c60606":"#00b909");
-            $(row).attr("id", investment.security.ticker.replace(".","_"));
+            $(row).attr("id", investment.security.ticker.replace(".","_").replace("'","_"));
         },
         "fnFooterCallback": function (aFoot, aData, iStart, iEnd, aiDisplay) { 
             var nTotal = [0,0,0,0];
@@ -101,32 +101,7 @@ $(document).ready(function(){
             "data": "pnl",
         }]
     });
-    //editor = new $.fn.dataTable.Editor( {
-    //    //ajax: "../php/staff.php",
-    //    idSrc: 'date',
-    //    table: "#transactions",
-    //    fields: [ {
-    //        label: "Date",
-    //        name: "date"
-    //        }, {
-    //        label: "Qty:",
-    //        name: "qty"
-    //        }, {
-    //        label: "Price:",
-    //        name: "px"
-    //        }, {
-    //        label: "Amount:",
-    //        name: "amount"
-    //        }, {
-    //        label: "PnL:",
-    //        name: "pnl"
-    //        }
-    //    ],
-    //});
-    //$('#transactions').on( 'click', 'tbody td:not(:last-child)', function (e) {
-    //    editor.inline( this, { onBlur:'close' });
-    //});
-    socket.on('connect', function () { loadPortfolio(); });
+
     socket.on('investment', oninvestment);
 });
 
@@ -143,7 +118,7 @@ function oninvestment(portfolio, investment) {
     var table = $('#portfolio').DataTable();
     if (curr_portfolio == portfolio && ($('#ShowClosePos').prop('checked') || Math.abs(investment.transactions.pos)> 0.1)) {
         investment.value = investment.transactions.pos*investment.security.price;
-        var row = $("#"+investment.security.ticker.replace(".","_"));
+        var row = $("#"+investment.security.ticker.replace(".","_").replace("'","_"));
         if (row.length == 0) row = $(table.row.add(investment).node());
         var change = investment.security.price - table.row(row).data().price;
         table.row(row).data(investment).draw();

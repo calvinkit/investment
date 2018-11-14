@@ -1,5 +1,5 @@
-var ipmapping = { "::ffff:172.20.171.215":"Calvin1"
-                 ,"::ffff:172.20.170.214":"Calvin1"
+var ipmapping = { "::ffff:172.20.171.215":"Calvin"
+                 ,"::ffff:172.20.170.214":"Calvin"
                  ,"::ffff:127.0.0.1":"LocalHost"
                  ,"::ffff:172.22.236.9":"LocalHost"
                  ,"::ffff:172.20.170.156":"JohnLecompte"
@@ -12,6 +12,8 @@ var ipmapping = { "::ffff:172.20.171.215":"Calvin1"
                  ,"::ffff:172.31.178.242":"KarimKharchafi"
                  ,"::ffff:172.31.178.40":"WillFrost"
                  ,"::ffff:172.20.170.190":"Craig"
+                 ,"::ffff:172.20.169.189":"Craig"
+                 ,"::ffff:172.20.171.46":"Simon"
 };
 module.exports = ipmapping;
 

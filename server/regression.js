@@ -44,7 +44,7 @@ class RegressionServer {
 
         result.dates = stat.StripValues(toSeries(result.target).filter((e) => e[0] <= asOf));
         // Add 365 points ahead of regression date in additon of nDays
-        result.dates = result.dates.filter(function(e) { return e<=rDate; }).slice(-nDays-365);
+        result.dates = result.dates.filter(function(e) { return e<=rDate; }).slice(-nDays-0);
         result.y = yIndicator.series.filter((e) => e[0]>= result.dates[0] && e[0] <= asOf);
         var dy = result.dy = stat.differencing(stat.StripTimeSeries(result.y), 1); 
         var xy = [];
@@ -107,14 +107,12 @@ class RegressionServer {
 
         // Carry stuff for k2
         if (result.target.country.toUpperCase()=="K2") result.ycarry = carry.calculate(asOf, result.target.ticker).reduce((t,e) => t+e);
-        if (result.regressor && result.regressor.country.toUpperCase()=="K2") result.xcarry = carry.calculate(asOf, result.RegressionRegressor.ticker).reduce((t,e) => t+e);
+        if (result.regressor && result.regressor.country.toUpperCase()=="K2") result.xcarry = carry.calculate(asOf, result.regressor.ticker).reduce((t,e) => t+e);
 
         // cleanup before send
-        delete result.RegressionTarget.quotes;
-        delete result.RegressionTarget.indicator;
-        if (result.RegressionRegressor) delete result.RegressionRegressor.quotes;
-        if (result.RegressionRegressor) delete result.RegressionRegressor.indicator;
         delete result.target;
+        delete result.RegressionTarget.indicator;
+        if (result.RegressionRegressor) delete result.RegressionRegressor.indicator;
         delete result.regressor;
         delete this.request;
         this.response.send(JSON.stringify(result));
@@ -122,7 +120,7 @@ class RegressionServer {
     }
 
     onrequest(request) {
-        logger.log('info','RegressionServer on '+request.RegressionTarget.ticker,'vs',request.RegressionRegressor.ticker,'asof',request.RegressionAsOf,'until',request.RegressionDate,"@",new Date().toLocaleTimeString());
+        logger.log('verbose','RegressionServer on '+request.RegressionTarget.ticker,'vs',request.RegressionRegressor.ticker,'asof',request.RegressionAsOf,'until',request.RegressionDate,"@",new Date().toLocaleTimeString());
         this.request = request;
 
         if (request.RegressionTarget.ticker) this.quote.send(['', JSON.stringify({ action: 'quotes', security: request.RegressionTarget })]);

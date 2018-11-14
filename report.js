@@ -87,9 +87,9 @@ function show() {
         var t = new Table();
         for (var ticker in portfolio.investments) if (!portfolio.investments[ticker].isClosed(portfolio.begin,portfolio.end)) portfolio.investments[ticker].show(t,null);
         if (begin != BEGIN) {t.sort(['Current Pnl|des'])} else {t.sort(['Daily Pnl|des']);}
-        t.total('Daily Pnl', { printer: Table.Thousand(0) });
-        t.total('Current Pnl', { printer: Table.Thousand(0)});
-        t.total('Total Pnl', { printer: Table.Thousand(0)});
+        t.total('Daily Pnl', { printer: Table.number(0) });
+        t.total('Current Pnl', { printer: Table.number(0)});
+        t.total('Total Pnl', { printer: Table.number(0)});
         console.log(t.toString());
     }
 

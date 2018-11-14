@@ -43,43 +43,40 @@ function getFuturesQuotes() {
 }
 
 function getIndexQuotes() {
-    //$.getJSON('quotes/security', {ticker:'INDEXDJX:DJI', yticker:'', country:'', action:'quote'}, function(security) {
-    //    $('#DJI').text(humanize.numberFormat(security.price,2));
-    //    $('#DJI').append(' <span>'+security.pchange+'%</span>');
-    //    $('#DJI > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
-    //});
+    $.getJSON('quotes/security', {ticker:'INDEXDJX:DJI', yticker:'', country:'', action:'quote'}, function(security) {
+        $('#DJI').text(humanize.numberFormat(security.price,2));
+        $('#DJI').append(' <span>'+security.pchange+'%</span>');
+        $('#DJI > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
+    });
 
-    //$.getJSON('quotes/security', {ticker:'INDEXTSI:OSPTX', yticker:'', country:'', action:'quote'}, function(security) {
-    //    $('#TSX').text(humanize.numberFormat(security.price,2));
-    //    $('#TSX').append(' <span>'+security.pchange+'%</span>');
-    //    $('#TSX > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
-    //});
+    $.getJSON('quotes/security', {ticker:'INDEXTSI:OSPTX', yticker:'', country:'', action:'quote'}, function(security) {
+        $('#TSX').text(humanize.numberFormat(security.price,2));
+        $('#TSX').append(' <span>'+security.pchange+'%</span>');
+        $('#TSX > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
+    });
 
-    //$.getJSON('quotes/security', {ticker:'INDEXNASDAQ:.IXIC', yticker:'', country:'', action:'quote'}, function(security) {
-    //    $('#NASDAQ').text(humanize.numberFormat(security.price,2));
-    //    $('#NASDAQ').append(' <span>'+security.pchange+'%</span>');
-    //    $('#NASDAQ > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
-    //});
+    $.getJSON('quotes/security', {ticker:'INDEXNASDAQ:.IXIC', yticker:'', country:'', action:'quote'}, function(security) {
+        $('#NASDAQ').text(humanize.numberFormat(security.price,2));
+        $('#NASDAQ').append(' <span>'+security.pchange+'%</span>');
+        $('#NASDAQ > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
+    });
 
-    //$.getJSON('quotes/security', {ticker:'INDEXSP:.INX', yticker:'', country:'', action:'quote'}, function(security) {
-    //    $('#SNP').text(humanize.numberFormat(security.price,2));
-    //    $('#SNP').append(' <span>'+security.pchange+'%</span>');
-    //    $('#SNP > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
-    //});
+    $.getJSON('quotes/security', {ticker:'INDEXSP:.INX', yticker:'', country:'', action:'quote'}, function(security) {
+        $('#SNP').text(humanize.numberFormat(security.price,2));
+        $('#SNP').append(' <span>'+security.pchange+'%</span>');
+        $('#SNP > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
+    });
 
-    //$.getJSON('quotes/security', {ticker:'INDEXCBOE:VIX', yticker:'', country:'', action:'quote'}, function(security) {
-    //    $('#VIX').text(humanize.numberFormat(security.price,2));
-    //    $('#VIX').append(' <span>'+security.pchange+'%</span>');
-    //    $('#VIX > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
-    //});
+    $.getJSON('quotes/security', {ticker:'INDEXCBOE:VIX', yticker:'', country:'', action:'quote'}, function(security) {
+        $('#VIX').text(humanize.numberFormat(security.price,2));
+        $('#VIX').append(' <span>'+security.pchange+'%</span>');
+        $('#VIX > span').css('color',parseFloat(security.change)<0?'red':'#259f26').attr('title',security.change);
+    });
 }
 
 $(document).ready(function(){
-    getFuturesQuotes();
-    //getIndexQuotes();
-
     setInterval(function() {
-        getFuturesQuotes();
+        //getFuturesQuotes();
         //getIndexQuotes();
     },1000*60*1);
 

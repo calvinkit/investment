@@ -2,13 +2,33 @@ script(src='js/research.js')
 div#Research
     input(type="search" id="GoogleTicker" size="10" list="tickers" placeholder='Ticker' onkeyup="$('#YahooTicker').val(this.value);return true;" onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
     datalist#tickers
-        option .INX
-        option .DJI
-        option .IXIC
-        option OSPTX
+        option 1y1y
+        option 1y2y
+        option 5y2y/7y3y
+        option 2y1y/3y1y
+        option 2y1y/3y2y
+        option 3y1y/4y1y
+        option 3y2y/5y2y
+        option 10y2y/12y3y
+        option 2y/5y/10y
+        option 2t/5t/10t
+        option u2y/u5y/u10y
+        option u2t/u5t/u10t
+        option 2y/5y/10y/u2y/u5y/u10y
+        option(value="042601_F_ALL") TU Leveraged
+        option(value="044601_F_ALL") FV Leveraged 
+        option(value="043602_F_ALL") TY Leveraged 
+        option(value="043607_F_ALL") UXY Leveraged
+        option(value="020604_F_ALL") WN Leveraged
+        option(value="132741_F_ALL") ED Leveraged
+        option(value="132741_FO_ALL") ED+Opt Leveraged
+        option(value="090741_F_ALL") CAD Leveraged
+        option(value="124603_F_ALL") DJIA Leveraged
     input(type="hidden" id="YahooTicker" size="8" placeholder='Yahoo Ticker' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
-    input(type="search" id="Country" size="15" list="exchanges" value="United States" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
+    input(type="search" id="Country" size="15" list="exchanges" value="K2" placeholder='Country' onkeypress="if (event.keyCode==13) { search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); loading.show(); } return true;")
     datalist#exchanges
+        option K2
+        option CFTC
         option United States
         option TSE
         option MUTF_CA
@@ -16,8 +36,6 @@ div#Research
         option INDEXDJX
         option INDEXNASDAQ
         option INDEXTSI
-        option K2
-        option CFTC
     button(type="button" onclick="search_security($('#GoogleTicker').val(), $('#YahooTicker').val(), $('#Country').val()); $('#GoogleTicker').select(); loading.show(); return true;") >
     select(id="ResearchComparison",data-placeholder="Style")
         option(value="No") NoCompare

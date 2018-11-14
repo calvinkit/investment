@@ -13,6 +13,7 @@ html
         script(src='http://code.highcharts.com/stock/4.2.0/modules/exporting.js')
         script(src='http://code.highcharts.com/stock/4.2.0/highcharts-more.js')
         script(src='http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js')
+        script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.js")
         script(src='https://datatables.net/release-datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js')
         script(src='https://dataTables.net/release-datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js')
         script(src='js/dataTables.editor.min.js')
@@ -24,7 +25,6 @@ html
         script(src='js/statistics.js')
         script(src='js/indicator.js')
         script(src='js/index.js')
-        script(src='js/geolocation.js')
         script(src='js/highchartstyle.js')
         script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDh1je8-dys7Ux-bEtYDlAZyaSZ_Qv3JpQ&',async,defer)
     body
@@ -49,10 +49,13 @@ html
                         li
                             a(href="#PCA") PCA
                         li
+                            a(href="#Reports") Reports
+                        li
                             a(href="#OptionsReportTab") Options
                     include k2research
                     include k2regression
                     include pca
+                    include reports
                     include options
     datalist#indexes
         option TSX

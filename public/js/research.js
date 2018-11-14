@@ -2,7 +2,7 @@ var curr_indicator = null;
 var curr_security = null;
 
 $(document).ready(function(){
-    $('#ResearchAccordion').accordion({active:0, heightStyle: 'content'});
+    $('#ResearchAccordion').accordion({active:-1, heightStyle: 'content'});
 
     if ($('#security').length>0) {
         $('#security').dataTable({
@@ -67,7 +67,7 @@ function get_quotes(ticker, yticker, country) {
 
 function onsecurity(security) {
     tabview.switchTo('Research');
-    if ($('#ResearchComparison').val()!="No" && $('#security').length) $("#security").DataTable().clear().draw();
+    if ($('#ResearchComparison').val()=="No" && $('#security').length) $("#security").DataTable().clear().draw();
     if (onerror(security)) return true;
     if ($('#ResearchComparison').val()=="No") {
         curr_indicator = new Indicator(security.quotes);
@@ -183,10 +183,9 @@ function onchartplotting(security) {
             name: security.ticker,
             data: closes,
             yAxis: $('#ResearchComparison').val()=="Same"?0:1,
-            tooltip: { valueDecimals: 2, valueSuffix: '%' }
+            tooltip: { valueDecimals: 2, valueSuffix: '' }
 
         }); 
-        //$('#ResearchPlotStyle').prop('checked', true);
     }
     research_updateAxis();
     research_onchangestyle();
@@ -195,7 +194,7 @@ function onchartplotting(security) {
 function research_onmacd(security) {
     var argu = $('#ResearchMACD').val().split(',');
     var macd = curr_indicator.macd(argu[0], argu[1], argu[2]);
-    if (chart) {
+    if (chart && $('#ResearchComparison').val()=="No") {
         chart.series.filter(function(s) { return s.name.indexOf(curr_security.ticker+' MACD') > -1; }).forEach(function(e) { e.remove(false); });
         chart.addSeries({
             type: 'spline',
@@ -379,6 +378,7 @@ function research_addHistVol()
         var days = parseInt($('#ResearchHistVolPeriod').val());
         var data = curr_indicator.series;
         var histvol = statistics.histvolatility(data, days, forwradVol);
+        histvol = histvol.map((e) => [e[0], e[1]*100]);
         chart.addSeries({
             name: $('#GoogleTicker').val()+' hist '+days+'-d vol',
             data: histvol,

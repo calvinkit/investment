@@ -27,7 +27,7 @@ function PortfolioServer() {
             this.activitate(portfolio, identity, true);
             break;
         case 'unsubscribe':
-            logger.log('info','PortfolioServer.Unsubscribing '+identity);
+            logger.log('verbose','PortfolioServer.Unsubscribing '+identity);
             if (this.subscribers[identity]) this.subscribers[identity].forEach(function(e) { e.deactivitate(); });
             this.subscribers[identity] = [];
             break;

@@ -5,17 +5,22 @@ var bCompare = false;
 var socket = null;
 
 var optionreports = null;
+var k2reports = null;
 
 $(document).ready(function(){
     $(document).tooltip();
     tabview = $('#TabView').tabs({ active:0, heightStyle: "content",
         activate: function(event, ui) {
-            if (ui.newPanel.selector == '#Options') {
-                getLocation(); 
-            }  else if (optionreports<new Date().toExcelDate() && ui.newPanel.selector == "#OptionsReportTab") {
+            if (optionreports<new Date().toExcelDate() && ui.newPanel.selector == "#OptionsReportTab") {
                 showOptionsReports('');
                 optionreports = new Date().toExcelDate();
+            }  else if (k2reports<new Date().toExcelDate() && ui.newPanel.selector == "#Reports") {
+                showReports('');
+                k2reports = new Date().toExcelDate();
             } 
+            else if (ui.newPanel.selector == '#Options') {
+                //getLocation(); 
+            }
         }});
     tabview.switchTo = function(id) {
         var index = $('#TabView a[href="#'+id+'"]').parent().index();
@@ -34,6 +39,7 @@ $(document).ready(function(){
     socket = io.connect('http://'+window.location.host);
     socket.on('message', function (msg) { $('#Msg').text(msg) });
     socket.on('execute', function (stmt) { eval(stmt); });
+    socket.on('connect', function () { $('#Msg').text(''); });
     socket.on('disconnect', function () { $('#Msg').text('Disconnected with the server. Please press F5 to refresh the page!') });
 
 

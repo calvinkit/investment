@@ -1,0 +1,36 @@
+script(src='js/k2reports.js')
+div#Reports
+    | Report Date
+    input(id="ReportDate" type="date" onchange="showReports($(this).val())")
+    div#CurveReportWrapper
+    br
+    //div#PCAReportsView
+    //    ul
+    //        li
+    //            a(href='#PCADailyReportTab') Daily
+    //        li
+    //            a(href='#PCAWeeklyReportTab') Weekly
+    //        li
+    //            a(href='#PCAMonthlyReportTab') Monthly
+    //    div#PCADailyReportTab
+    //        div#PCADailyReportWrapper
+    //    div#PCAWeeklyReportTab
+    //        div#PCAWeeklyReportWrapper
+    //    div#PCAMonthlyReportTab
+    //        div#PCAMonthlyReportWrapper
+    //br
+    div#RegressionReportsView
+        ul
+            li
+                a(href='#RegressionDailyReportTab') Daily
+            li
+                a(href='#RegressionWeeklyReportTab') Weekly
+            li
+                a(href='#RegressionMonthlyReportTab') Monthly
+        div#RegressionDailyReportTab
+            div#RegressionDailyReportWrapper
+        div#RegressionWeeklyReportTab
+            div#RegressionWeeklyReportWrapper
+        div#RegressionMonthlyReportTab
+            div#RegressionMonthlyReportWrapper
+

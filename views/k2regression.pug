@@ -1,10 +1,10 @@
 script(src='js/regression.js')
 div#Regression
-    input(type="search" id="RegressionTarget" list="tickers" onkeypress="if (event.keyCode==13) { run_regress(); }"  placeholder="Strategy" size="8")
+    input(type="search" id="RegressionTarget" list="tickers" onkeypress="if (event.keyCode==13) { run_regress(); }"  placeholder="Strategy" size="10")
     select#RegressionTargetCountry(onkeypress="if (event.keyCode==13) run_regress(); " )
         option K2 
         option CFTC
-    input(type="search" id="RegressionRegressor" list="tickers" onkeypress="if (event.keyCode==13) { run_regress(); }"  placeholder="Regressor" size="8")
+    input(type="search" id="RegressionRegressor" list="tickers" onkeypress="if (event.keyCode==13) { run_regress(); }"  placeholder="Regressor" size="10")
     select#RegressionRegressorCountry(onkeypress="if (event.keyCode==13) run_regress(); " )
         option K2 
         option CFTC
